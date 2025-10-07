@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faça Parte da Revolução - Instituto Paulista de Cinema</title>
+    <script src="https://cdn-tailwindcss.vercel.app/"></script>
+    <script src="menu.js"></script>
+    <script src="footer.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal-500: #14b8a6;
+            --cyan-600: #0891b2;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-100: #f3f4f6;}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(3, 7, 18, 1) 15%, rgba(3, 7, 18, 0.8) 60%, rgba(3, 7, 18, 0.6) 100%);
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; }
+
+        .cta-button {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(20, 184, 166, 0.2);
+        }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .animated-gradient-dark {
+            background: linear-gradient(-45deg, #030712, #111827, #1f2937, #030712);
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+        }
+        
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .reveal {
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+        
+        .reveal.visible { animation-duration: 0.8s; animation-fill-mode: forwards; animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); animation-name: fadeInUp; }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--teal-500);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .parallax-divider {
+            height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            border-color: var(--teal-500);
+            background-color: var(--teal-500);
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-section {
+            @apply mb-12 p-6 bg-gray-50 rounded-xl border border-gray-200;
+        }
+        .form-section-title {
+            @apply text-2xl font-bold text-gray-800 border-b-3 border-teal-500 pb-3 mb-8;
+        }
+        .form-label {
+            @apply block text-base font-semibold text-gray-800 mb-2;
+        }
+        .form-input, .form-textarea, .form-select {
+            @apply block w-full bg-white border-3 border-teal-500 rounded-xl shadow-xl focus:ring-4 focus:ring-teal-200 focus:border-teal-600 text-lg p-4 mb-4 transition-all duration-300;
+            box-shadow: 0 8px 15px -3px rgba(20, 184, 166, 0.15), 0 4px 6px -2px rgba(20, 184, 166, 0.1);
+        }
+        .form-input {
+            min-height: 50px;
+        }
+        .form-input[type="text"], .form-input[type="email"], .form-input[type="tel"], .form-input[type="url"] {
+            min-height: 50px;
+        }
+        .form-input[name*="nome"], .form-input[name*="titulo"], .form-input[name*="empresa"] {
+            min-height: 60px;
+        }
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .form-textarea[name*="descricao"], .form-textarea[name*="experiencia"], .form-textarea[name*="motivacao"] {
+            min-height: 150px;
+        }
+        .form-textarea[name*="proposta"], .form-textarea[name*="relevancia"], .form-textarea[name*="diferencial"] {
+            min-height: 180px;
+        }
+        .form-checkbox, .form-radio {
+            @apply h-5 w-5 text-teal-600 border-2 border-teal-500 rounded focus:ring-teal-500 focus:ring-2;
+        }
+        .error-message {
+            @apply text-red-600 text-sm mt-1 hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300"><!-- 1. Cabeçalho (Header) -->
+    <div id="menu-placeholder"></div>
+
+    <main>
+        <!-- 2. Seção Principal (Hero Section) -->
+        <section class="hero-bg text-white min-h-[80vh] flex items-center">
+            <div class="hero-content container mx-auto px-6 py-24 md:py-40 text-center flex flex-col items-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 max-w-4xl reveal">Faça Parte da Revolução Audiovisual.</h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto reveal" style="animation-delay: 0.2s;">Torne-se um Professor, Padrinho/Tutor ou Facilitador no Instituto Paulista de Cinema e ajude a reescrever o roteiro de milhares de vidas.</p>
+            </div>
+        </section>
+
+        <!-- 3. Introdução -->
+        <section class="bg-gray-100 text-gray-800 py-20">
+            <div class="container mx-auto px-6 max-w-4xl text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-6">A Oportunidade Única de Transformar e Ser Transformado.</h2>
+                    <div class="text-lg text-left space-y-4">
+                        <p>No Instituto, você guiará jovens talentos em um programa intensivo de 1.200 horas, contribuindo para a primeira escola de IA audiovisual para periferias do mundo. Seu trabalho é um investimento direto na reestruturação de comunidades, garantindo 90% de empregabilidade e adicionando R$ 78 milhões ao PIB Cultural de São Paulo.</p>
+                        <p>Convidamos você a se juntar ao nosso Dream Team. Este é um pré-cadastro para oportunidades a partir de 2026. Sua expertise, paixão e visão serão o catalisador para construir um legado duradouro para São Paulo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Quem Buscamos -->
+        <section id="oportunidades" class="py-20 animated-gradient-dark text-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl font-bold">Quem Buscamos</h2>
+                    <p class="text-xl text-gray-400 max-w-3xl mx-auto mt-4">Profissionais que compartilham nosso propósito de transformar a sociedade através da educação e do audiovisual.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal">
+                        <h3 class="text-xl font-semibold text-teal-400 mb-2">Professores</h3>
+                        <p class="text-sm">Especialistas com 15+ anos de experiência para desenvolver e ministrar aulas, integrando inovação pedagógica e as mais recentes ferramentas do mercado.</p>
+                    </div>
+                     <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay:150ms;">
+                        <h3 class="text-xl font-semibold text-teal-400 mb-2">Padrinhos / Tutores</h3>
+                        <p class="text-sm">Líderes com 5+ anos de experiência para supervisionar e mentorar jovens na execução de projetos audiovisuais reais para grandes clientes.</p>
+                    </div>
+                     <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay:300ms;">
+                        <h3 class="text-xl font-semibold text-teal-400 mb-2">Facilitadores</h3>
+                        <p class="text-sm">Especialistas e inovadores para ministrar oficinas e palestras sobre temas relevantes, novas tecnologias e perspectivas disruptivas no audiovisual.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARALLAX DIVIDER -->
+        <section class="parallax-divider" style="background-image: url('https://gov.institutopaulistadecinema.com.br/galeria/4.jpg');"></section>
+
+        <!-- 5. Formulários -->
+        <section id="formularios" class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl font-bold">Formulários de Pré-Cadastro</h2>
+                    <p class="text-xl max-w-3xl mx-auto mt-4">Por favor, escolha o formulário que melhor se alinha com seu perfil e interesse em colaborar conosco.</p>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <!-- Tab Buttons -->
+                    <div class="flex flex-wrap justify-center border-b-2 border-gray-300 mb-8 reveal">
+                        <button class="tab-button border-b-4 border-transparent py-3 px-6 font-semibold text-gray-600 active" data-tab="professores">Professores</button>
+                        <button class="tab-button border-b-4 border-transparent py-3 px-6 font-semibold text-gray-600" data-tab="padrinhos">Padrinhos / Tutores</button>
+                        <button class="tab-button border-b-4 border-transparent py-3 px-6 font-semibold text-gray-600" data-tab="oficinas">Oficinas / Palestras</button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="bg-white p-8 md:p-12 rounded-lg shadow-2xl reveal">
+                        <!-- Formulário Professores -->
+                        <form id="form-professores" class="tab-content active" novalidate>
+                            <input type="hidden" name="form_type" value="Professor">
+                            <!-- All form sections will be generated here by JS for brevity -->
+                            <button type="submit" class="w-full bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold py-3 px-6 rounded-lg cta-button">Enviar Pré-Cadastro de Professor</button>
+                            <div class="text-center mt-4 text-sm text-green-600 font-semibold success-message hidden"></div>
+                            <div class="text-center mt-4 text-sm text-red-600 font-semibold error-message-submit hidden"></div>
+                        </form>
+                        
+                        <!-- Formulário Padrinhos -->
+                        <form id="form-padrinhos" class="tab-content" novalidate>
+                           <input type="hidden" name="form_type" value="Padrinho/Tutor">
+                             <!-- All form sections will be generated here by JS for brevity -->
+                            <button type="submit" class="w-full bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold py-3 px-6 rounded-lg cta-button">Enviar Pré-Cadastro de Padrinho/Tutor</button>
+                            <div class="text-center mt-4 text-sm text-green-600 font-semibold success-message hidden"></div>
+                            <div class="text-center mt-4 text-sm text-red-600 font-semibold error-message-submit hidden"></div>
+                        </form>
+
+                        <!-- Formulário Oficinas -->
+                        <form id="form-oficinas" class="tab-content" novalidate>
+                           <input type="hidden" name="form_type" value="Oficina/Palestra">
+                            <!-- All form sections will be generated here by JS for brevity -->
+                            <button type="submit" class="w-full bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold py-3 px-6 rounded-lg cta-button">Enviar Pré-Cadastro de Facilitador</button>
+                            <div class="text-center mt-4 text-sm text-green-600 font-semibold success-message hidden"></div>
+                            <div class="text-center mt-4 text-sm text-red-600 font-semibold error-message-submit hidden"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Intersection Observer for animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => observer.observe(el));
+            
+            // Custom Cursor Logic removed
+
+            // Tabs Logic
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+                    
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    tabContents.forEach(content => {
+                        content.classList.toggle('active', content.id === `form-${tabId}`);
+                    });
+                });
+            });
+
+            // --- Form Generation and Logic ---
+
+            const areasDeEspecializacao = ["Produção", "Roteiro", "Direção", "IA Audiovisual", "Pós-produção", "Áudio", "Operação de Câmera", "Drones", "Direção de Fotografia", "Fotografia", "Design", "Atuação", "Som Direto"];
+
+            const formFields = {
+                professores: [
+                    { section: "Dados Pessoais", fields: [
+                        { label: "Nome Completo", name: "nome_completo", type: "text", required: true },
+                        { label: "E-mail", name: "email", type: "email", required: true },
+                        { label: "Telefone (com DDD e WhatsApp)", name: "telefone", type: "tel", required: true },
+                        { label: "CPF", name: "cpf", type: "text", required: true },
+                        { label: "Link para LinkedIn", name: "linkedin", type: "url", required: true },
+                        { label: "Portfólio/Website Pessoal", name: "portfolio", type: "url" }
+                    ]},
+                    { section: "Experiência Profissional e Docente", fields: [
+                        { label: "Anos de Experiência na Indústria (Mínimo 15)", name: "anos_experiencia", type: "number", required: true, min: 15 },
+                        { label: "Principais Áreas de Especialização", name: "areas_especializacao", type: "checkbox", options: areasDeEspecializacao, required: true },
+                        { label: "Possui experiência docente anterior?", name: "experiencia_docente", type: "radio", options: ["Sim", "Não"], required: true },
+                        { label: "Se sim, descreva onde e por quanto tempo.", name: "descricao_experiencia_docente", type: "textarea", dependsOn: { name: "experiencia_docente", value: "Sim" } },
+                        { label: "Descreva brevemente 3 projetos relevantes que você participou/liderou.", name: "projetos_relevantes", type: "textarea", required: true },
+                        { label: "Quais tecnologias e softwares você domina?", name: "tecnologias_softwares", type: "textarea", required: true }
+                    ]},
+                    { section: "Alinhamento com o Instituto", fields: [
+                         { label: "Por que você deseja ser Professor no Instituto?", name: "motivacao", type: "textarea", required: true },
+                         { label: "Como sua experiência se alinha com nossa proposta de 'aprender produzindo'?", name: "alinhamento_metodologia", type: "textarea", required: true },
+                         { label: "Como você vê seu papel na transformação da vida dos jovens?", name: "papel_transformacao", type: "textarea", required: true },
+                         { label: "Teria interesse em desenvolver novos conteúdos/currículos?", name: "interesse_conteudo", type: "radio", options: ["Sim", "Não"], required: true }
+                    ]},
+                    { section: "Disponibilidade", fields: [
+                         { label: "Qual a sua disponibilidade?", name: "disponibilidade", type: "checkbox", options: ["Manhã", "Tarde", "Noite", "Finais de Semana"], required: true },
+                         { label: "Quantas horas semanais poderia dedicar?", name: "horas_semanais", type: "number", required: true, min: 1 }
+                    ]},
+                    { section: "Declaração", fields: [
+                         { label: "Declaro que possuo mais de 15 anos de experiência na indústria audiovisual e compreendo o propósito social, inovador e a metodologia única do Instituto. Entendo que este é um pré-cadastro para o ano de 2026 e que serei o primeiro a receber as informações oficiais sobre o processo seletivo.", name: "declaracao", type: "declaration", required: true }
+                    ]}
+                ],
+                padrinhos: [
+                     { section: "Dados Pessoais", fields: [
+                        { label: "Nome Completo", name: "nome_completo", type: "text", required: true },
+                        { label: "E-mail", name: "email", type: "email", required: true },
+                        { label: "Telefone (com DDD e WhatsApp)", name: "telefone", type: "tel", required: true },
+                        { label: "CPF", name: "cpf", type: "text", required: true },
+                        { label: "Link para LinkedIn", name: "linkedin", type: "url", required: true },
+                        { label: "Portfólio/Website Pessoal", name: "portfolio", type: "url" }
+                    ]},
+                    { section: "Experiência Profissional e de Mentoria", fields: [
+                        { label: "Anos de Experiência na Indústria (Mínimo 5)", name: "anos_experiencia", type: "number", required: true, min: 5 },
+                        { label: "Principais Áreas de Especialização", name: "areas_especializacao", type: "checkbox", options: areasDeEspecializacao, required: true },
+                        { label: "Possui experiência em liderança ou supervisão de projetos?", name: "experiencia_lideranca", type: "radio", options: ["Sim", "Não"], required: true },
+                        { label: "Se sim, descreva 2-3 projetos chave onde atuou como líder.", name: "descricao_experiencia_lideranca", type: "textarea", dependsOn: { name: "experiencia_lideranca", value: "Sim" } },
+                         { label: "Possui experiência em mentoria?", name: "experiencia_mentoria", type: "radio", options: ["Sim", "Não"], required: true },
+                        { label: "Se sim, descreva brevemente essa experiência.", name: "descricao_experiencia_mentoria", type: "textarea", dependsOn: { name: "experiencia_mentoria", value: "Sim" } },
+                        { label: "Quais são suas principais habilidades em gestão de equipes e resolução de problemas?", name: "habilidades_gestao", type: "textarea", required: true }
+                    ]},
+                    { section: "Alinhamento com o Instituto", fields: [
+                         { label: "Por que você deseja ser Padrinho/Tutor no Instituto?", name: "motivacao", type: "textarea", required: true },
+                         { label: "Como sua experiência prática pode guiar jovens talentos?", name: "guia_talentos", type: "textarea", required: true },
+                         { label: "Como você se alinha com o 'Sistema de Padrinhos'?", name: "alinhamento_sistema", type: "textarea", required: true },
+                         { label: "Você está alinhado com a nossa missão de inclusão e pioneirismo em IA?", name: "alinhamento_missao", type: "radio", options: ["Sim", "Não"], required: true }
+                    ]},
+                     { section: "Disponibilidade", fields: [
+                         { label: "Qual a sua disponibilidade para mentorar?", name: "disponibilidade_mentoria", type: "radio", options: ["Poucas horas/semana (2-4h)", "Algumas horas/semana (5-8h)", "Flexível, a combinar"], required: true },
+                         { label: "Tem flexibilidade para reuniões e visitas aos sets?", name: "flexibilidade_reunioes", type: "radio", options: ["Sim", "Não"], required: true }
+                    ]},
+                    { section: "Declaração", fields: [
+                         { label: "Declaro que possuo pelo menos 5 anos de experiência na indústria audiovisual e compreendo o propósito social, inovador e a metodologia única do Instituto. Entendo que este é um pré-cadastro para o ano de 2026 e que serei o primeiro a receber as informações oficiais sobre o processo seletivo.", name: "declaracao", type: "declaration", required: true }
+                    ]}
+                ],
+                oficinas: [
+                    { section: "Dados Pessoais", fields: [
+                        { label: "Nome Completo", name: "nome_completo", type: "text", required: true },
+                        { label: "E-mail", name: "email", type: "email", required: true },
+                        { label: "Telefone (com DDD e WhatsApp)", name: "telefone", type: "tel", required: true },
+                        { label: "CPF", name: "cpf", type: "text", required: true },
+                        { label: "Link para LinkedIn", name: "linkedin", type: "url", required: true },
+                        { label: "Portfólio/Website Pessoal", name: "portfolio", type: "url" }
+                    ]},
+                    { section: "Proposta de Conteúdo e Experiência", fields: [
+                        { label: "Título Proposto para a Oficina/Palestra", name: "titulo_proposta", type: "text", required: true },
+                        { label: "Área(s) de Interesse Principal da Proposta", name: "area_proposta", type: "checkbox", options: [...areasDeEspecializacao, "Outro"], required: true },
+                        { label: "Descreva brevemente sua proposta (objetivos, formato, duração).", name: "descricao_proposta", type: "textarea", required: true },
+                        { label: "Qual a relevância do seu tema para o futuro do audiovisual?", name: "relevancia_tema", type: "textarea", required: true },
+                        { label: "Como seu trabalho se destaca por ser inovador?", name: "diferencial_inovador", type: "textarea", required: true },
+                        { label: "Descreva sua experiência que o credencia a ministrar este conteúdo.", name: "experiencia_credencial", type: "textarea", required: true }
+                    ]},
+                    { section: "Alinhamento com o Instituto", fields: [
+                         { label: "Por que você deseja colaborar com o Instituto?", name: "motivacao", type: "textarea", required: true },
+                         { label: "Você está alinhado com a nossa missão de inclusão e pioneirismo em IA?", name: "alinhamento_missao", type: "radio", options: ["Sim", "Não"], required: true }
+                    ]},
+                    { section: "Disponibilidade", fields: [
+                         { label: "Qual a sua disponibilidade para ministrar?", name: "disponibilidade", type: "checkbox", options: ["Datas específicas", "Flexível, a combinar", "Apenas online", "Presencial e online"], required: true }
+                    ]},
+                     { section: "Declaração", fields: [
+                         { label: "Declaro que compreendo o propósito social, inovador e a metodologia única do Instituto e que minha proposta se alinha com a busca por inovação. Entendo que este é um pré-cadastro para o ano de 2026 e que serei o primeiro a receber as informações oficiais sobre o processo seletivo.", name: "declaracao", type: "declaration", required: true }
+                    ]}
+                ]
+            };
+
+            function createFieldHtml(field, formType) {
+                const id = `${formType}-${field.name}`;
+                let fieldHtml = `<div class="mb-4">`;
+                
+                if (field.type === 'textarea') {
+                    fieldHtml += `<label for="${id}" class="form-label">${field.label}</label><textarea id="${id}" name="${field.name}" ${field.required ? 'required' : ''} class="form-textarea" rows="4"></textarea>`;
+                } else if (field.type === 'select') {
+                    fieldHtml += `<label for="${id}" class="form-label">${field.label}</label><select id="${id}" name="${field.name}" ${field.required ? 'required' : ''} class="form-select">`;
+                    field.options.forEach(option => {
+                        fieldHtml += `<option value="${option}">${option}</option>`;
+                    });
+                    fieldHtml += `</select>`;
+                } else if (field.type === 'checkbox') {
+                    fieldHtml += `<label class="form-label">${field.label}</label><div class="mt-2 space-y-2">`;
+                    field.options.forEach(option => {
+                        const optionId = `${id}-${option.replace(/\s+/g, '-').toLowerCase()}`;
+                        fieldHtml += `<div class="flex items-center"><input id="${optionId}" name="${field.name}" type="checkbox" value="${option}" class="form-checkbox"><label for="${optionId}" class="ml-2 text-sm text-gray-700">${option}</label></div>`;
+                    });
+                    fieldHtml += `</div>`;
+                } else if (field.type === 'radio') {
+                    fieldHtml += `<label class="form-label">${field.label}</label><div class="mt-2 space-x-4 flex">`;
+                    field.options.forEach(option => {
+                        const optionId = `${id}-${option.replace(/\s+/g, '-').toLowerCase()}`;
+                        fieldHtml += `<div class="flex items-center"><input id="${optionId}" name="${field.name}" type="radio" value="${option}" ${field.required ? 'required' : ''} class="form-radio"><label for="${optionId}" class="ml-2 text-sm text-gray-700">${option}</label></div>`;
+                    });
+                    fieldHtml += `</div>`;
+                } else if (field.type === 'declaration') {
+                     fieldHtml += `<div class="mt-6 flex items-start"><div class="flex items-center h-5"><input id="${id}" name="${field.name}" type="checkbox" ${field.required ? 'required' : ''} class="form-checkbox" value="Sim"></div><div class="ml-3 text-sm"><label for="${id}" class="text-gray-700">${field.label}</label></div></div>`;
+                }
+                else {
+                    fieldHtml += `<label for="${id}" class="form-label">${field.label}</label><input type="${field.type}" id="${id}" name="${field.name}" ${field.required ? 'required' : ''} ${field.min ? `min="${field.min}"` : ''} class="form-input">`;
+                }
+                fieldHtml += `<div id="${id}-error" class="error-message"></div></div>`;
+                
+                if (field.dependsOn) {
+                    return `<div id="dependent-${id}" class="hidden">${fieldHtml}</div>`;
+                }
+                
+                return fieldHtml;
+            }
+
+            function generateForm(formType) {
+                const formElement = document.getElementById(`form-${formType}`);
+                let formHtml = `<input type="hidden" name="form_type" value="${formType.charAt(0).toUpperCase() + formType.slice(1)}">`;
+
+                formFields[formType].forEach(section => {
+                    formHtml += `<div class="form-section"><h3 class="form-section-title">${section.section}</h3>`;
+                    let fieldsWrapper = (section.fields.length > 2 && section.fields.every(f => ['text', 'email', 'tel', 'url', 'number'].includes(f.type))) ? '<div class="grid md:grid-cols-2 gap-6">' : '<div>';
+                    formHtml += fieldsWrapper;
+                    section.fields.forEach(field => {
+                        formHtml += createFieldHtml(field, formType);
+                    });
+                    formHtml += (fieldsWrapper.startsWith('<div class="grid')) ? '</div>' : '</div>';
+                    formHtml += `</div>`;
+                });
+                
+                const submitButton = formElement.querySelector('button[type="submit"]');
+                const messages = formElement.querySelectorAll('.success-message, .error-message-submit');
+                formElement.innerHTML = formHtml;
+                formElement.appendChild(submitButton);
+                messages.forEach(msg => formElement.appendChild(msg));
+            }
+
+            generateForm('professores');
+            generateForm('padrinhos');
+            generateForm('oficinas');
+
+            // Add dependency logic for all forms
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                if (radio.name.includes('experiencia_')) {
+                    radio.addEventListener('change', (e) => {
+                        const name = e.target.name;
+                        const formType = e.target.id.split('-')[0];
+                        const dependentFieldId = `dependent-${formType}-descricao_${name}`;
+                        const dependentField = document.getElementById(dependentFieldId);
+                        
+                        if(dependentField) {
+                             dependentField.classList.toggle('hidden', e.target.value !== 'Sim');
+                             const internalInput = dependentField.querySelector('textarea');
+                             if (internalInput) {
+                                 internalInput.required = (e.target.value === 'Sim');
+                             }
+                        }
+                    });
+                }
+            });
+
+            // Form Submission Logic
+            const forms = document.querySelectorAll('form');
+            const webhookUrl = 'https://webhook.hypelead.io/webhook/16fa21b5-dd13-4441-b39c-a652dd42d4ee'; 
+
+            forms.forEach(form => {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    let isValid = true;
+                    
+                    form.querySelectorAll('[required]').forEach(input => {
+                        const errorDiv = document.getElementById(`${input.id}-error`);
+                        if(errorDiv) errorDiv.classList.add('hidden');
+                        
+                        let isFieldValid = true;
+                        
+                        // Skip validation for hidden dependent fields
+                        if (input.closest('.hidden')) {
+                            return;
+                        }
+
+                        if ((input.type === 'checkbox' || input.type === 'radio') && !input.name.includes('declaracao')) {
+                             const groupName = input.name;
+                             if (!form.querySelector(`input[name="${groupName}"]:checked`)) {
+                                 isFieldValid = false;
+                                 const firstElement = form.querySelector(`input[name="${groupName}"]`);
+                                 const firstErrorDiv = document.getElementById(`${firstElement.id}-error`);
+                                  if (firstErrorDiv) {
+                                     firstErrorDiv.textContent = 'Por favor, selecione uma opção.';
+                                     firstErrorDiv.classList.remove('hidden');
+                                 } else { // For checkbox groups
+                                    const label = firstElement.closest('.mb-4').querySelector('.form-label');
+                                    let errorContainer = label.parentElement.querySelector('.error-message');
+                                    if(!errorContainer){
+                                        errorContainer = document.createElement('div');
+                                        errorContainer.className = 'error-message';
+                                        label.parentElement.appendChild(errorContainer);
+                                    }
+                                    errorContainer.textContent = 'Por favor, selecione ao menos uma opção.';
+                                    errorContainer.classList.remove('hidden');
+                                 }
+                             }
+                        } else if(input.type === 'checkbox' && input.name.includes('declaracao') && !input.checked) {
+                            isFieldValid = false;
+                            if (errorDiv) {
+                                 errorDiv.textContent = 'Você deve concordar com a declaração.';
+                                 errorDiv.classList.remove('hidden');
+                             }
+                        }
+                        else if (!input.value.trim() && input.type !== 'checkbox' && input.type !== 'radio') {
+                            isFieldValid = false;
+                             if (errorDiv) {
+                                 errorDiv.textContent = 'Este campo é obrigatório.';
+                                 errorDiv.classList.remove('hidden');
+                             }
+                        }
+                        
+                        if (!isFieldValid) isValid = false;
+                    });
+
+                    if (!isValid) return;
+
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    const successMessage = form.querySelector('.success-message');
+                    const errorMessage = form.querySelector('.error-message-submit');
+                    
+                    submitButton.disabled = true;
+                    successMessage.classList.add('hidden');
+                    errorMessage.classList.add('hidden');
+
+                    const formData = new FormData(form);
+                    const data = {};
+                    formData.forEach((value, key) => {
+                        if (data[key]) {
+                            if (!Array.isArray(data[key])) {
+                                data[key] = [data[key]];
+                            }
+                            data[key].push(value);
+                        } else {
+                            data[key] = value;
+                        }
+                    });
+
+                    try {
+                        const response = await fetch(webhookUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data)
+                        });
+
+                        if (response.ok) {
+                            successMessage.textContent = 'Pré-cadastro enviado com sucesso! Entraremos em contato em breve.';
+                            successMessage.classList.remove('hidden');
+                            form.reset();
+                            form.querySelectorAll('[id^="dependent-"]').forEach(el => el.classList.add('hidden'));
+                        } else {
+                            throw new Error('Falha no envio.');
+                        }
+                    } catch (error) {
+                        errorMessage.textContent = 'Ocorreu um erro ao enviar. Por favor, tente novamente.';
+                        errorMessage.classList.remove('hidden');
+                    } finally {
+                        submitButton.disabled = false;
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+</body>
+</html>
+

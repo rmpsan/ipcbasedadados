@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Produtora - Instituto Paulista de Cinema</title>
+    <script src="https://cdn-tailwindcss.vercel.app/"></script>
+    <script src="menu.js"></script>
+    <script src="footer.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal-500: #14b8a6;
+            --cyan-600: #0891b2;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-100: #f3f4f6;}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://gov.institutopaulistadecinema.com.br/galeria/20.jpg');
+            background-size: cover;
+            background-position: center;
+            animation: kenburns 20s ease-out infinite alternate;
+            z-index: 1;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(3, 7, 18, 1) 15%, rgba(3, 7, 18, 0.8) 60%, rgba(3, 7, 18, 0.6) 100%);
+            z-index: 2;
+        }
+
+        .hero-content { 
+            position: relative; 
+            z-index: 3; 
+            transform-style: preserve-3d;
+        }
+
+        .cta-button {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(20, 184, 166, 0.2);
+        }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes kenburns {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(-2%, 2%); }
+        }
+        
+        .animated-gradient-dark {
+            position: relative;
+            background: linear-gradient(-45deg, #030712, #111827, #1f2937, #030712);
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+        }
+        .animated-gradient-dark::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+        
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .reveal {
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+        
+        .reveal.visible { animation-duration: 0.8s; animation-fill-mode: forwards; animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); animation-name: fadeInUp; }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--teal-500);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .parallax-divider {
+            height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            border-color: var(--teal-500);
+            background-color: white;
+            color: var(--teal-500);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+
+        .h1-word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .h1-word.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300"><!-- Header Global -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- 2. Seção Principal (Hero Section) -->
+        <section class="hero-bg text-white min-h-screen flex items-center">
+            <div class="hero-content container mx-auto px-6 py-24 md:py-40 text-center flex flex-col items-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 max-w-4xl">Conteúdo Premium com Propósito, Economia e Coração.</h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto reveal" style="animation-delay: 0.8s;">Sua Marca, Sua Mensagem, Nossos Talentos: Soluções Audiovisuais para Toda e Qualquer Empresa.</p>
+            </div>
+        </section>
+
+        <!-- 3. Introdução -->
+        <section class="bg-gray-100 text-gray-800 py-20">
+            <div class="container mx-auto px-6 max-w-4xl text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-6">Chega de pagar caro por produções lentas e sem alma!</h2>
+                    <div class="text-lg text-left space-y-4">
+                        <p>No Instituto Paulista de Cinema, redefinimos o que é uma produtora. Somos a primeira produtora-escola do mundo onde jovens talentos da periferia são remunerados para aprender e produzir conteúdo profissional de classe mundial. Do pequeno empreendedor à grande multinacional, atendemos todos, oferecendo soluções com economia garantida, qualidade superior e a paixão de uma equipe que acredita no que faz.</p>
+                        <p>Seu investimento conosco não é um custo; é uma decisão que transforma obrigações fiscais em comunicação de alto impacto, ROI mensurável e legado social tangível.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 4. Diferenciais -->
+        <section id="diferenciais" class="py-20 bg-gray-200 text-gray-800">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl font-bold">Nossos Diferenciais Exclusivos</h2>
+                    <p class="text-xl max-w-3xl mx-auto mt-4">Resultados que nenhuma outra produtora oferece.</p>
+                </div>
+
+                <div class="max-w-5xl mx-auto">
+                     <!-- Tab Buttons -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 reveal">
+                        <button class="tab-button p-4 rounded-lg shadow-lg focus:outline-none bg-white border-2 border-transparent active" data-tab="economia">
+                            <div class="flex flex-col items-center"><svg class="w-10 h-10 mb-2 text-teal-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg><span class="font-bold">Economia</span></div>
+                        </button>
+                        <button class="tab-button p-4 rounded-lg shadow-lg focus:outline-none bg-white border-2 border-transparent" data-tab="qualidade">
+                           <div class="flex flex-col items-center"><svg class="w-10 h-10 mb-2 text-teal-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg><span class="font-bold">Qualidade</span></div>
+                        </button>
+                        <button class="tab-button p-4 rounded-lg shadow-lg focus:outline-none bg-white border-2 border-transparent" data-tab="velocidade">
+                           <div class="flex flex-col items-center"><svg class="w-10 h-10 mb-2 text-teal-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" /></svg><span class="font-bold">Velocidade</span></div>
+                        </button>
+                         <button class="tab-button p-4 rounded-lg shadow-lg focus:outline-none bg-white border-2 border-transparent" data-tab="impacto">
+                           <div class="flex flex-col items-center"><svg class="w-10 h-10 mb-2 text-teal-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg><span class="font-bold">Impacto</span></div>
+                        </button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="bg-white p-8 md:p-12 rounded-lg shadow-2xl reveal">
+                        <div id="economia" class="tab-content active">
+                            <h3 class="text-2xl font-bold mb-6">Economia Garantida e Custo Efetivo ZERO</h3>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div><h4 class="font-bold text-teal-600">Para TODAS as Empresas</h4><p class="text-sm">Garantimos 35% de economia em qualquer contratação direta. Um vídeo de R$ 80.000 sai por R$ 52.000.</p></div>
+                                <div><h4 class="font-bold text-teal-600">Para Grandes Empresas</h4><p class="text-sm">Utilize leis de incentivo (Rouanet, Audiovisual, ProAC, ISS) e produza com Custo Efetivo ZERO, deduzindo 100% do investimento.</p></div>
+                            </div>
+                        </div>
+                        <div id="qualidade" class="tab-content">
+                             <h3 class="text-2xl font-bold mb-6">Qualidade Premium, Experiência e Cuidado Artesanal</h3>
+                            <ul class="text-sm space-y-3">
+                                <li><b>✓ Dream Team de Supervisores:</b> Profissionais com 15+ anos de experiência.</li>
+                                <li><b>✓ Sistema de Padrinhos:</b> 1 supervisor sênior por projeto e 1 padrinho para cada 5 jovens.</li>
+                                <li><b>✓ Revisão Tripla:</b> 95% de aprovação na primeira entrega.</li>
+                                <li><b>✓ Equipamentos Premium:</b> R$ 4 milhões em câmeras 4K/8K e estúdios.</li>
+                                <li><b>✓ Paixão e Compromisso:</b> A energia de quem acredita no que faz, visível em cada frame.</li>
+                            </ul>
+                        </div>
+                        <div id="velocidade" class="tab-content">
+                            <h3 class="text-2xl font-bold mb-6">Velocidade e Inovação da Nova Geração</h3>
+                             <div class="grid md:grid-cols-2 gap-8">
+                                <div><h4 class="font-bold text-teal-600">Entrega 3x Mais Rápida</h4><p class="text-sm">Prazo médio de 15 dias para entrega, contra 45-60 dias do mercado tradicional.</p></div>
+                                <div><h4 class="font-bold text-teal-600">Tecnologia de Ponta com IA</h4><p class="text-sm">Primeira escola de IA audiovisual para periferias do mundo. Nossos jovens dominam as tecnologias mais avançadas.</p></div>
+                            </div>
+                        </div>
+                        <div id="impacto" class="tab-content">
+                            <h3 class="text-2xl font-bold mb-6">Impacto Social Transformador: ESG Genuíno e Mensurável</h3>
+                             <p class="text-sm mb-4">Sua parceria é um investimento direto na transformação de vidas:</p>
+                             <ul class="text-xs space-y-1 grid grid-cols-2 gap-x-4">
+                                <li>✓ 400 jovens capacitados em 4 anos.</li>
+                                <li>✓ 90% de empregabilidade garantida.</li>
+                                <li>✓ 1.600 famílias reestruturadas.</li>
+                                <li>✓ R$ 78 milhões em PIB Cultural.</li>
+                                <li>✓ Redução de 40% na violência do entorno.</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARALLAX DIVIDER -->
+        <section class="parallax-divider" style="background-image: url('https://gov.institutopaulistadecinema.com.br/galeria/4.jpg');"></section>
+
+        <!-- 5. Soluções -->
+        <section id="solucoes" class="py-20 animated-gradient-dark text-white relative z-10">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl font-bold">Nossas Soluções Audiovisuais Completas</h2>
+                    <p class="text-xl text-gray-400 max-w-3xl mx-auto mt-4">Da estratégia à execução, oferecemos um portfólio completo para atender todas as suas necessidades de comunicação com excelência e propósito.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal"><h3 class="font-semibold text-teal-400">Produção Corporativa</h3><p class="text-sm mt-2">Vídeos institucionais, documentários, cobertura de eventos, conteúdo de marca, vídeos de treinamento e segurança.</p></div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay:150ms;"><h3 class="font-semibold text-teal-400">Marketing Digital</h3><p class="text-sm mt-2">Campanhas para redes sociais (Instagram, TikTok, YouTube), séries, podcasts e videocasts.</p></div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay:300ms;"><h3 class="font-semibold text-teal-400">Comunicação Interna</h3><p class="text-sm mt-2">EAD e capacitação, endomarketing, webinars e transmissões corporativas.</p></div>
+                     <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay:450ms;"><h3 class="font-semibold text-teal-400">Transmissões ao Vivo</h3><p class="text-sm mt-2">Cobertura profissional de eventos, palestras, shows e lançamentos para plataformas digitais.</p></div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal md:col-span-2 lg:col-span-2" style="animation-delay:600ms;"><h3 class="font-semibold text-teal-400">Inovação e Tecnologia</h3><p class="text-sm mt-2">Conteúdo com Inteligência Artificial, Realidade Virtual/Aumentada, animações 2D/3D e motion graphics para experiências imersivas.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 6. Credibilidade -->
+        <section class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal"><h2 class="text-3xl font-bold">Credibilidade e Validação Comprovadas</h2></div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal card-hover"><h3 class="font-bold text-lg mb-2 text-teal-600">Validação Federal</h3><p class="text-sm">R$ 2 milhões já investidos pelo FSA/ANCINE, comprovando nossa viabilidade técnica e impacto social.</p></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal card-hover" style="animation-delay: 150ms;"><h3 class="font-bold text-lg mb-2 text-teal-600">Instituições Fundadoras</h3><p class="text-sm">Dummy Filmes (15 anos), MPV Filmes e Sabiá Educação (parceira Vila Sésamo) garantem nossa expertise.</p></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal card-hover" style="animation-delay: 300ms;"><h3 class="font-bold text-lg mb-2 text-teal-600">Equipe de Excelência</h3><p class="text-sm">Liderada por <a href="fundador.html" class="underline hover:text-teal-700">Raphael Martinez</a> e com especialistas da USP, FGV e Disney.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 7. Clube dos Fundadores -->
+        <section id="fundadores" class="py-20 animated-gradient-dark text-white relative z-10">
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-4">Clube dos Fundadores: <span class="text-amber-400">Uma Oportunidade Limitada e Exclusiva.</span></h2>
+                    <p class="text-xl max-w-3xl mx-auto text-gray-400 mb-12">Seja uma das apenas 10 empresas visionárias a fazer parte do nosso Clube dos Fundadores e lidere a revolução ESG.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal"><h3 class="font-bold text-lg mb-2 text-amber-400">Patrocínio Corporativo</h3><p class="text-2xl font-bold">R$ 500 mil/ano</p><p class="text-sm mt-2">20 produções anuais e certificações de impacto.</p></div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg border-2 border-amber-400 shadow-lg shadow-amber-500/10 reveal" style="animation-delay:150ms;"><h3 class="font-bold text-lg mb-2 text-amber-400">Patrocínio Master</h3><p class="text-2xl font-bold">R$ 1 milhão/ano</p><p class="text-sm mt-2">40 produções anuais e Naming Rights de 1 turma.</p></div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay:300ms;"><h3 class="font-bold text-lg mb-2 text-amber-400">Patrocínio Fundador</h3><p class="text-2xl font-bold">R$ 2 milhões/ano</p><p class="text-sm mt-2">100 produções anuais e Naming Rights de 2 turmas.</p></div>
+                </div>
+                 <div class="mt-12 reveal"><a href="contato.html" class="bg-amber-500 text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-amber-600 cta-button">Garanta sua Vaga no Clube</a></div>
+            </div>
+        </section>
+        
+        <!-- 8. CTA Final -->
+        <section id="contato" class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-4">Próximos Passos: Transforme Recursos em Oportunidades Reais.</h2>
+                    <p class="max-w-3xl mx-auto mb-12">Enquanto seus concorrentes pagam fortunas e desperdiçam recursos, sua empresa pode construir um legado de impacto e eficiência.</p>
+                </div>
+                 <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8">
+                     <div class="text-center reveal"><div class="bg-teal-500 text-white rounded-full h-16 w-16 flex justify-center items-center shadow-lg mx-auto mb-4"><span class="font-bold text-2xl">1</span></div><h3 class="font-bold">Agende uma Apresentação</h3></div>
+                     <div class="text-center reveal" style="animation-delay: 200ms;"><div class="bg-teal-500 text-white rounded-full h-16 w-16 flex justify-center items-center shadow-lg mx-auto mb-4"><span class="font-bold text-2xl">2</span></div><h3 class="font-bold">Receba um Diagnóstico Fiscal</h3></div>
+                     <div class="text-center reveal" style="animation-delay: 400ms;"><div class="bg-teal-500 text-white rounded-full h-16 w-16 flex justify-center items-center shadow-lg mx-auto mb-4"><span class="font-bold text-2xl">3</span></div><h3 class="font-bold">Torne-se um Fundador</h3></div>
+                 </div>
+                 <div class="mt-12 reveal">
+                     <a href="contato.html" class="bg-gray-800 text-white font-bold py-4 px-10 text-lg rounded-lg cta-button inline-block">Fale com um Especialista</a>
+                 </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer Global -->
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                     const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                             const headerOffset = document.getElementById('header').offsetHeight;
+                             const elementPosition = targetElement.getBoundingClientRect().top;
+                             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                             window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        }
+                    }
+                });
+            });
+            
+            // Intersection Observer for animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => observer.observe(el));
+            
+            // Custom Cursor Logic removed
+
+             // Hero Title Animation
+            const h1 = document.querySelector('.hero-content h1');
+            if(h1) {
+                const text = h1.innerText;
+                h1.innerHTML = '';
+                text.split(' ').forEach((word, index) => {
+                    const span = document.createElement('span');
+                    span.innerHTML = `${word}&nbsp;`;
+                    span.classList.add('h1-word');
+                    span.style.transitionDelay = `${index * 0.05 + 0.2}s`;
+                    h1.appendChild(span);
+                });
+                setTimeout(() => {
+                    h1.querySelectorAll('.h1-word').forEach(span => {
+                        span.classList.add('visible');
+                    });
+                }, 100);
+            }
+
+            // Tabs Logic
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+                    
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    tabContents.forEach(content => {
+                        content.classList.toggle('active', content.id === tabId);
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
+

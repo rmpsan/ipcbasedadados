@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Paulista de Cinema - Projeto de Formação para Jovens</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            font-weight: 400;
+            letter-spacing: -0.011em;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+        }
+
+        /* SLIDES */
+        .slide {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 25mm 25mm;
+            position: relative;
+            page-break-after: always;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* SLIDE CAPA */
+        .slide-cover {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slide-cover h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .slide-cover h1 strong {
+            font-weight: 700;
+            display: block;
+            color: #3b82f6;
+            margin-top: 10px;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            opacity: 0.9;
+            line-height: 1.6;
+            color: #e5e7eb;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            color: #3b82f6;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+            margin-top: 5px;
+            color: #e5e7eb;
+        }
+
+        /* SLIDE PADRÃO */
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+        }
+
+        .slide-subtitle {
+            font-size: 1.3rem;
+            color: #6b7280;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* GRID DE CARDS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 20px;
+        }
+
+        .card-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* DESTAQUE */
+        .highlight-box {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .highlight-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .highlight-text {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .highlight-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0;
+            color: #3b82f6;
+        }
+
+        /* SECTIONS ESPECIAIS */
+        .section-dark {
+            background: #f9fafb;
+            padding: 40px;
+            border-radius: 16px;
+            margin: 30px 0;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            margin: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 30px 0;
+            align-items: flex-start;
+        }
+
+        .timeline-date {
+            width: 150px;
+            font-weight: 700;
+            color: #3b82f6;
+            font-size: 1.1rem;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .timeline-description {
+            color: #6b7280;
+            font-size: 0.975rem;
+            line-height: 1.5;
+        }
+
+        /* PROCESSO */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .step-text {
+            font-size: 0.875rem;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        /* BENEFÍCIOS */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .benefit-card {
+            padding: 30px;
+            background: #f9fafb;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 20px;
+        }
+
+        .benefit-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #3b82f6;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .benefit-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .benefit-text {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        /* CURSOS */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .course-card {
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .course-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 15px;
+        }
+
+        .course-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .course-description {
+            font-size: 0.95rem;
+            color: #6b7280;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .course-salary {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #3b82f6;
+        }
+
+        /* DEPOIMENTOS */
+        .testimonial-card {
+            background: #f9fafb;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+            position: relative;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #374151;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #1a1a1a;
+            text-align: right;
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #6b7280;
+            text-align: right;
+        }
+
+        /* REQUISITOS */
+        .requirements-list {
+            margin: 30px 0;
+        }
+
+        .requirement-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .requirement-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .requirement-text {
+            font-size: 1.05rem;
+            color: #374151;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin: 20px 0;
+            padding: 25px;
+            background: #f9fafb;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .faq-question {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .faq-answer {
+            font-size: 1rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: white;
+            text-align: center;
+            padding: 60px;
+            border-radius: 16px;
+            margin: 40px 0;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: #3b82f6;
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .cta-button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59,130,246,0.3);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* NÚMERO DO SLIDE */
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .slide-cover .slide-number {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* UTILITIES */
+        .text-blue {
+            color: #3b82f6;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-4 {
+            margin-top: 40px;
+        }
+
+        .mb-4 {
+            margin-bottom: 40px;
+        }
+
+        /* SLIDE DARK */
+        .slide-dark {
+            background: #f9fafb;
+        }
+
+        /* VALOR HIGHLIGHT */
+        .value-highlight {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .value-number {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .value-text {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 30px;
+            }
+            
+            .slide-title {
+                font-size: 2rem;
+            }
+            
+            .grid-2, .grid-3, .benefits-grid, .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-row {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+            }
+            
+            .timeline-date {
+                margin-bottom: 10px;
+            }
+        }
+
+        /* PRINT */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .slide {
+                box-shadow: none;
+                margin-bottom: 0;
+                min-height: 100vh;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- SLIDE 1: CAPA -->
+        <div class="slide slide-cover">
+            <h1>
+                Um Projeto para o
+                <strong>Futuro do Cinema</strong>
+            </h1>
+            
+            <p class="tagline">
+                Conheça o projeto do Instituto Paulista de Cinema: uma proposta 
+                inovadora para formar jovens periféricos em audiovisual com 
+                bolsa de estudos e empregabilidade garantida
+            </p>
+            
+            <div class="stats-row">
+                <div class="stat-box">
+                    <div class="stat-number">100</div>
+                    <div class="stat-label">Vagas previstas/ano</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">R$ 1.412</div>
+                    <div class="stat-label">Bolsa proposta</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">2026</div>
+                    <div class="stat-label">Início planejado</div>
+                </div>
+            </div>
+            
+            <div class="slide-number">1/15</div>
+        </div>
+
+        <!-- SLIDE 2: O PROBLEMA -->
+        <div class="slide">
+            <h2 class="slide-title">O Problema que Queremos Resolver</h2>
+            <p class="slide-subtitle">
+                As barreiras que impedem jovens talentosos de entrar no audiovisual
+            </p>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7V13C2 16.5 3.5 19.5 6 21.5C8.5 23.5 12 24 12 24S15.5 23.5 18 21.5C20.5 19.5 22 16.5 22 13V7L12 2Z" stroke="#dc2626" stroke-width="2"/>
+                        <path d="M12 8V12M12 16H12.01" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <div class="card-title">Barreira Financeira</div>
+                    <div class="card-text">
+                        Faculdade de cinema: R$ 216.000 (4 anos). 
+                        Cursos técnicos: R$ 800-1.500/mês. 
+                        Totalmente inacessível para jovens periféricos.
+                    </div>
+                </div>
+                <div class="card">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#dc2626" stroke-width="2"/>
+                        <path d="M15 9L9 15M9 9L15 15" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <div class="card-title">Mercado Fechado</div>
+                    <div class="card-text">
+                        80% das vagas preenchidas por indicação. 
+                        50.000 vagas em aberto no setor, mas jovens 
+                        periféricos não conseguem acessá-las.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3 class="highlight-title">A Oportunidade</h3>
+                <p class="highlight-text">
+                    São Paulo concentra 40% do mercado audiovisual brasileiro (R$ 30 bilhões/ano), 
+                    mas 2,4 milhões de jovens periféricos estão excluídos desta economia. 
+                    O Instituto Paulista de Cinema propõe mudar esta realidade.
+                </p>
+            </div>
+            
+            <div class="slide-number">2/15</div>
+        </div>
+
+        <!-- SLIDE 3: A PROPOSTA -->
+        <div class="slide">
+            <h2 class="slide-title">Nossa Proposta de Solução</h2>
+            <p class="slide-subtitle">
+                Um modelo revolucionário de formação profissional
+            </p>
+            
+            <div class="highlight-box">
+                <h3 class="highlight-title">O Conceito do Instituto</h3>
+                <p class="highlight-text">
+                    Propomos criar a primeira escola-produtora do mundo onde jovens 
+                    periféricos serão PAGOS para aprender cinema. O Instituto funcionará 
+                    simultaneamente como centro de formação e produtora comercial, 
+                    permitindo que os alunos aprendam fazendo projetos reais.
+                </p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">Formação Gratuita</div>
+                    <div class="card-text">12 meses de curso intensivo sem custo algum</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Bolsa Integral</div>
+                    <div class="card-text">R$ 1.412/mês + alimentação completa</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Prática Real</div>
+                    <div class="card-text">Produção para clientes desde o primeiro dia</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Certificação DRT</div>
+                    <div class="card-text">Registro profissional ao final do curso</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Empregabilidade</div>
+                    <div class="card-text">Meta de 90% de inserção no mercado</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Tecnologia de Ponta</div>
+                    <div class="card-text">Primeira formação em IA audiovisual para periferias</div>
+                </div>
+            </div>
+            
+            <div class="slide-number">3/15</div>
+        </div>
+
+        <!-- SLIDE 4: ESTRUTURA DO CURSO -->
+        <div class="slide slide-dark">
+            <h2 class="slide-title">Estrutura Proposta do Curso</h2>
+            <p class="slide-subtitle">
+                12 meses de formação intensiva com prática profissional
+            </p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">MESES 1-4</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Fundamentos (400 horas)</div>
+                        <div class="timeline-description">
+                            História do cinema, linguagem audiovisual, storytelling, 
+                            técnicas básicas de produção e ética profissional
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">MESES 5-10</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Especialização (600 horas)</div>
+                        <div class="timeline-description">
+                            Escolha entre 6 trilhas: Produção, Roteiro, Direção, 
+                            Inteligência Artificial, Pós-produção ou Áudio
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">MESES 11-12</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Produção Profissional (200 horas)</div>
+                        <div class="timeline-description">
+                            Trabalho em projetos comerciais reais, construção 
+                            de portfolio e preparação para o mercado
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="value-highlight">
+                <div class="value-number">1.200 horas</div>
+                <div class="value-text">de formação completa planejada</div>
+            </div>
+            
+            <div class="slide-number">4/15</div>
+        </div>
+
+        <!-- SLIDE 5: ÁREAS DE ESPECIALIZAÇÃO -->
+        <div class="slide">
+            <h2 class="slide-title">6 Trilhas de Especialização</h2>
+            <p class="slide-subtitle">
+                Áreas com alta demanda no mercado audiovisual
+            </p>
+            
+            <div class="courses-grid">
+                <div class="course-card">
+                    <h3 class="course-title">Produção</h3>
+                    <p class="course-description">
+                        Gestão de projetos, captação de recursos, 
+                        logística e planejamento
+                    </p>
+                    <div class="course-salary">Salário previsto: R$ 5.000</div>
+                </div>
+                
+                <div class="course-card">
+                    <h3 class="course-title">Roteiro</h3>
+                    <p class="course-description">
+                        Criação de histórias, desenvolvimento 
+                        de personagens, escrita criativa
+                    </p>
+                    <div class="course-salary">Salário previsto: R$ 4.500</div>
+                </div>
+                
+                <div class="course-card">
+                    <h3 class="course-title">Direção</h3>
+                    <p class="course-description">
+                        Direção de atores, fotografia, 
+                        concepção visual e narrativa
+                    </p>
+                    <div class="course-salary">Salário previsto: R$ 6.000</div>
+                </div>
+                
+                <div class="course-card">
+                    <h3 class="course-title">IA Audiovisual</h3>
+                    <p class="course-description">
+                        Inteligência artificial aplicada 
+                        ao cinema, inovação tecnológica
+                    </p>
+                    <div class="course-salary">Salário previsto: R$ 8.000</div>
+                </div>
+                
+                <div class="course-card">
+                    <h3 class="course-title">Pós-produção</h3>
+                    <p class="course-description">
+                        Edição, colorização, efeitos visuais, 
+                        motion graphics
+                    </p>
+                    <div class="course-salary">Salário previsto: R$ 4.000</div>
+                </div>
+                
+                <div class="course-card">
+                    <h3 class="course-title">Áudio</h3>
+                    <p class="course-description">
+                        Sound design, mixagem, trilha sonora, 
+                        pós-produção de áudio
+                    </p>
+                    <div class="course-salary">Salário previsto: R$ 3.500</div>
+                </div>
+            </div>
+            
+            <div class="slide-number">5/15</div>
+        </div>
+
+        <!-- SLIDE 6: VALIDAÇÃO DO PROJETO -->
+        <div class="slide slide-dark">
+            <h2 class="slide-title">Credibilidade e Viabilidade</h2>
+            <p class="slide-subtitle">
+                O que já foi conquistado para viabilizar o projeto
+            </p>
+            
+            <div class="highlight-box">
+                <h3 class="highlight-title">R$ 2 milhões já aprovados</h3>
+                <p class="highlight-text">
+                    O FSA/ANCINE (Fundo Setorial do Audiovisual) já aprovou R$ 2 milhões 
+                    para o filme "O Fantástico Laboratório", que será produzido com 
+                    participação dos futuros alunos do Instituto.
+                </p>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Parceiros Confirmados</div>
+                    <div class="card-text">
+                        <strong>Dummy Filmes:</strong> 15 anos de mercado<br>
+                        <strong>MPV Filmes:</strong> Especialista em cinema social<br>
+                        <strong>Sabiá Educação:</strong> Responsável Vila Sésamo Brasil
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Equipe de Especialistas</div>
+                    <div class="card-text">
+                        <strong>Mariana Elisabetsky:</strong> Roteirista Disney<br>
+                        <strong>Marllos Silva:</strong> Criador Prêmio Bibi Ferreira<br>
+                        <strong>Tocko Michelazzo:</strong> 40+ prêmios sound design
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">Clientes da Dummy Filmes (potenciais parceiros)</div>
+                <div class="card-text">
+                    Google • IBM • Santander • Petrobras • Dell • Coca-Cola • 
+                    Vila Sésamo • Sala São Paulo • MASP • Cultura Artística
+                </div>
+            </div>
+            
+            <div class="slide-number">6/15</div>
+        </div>
+
+        <!-- SLIDE 7: O CRIADOR -->
+        <div class="slide">
+            <h2 class="slide-title">Quem Está Por Trás do Projeto</h2>
+            <p class="slide-subtitle">
+                Uma história real de superação através do audiovisual
+            </p>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "Cresci no Capão Redondo. Aos 13 anos, meu pai foi embora e minha mãe 
+                    teve que sustentar 3 filhos sozinha. Comecei trabalhando como garçom, 
+                    depois bartender. Sem dinheiro para faculdade, aprendi cinema na prática. 
+                    Hoje, 15 anos depois, dirijo produções para grandes empresas e tive 
+                    um filme de R$ 2 milhões aprovado pelo governo federal."
+                </p>
+                <div class="testimonial-author">Raphael Martinez</div>
+                <div class="testimonial-role">Criador do Instituto Paulista de Cinema</div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3 class="highlight-title">Por Que Este Projeto?</h3>
+                <p class="highlight-text">
+                    "O cinema me deu uma vida que eu nunca imaginei ter. Sei que existem 
+                    milhares de jovens talentosos nas periferias que só precisam de uma 
+                    oportunidade. O Instituto será a porta que nunca existiu para nós."
+                </p>
+            </div>
+            
+            <div class="slide-number">7/15</div>
+        </div>
+
+        <!-- SLIDE 8: MODELO FINANCEIRO -->
+        <div class="slide slide-dark">
+            <h2 class="slide-title">Como o Projeto se Sustentará</h2>
+            <p class="slide-subtitle">
+                Modelo financeiro sustentável e escalável
+            </p>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Investimento Necessário</div>
+                    <div class="card-text">
+                        <strong>Total 4 anos:</strong> R$ 26 milhões<br>
+                        <strong>Recursos públicos:</strong> R$ 14 milhões (54%)<br>
+                        <strong>Recursos privados:</strong> R$ 12 milhões (46%)<br>
+                        Via emendas parlamentares e leis de incentivo
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Autossustentabilidade</div>
+                    <div class="card-text">
+                        <strong>Ano 1:</strong> 13% autossustentável<br>
+                        <strong>Ano 2:</strong> 68% autossustentável<br>
+                        <strong>Ano 3:</strong> 96% autossustentável<br>
+                        <strong>Ano 4:</strong> 123% (gera excedente)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3 class="highlight-title">Fontes de Receita Previstas</h3>
+                <p class="highlight-text">
+                    Produção comercial para empresas • Projetos via leis de incentivo • 
+                    Produções para governo com desconto • Projetos cinematográficos • 
+                    A partir do ano 4, o Instituto se sustentará sem necessidade de novos aportes
+                </p>
+            </div>
+            
+            <div class="slide-number">8/15</div>
+        </div>
+
+        <!-- SLIDE 9: IMPACTO SOCIAL -->
+        <div class="slide">
+            <h2 class="slide-title">Impacto Social Projetado</h2>
+            <p class="slide-subtitle">
+                Transformação real na vida de jovens e comunidades
+            </p>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-number">400</div>
+                    <div class="card-title">Jovens Formados</div>
+                    <div class="card-text">
+                        Em 4 anos, com certificação profissional 
+                        e inserção no mercado de trabalho
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-number">1.600</div>
+                    <div class="card-title">Famílias Impactadas</div>
+                    <div class="card-text">
+                        Aumento médio de 300% na renda familiar 
+                        através dos egressos do Instituto
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-number">R$ 78M</div>
+                    <div class="card-title">PIB Cultural</div>
+                    <div class="card-text">
+                        Contribuição estimada para a economia 
+                        criativa de São Paulo em 4 anos
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-number">1.200</div>
+                    <div class="card-title">Empregos Indiretos</div>
+                    <div class="card-text">
+                        Geração de oportunidades na cadeia 
+                        produtiva do audiovisual
+                    </div>
+                </div>
+            </div>
+            
+            <div class="value-highlight">
+                <div class="value-number">R$ 65.000</div>
+                <div class="value-text">Custo por vida transformada (400 jovens ÷ R$ 26 milhões)</div>
+            </div>
+            
+            <div class="slide-number">9/15</div>
+        </div>
+
+        <!-- SLIDE 10: CRONOGRAMA -->
+        <div class="slide slide-dark">
+            <h2 class="slide-title">Cronograma de Implementação</h2>
+            <p class="slide-subtitle">
+                Principais marcos do projeto até o início das operações
+            </p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Articulação e Captação</div>
+                        <div class="timeline-description">
+                            Apresentação para governo, aprovação de emendas, 
+                            busca por espaço físico, formação de parcerias
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">INÍCIO 2026</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Estruturação</div>
+                        <div class="timeline-description">
+                            Reforma do espaço, aquisição de equipamentos, 
+                            contratação de equipe, desenvolvimento pedagógico
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">MEIO 2026</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Processo Seletivo</div>
+                        <div class="timeline-description">
+                            Abertura de inscrições, seleção da primeira turma, 
+                            preparação para início das aulas
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">FINAL 2026</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Início das Operações</div>
+                        <div class="timeline-description">
+                            Primeira turma de 100 alunos, início das produções, 
+                            modelo operacional completo
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-number">10/15</div>
+        </div>
+
+        <!-- SLIDE 11: REQUISITOS PARA ALUNOS -->
+        <div class="slide">
+            <h2 class="slide-title">Quem Poderá Participar</h2>
+            <p class="slide-subtitle">
+                Critérios planejados para o processo seletivo
+            </p>
+            
+            <div class="requirements-list">
+                <div class="requirement-item">
+                    <svg class="requirement-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#16a34a" stroke-width="2"/>
+                        <path d="M9 12L11 14L15 10" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="requirement-text">Idade entre 18 e 29 anos</span>
+                </div>
+                
+                <div class="requirement-item">
+                    <svg class="requirement-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#16a34a" stroke-width="2"/>
+                        <path d="M9 12L11 14L15 10" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="requirement-text">Ensino médio completo ou cursando</span>
+                </div>
+                
+                <div class="requirement-item">
+                    <svg class="requirement-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#16a34a" stroke-width="2"/>
+                        <path d="M9 12L11 14L15 10" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="requirement-text">Residir em São Paulo</span>
+                </div>
+                
+                <div class="requirement-item">
+                    <svg class="requirement-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#16a34a" stroke-width="2"/>
+                        <path d="M9 12L11 14L15 10" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="requirement-text">Renda familiar até 3 salários mínimos</span>
+                </div>
+                
+                <div class="requirement-item">
+                    <svg class="requirement-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#16a34a" stroke-width="2"/>
+                        <path d="M9 12L11 14L15 10" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="requirement-text">Disponibilidade integral (manhã ou tarde)</span>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3 class="highlight-title">Não é necessário conhecimento prévio!</h3>
+                <p class="highlight-text">
+                    O Instituto foi pensado para quem nunca teve contato com cinema. 
+                    Ensinaremos tudo do zero. O importante é ter vontade de aprender 
+                    e dedicação para aproveitar esta oportunidade.
+                </p>
+            </div>
+            
+            <div class="slide-number">11/15</div>
+        </div>
+
+        <!-- SLIDE 12: BENEFÍCIOS PARA ALUNOS -->
+        <div class="slide slide-dark">
+            <h2 class="slide-title">O Que Ofereceremos aos Alunos</h2>
+            <p class="slide-subtitle">
+                Benefícios completos planejados para o programa
+            </p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-value">R$ 1.412</div>
+                    <div class="benefit-title">Bolsa Mensal</div>
+                    <div class="benefit-text">Salário mínimo integral durante todo o curso</div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-value">100%</div>
+                    <div class="benefit-title">Alimentação</div>
+                    <div class="benefit-text">Café, almoço e jantar fornecidos</div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-value">R$ 4M</div>
+                    <div class="benefit-title">Equipamentos</div>
+                    <div class="benefit-text">Acesso a tecnologia de ponta</div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-value">DRT</div>
+                    <div class="benefit-title">Certificação</div>
+                    <div class="benefit-text">Registro profissional oficial</div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-value">Portfolio</div>
+                    <div class="benefit-title">Trabalhos Reais</div>
+                    <div class="benefit-text">Produções para grandes marcas</div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-value">90%</div>
+                    <div class="benefit-title">Empregabilidade</div>
+                    <div class="benefit-text">Meta de inserção profissional</div>
+                </div>
+            </div>
+            
+            <div class="slide-number">12/15</div>
+        </div>
+
+        <!-- SLIDE 13: PERGUNTAS FREQUENTES -->
+        <div class="slide">
+            <h2 class="slide-title">Perguntas Frequentes</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Quando o Instituto começará a funcionar?</div>
+                <div class="faq-answer">
+                    A previsão é iniciar as atividades em 2026, após aprovação dos recursos 
+                    necessários e preparação da infraestrutura. O cronograma pode ser ajustado 
+                    conforme o andamento das articulações.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">O projeto já tem recursos garantidos?</div>
+                <div class="faq-answer">
+                    Já temos R$ 2 milhões aprovados pelo FSA/ANCINE para o filme. Estamos 
+                    em fase de articulação para captação dos recursos restantes através de 
+                    emendas parlamentares e leis de incentivo.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Como posso acompanhar o desenvolvimento do projeto?</div>
+                <div class="faq-answer">
+                    Você pode cadastrar seu interesse através do site (em construção) ou 
+                    acompanhar as redes sociais do projeto. Divulgaremos todas as etapas 
+                    de implementação e abertura de inscrições.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Será realmente gratuito com bolsa?</div>
+                <div class="faq-answer">
+                    Sim! O modelo proposto prevê formação totalmente gratuita com bolsa 
+                    de R$ 1.412/mês mais alimentação. Este é um dos pilares fundamentais 
+                    do projeto.
+                </div>
+            </div>
+            
+            <div class="slide-number">13/15</div>
+        </div>
+
+        <!-- SLIDE 14: PRÓXIMOS PASSOS -->
+        <div class="slide slide-dark">
+            <h2 class="slide-title">Próximos Passos do Projeto</h2>
+            <p class="slide-subtitle">
+                O que precisa acontecer para o Instituto se tornar realidade
+            </p>
+            
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Aprovação</div>
+                    <div class="step-text">Apresentação para governo e aprovação de recursos</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Estruturação</div>
+                    <div class="step-text">Preparação do espaço e equipamentos</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Seleção</div>
+                    <div class="step-text">Abertura de inscrições e processo seletivo</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Início</div>
+                    <div class="step-text">Primeira turma de 100 alunos</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3 class="highlight-title">Como Você Pode Ajudar</h3>
+                <p class="highlight-text">
+                    • Cadastre seu interesse para receber atualizações<br>
+                    • Compartilhe o projeto com amigos e familiares<br>
+                    • Acompanhe o desenvolvimento nas redes sociais<br>
+                    • Apoie a ideia quando houver consultas públicas
+                </p>
+            </div>
+            
+            <div class="slide-number">14/15</div>
+        </div>
+
+        <!-- SLIDE 15: CHAMADA FINAL -->
+        <div class="slide slide-cover">
+            <h1 style="font-size: 2.8rem; margin-bottom: 40px;">
+                Faça Parte Desta
+                <strong>TRANSFORMAÇÃO</strong>
+            </h1>
+            
+            <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 50px; max-width: 700px;">
+                O Instituto Paulista de Cinema é mais que um projeto educacional. 
+                É uma proposta de transformação social através do audiovisual. 
+                Se você é um jovem periférico com talento e vontade de aprender, 
+                este projeto está sendo construído para você.
+            </p>
+            
+            <div class="cta-section" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+                <h3 class="cta-title">Acompanhe o Desenvolvimento</h3>
+                <p class="cta-text">
+                    Cadastre-se para receber informações sobre o processo seletivo<br>
+                    Previsão de início: 2026 • 100 vagas anuais • Formação com bolsa
+                </p>
+                
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" class="cta-button">CADASTRAR INTERESSE</a>
+                    <a href="#" class="cta-button cta-secondary">CONHECER O PROJETO</a>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <p style="font-size: 1.1rem; opacity: 0.9;">
+                    <strong>Instituto Paulista de Cinema</strong><br>
+                    Um projeto para democratizar o acesso ao audiovisual
+                </p>
+                
+                <p style="margin-top: 30px; font-size: 0.95rem; opacity: 0.7;">
+                    📧 contato@institutopaulistadecinema.com.br<br>
+                    🌐 www.institutopaulistadecinema.com.br (em construção)
+                </p>
+                
+                <p style="margin-top: 30px; font-size: 1rem; opacity: 0.8;">
+                    "O cinema me deu uma vida. Agora queremos dar essa chance para você."<br>
+                    <strong>- Raphael Martinez, idealizador do projeto</strong>
+                </p>
+            </div>
+            
+            <div class="slide-number">15/15</div>
+        </div>
+        
+    </div>
+</body>
+</html>

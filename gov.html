@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o Governo - Instituto Paulista de Cinema</title>
+    <script src="https://cdn-tailwindcss.vercel.app/"></script>
+    <script src="menu.js"></script>
+    <script src="footer.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal-500: #14b8a6;
+            --cyan-600: #0891b2;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-100: #f3f4f6;}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background-image: url('complementare_images/16x9/antes_depois_espelho_casa_aluno_mostrando_difereca2.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(3, 7, 18, 1) 15%, rgba(3, 7, 18, 0.8) 60%, rgba(3, 7, 18, 0.6) 100%);
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; }
+
+        .cta-button {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(20, 184, 166, 0.2);
+        }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-gradient {
+            background: linear-gradient(-45deg, #14b8a6, #0891b2, #0369a1, #06b6d4);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+        }
+        
+        .animated-gradient-dark {
+            background: linear-gradient(-45deg, #030712, #111827, #1f2937, #030712);
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+        }
+
+        .reveal {
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+        
+        .reveal.visible { animation-duration: 0.8s; animation-fill-mode: forwards; animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); animation-name: fadeInUp; }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--teal-500);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .parallax-divider {
+            height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300"><main>
+        <!-- 2. Seção Principal (Hero Section) -->
+        <section class="hero-bg text-white min-h-screen flex items-center overflow-hidden">
+            <div class="hero-content container mx-auto px-6 py-24 md:py-40 text-center flex flex-col items-center">
+                <p class="font-bold text-teal-400 uppercase tracking-widest reveal">INSTITUTO PAULISTA DE CINEMA</p>
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight my-4 max-w-5xl reveal" style="animation-delay: 0.1s;">São Paulo: Onde a Urgência Social Encontra a Inovação Estratégica.</h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-8 reveal" style="animation-delay: 0.2s;">O Modelo Produtora-Escola Único no Mundo que Transforma o Talento da Periferia em Motor de Desenvolvimento Econômico, Comunicação Eficaz e Legado para a Cidade.</p>
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm font-semibold uppercase tracking-wider text-teal-300 reveal" style="animation-delay: 0.4s;">
+                    <span>400 Vidas Transformadas</span><span class="hidden md:inline">|</span>
+                    <span>ROI de 300% Comprovado</span><span class="hidden md:inline">|</span>
+                    <span>Comunicação Autêntica 360º</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Modelo 360 do Jovem -->
+        <section class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-4">O Modelo 360º de Desenvolvimento do Jovem.</h2>
+                    <p class="text-lg mb-6">Nosso compromisso é com a formação integral, transformando jovens em vulnerabilidade em protagonistas da nova narrativa de São Paulo. Cada jovem formado deixa de ser um custo de R$ 42.000/ano para o Estado e passa a gerar R$ 54.000/ano em salário e impostos.</p>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg shadow"><h4 class="font-bold">Bolsa de R$ 1.412/mês + Alimentação</h4></div>
+                        <div class="bg-white p-4 rounded-lg shadow"><h4 class="font-bold">Acesso a R$ 4 Milhões em Equipamentos</h4></div>
+                        <div class="bg-white p-4 rounded-lg shadow"><h4 class="font-bold">Certificação DRT e 90% de Empregabilidade</h4></div>
+                    </div>
+                </div>
+                <div class="reveal" style="animation-delay:150ms;">
+                    <img src="https://gov.institutopaulistadecinema.com.br/galeria/12.jpg" class="rounded-lg shadow-2xl">
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. O Desafio -->
+        <section class="bg-gray-200 text-gray-800 py-20">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="text-center reveal mb-12">
+                    <h2 class="text-3xl font-bold mb-4">São Paulo no Século XXI – Um Imperativo Social e Econômico.</h2>
+                    <p class="text-lg max-w-4xl mx-auto">
+                        A maior metrópole da América Latina esconde um paradoxo insustentável: a exclusão de 2,4 milhões de jovens de uma economia criativa bilionária, um cenário que drena recursos públicos e desperdiça o maior ativo de São Paulo: seu talento humano.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-5 bg-cover bg-center" style="background-image: url('complementare_images/1x1/jovem_editando.jpg');"></div>
+                        <div class="relative z-10">
+                            <p class="text-2xl font-bold text-red-600">Crise de Comunicação</p>
+                            <ul class="text-sm space-y-2 mt-2">
+                                <li><b>92% da população</b> desinformada sobre serviços.</li>
+                                <li><b>R$ 500 Mi</b> em "obras invisíveis".</li>
+                                <li><b>Fake News 5x mais rápidas</b> que a comunicação oficial.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal relative overflow-hidden" style="animation-delay:150ms;">
+                        <div class="absolute inset-0 opacity-5 bg-cover bg-center" style="background-image: url('complementare_images/1x1/o_sonhador_na_laje2.jpg');"></div>
+                        <div class="relative z-10">
+                            <p class="text-2xl font-bold text-red-600">Abismo Social</p>
+                            <ul class="text-sm space-y-2 mt-2">
+                                <li><b>2,4 milhões</b> de jovens periféricos excluídos.</li>
+                                <li><b>R$ 42.000</b> de custo social anual por jovem.</li>
+                                <li><b>50.000 vagas</b> abertas no setor audiovisual.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal relative overflow-hidden" style="animation-delay:300ms;">
+                        <div class="absolute inset-0 opacity-5 bg-cover bg-center" style="background-image: url('complementare_images/1x1/alunos_no_estudio9.jpg');"></div>
+                        <div class="relative z-10">
+                            <p class="text-2xl font-bold text-red-600">Ineficiência Econômica</p>
+                            <ul class="text-sm space-y-2 mt-2">
+                                <li><b>Bilhões drenados</b> em custos sociais e potencial desperdiçado.</li>
+                                <li><b>Baixa conexão</b> com 87% da população que prefere vídeo.</li>
+                                <li><b>Perda de crédito</b> para a gestão.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 5. A Solução -->
+        <section id="solucao" class="py-20 relative bg-cover bg-center text-white" style="background-image: url('complementare_images/16x9/professor_com_aluno7.jpg');">
+            <div class="absolute inset-0 bg-black/75"></div>
+            <div class="container mx-auto px-6 text-center">
+                <div class="mb-12 reveal relative z-10">
+                    <h2 class="text-3xl font-bold">A Solução: A Produtora Oficial da Cidade e Catalisador Social.</h2>
+                    <p class="text-xl text-gray-400 max-w-4xl mx-auto mt-4">Nossa inovação redefine a lógica da inclusão produtiva: jovens periféricos são remunerados para produzir conteúdo de alta qualidade para grandes marcas e, crucialmente, para toda a sua gestão pública. É o ponto de convergência para:</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 relative z-10">
+                    <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal">
+                        <h3 class="text-xl font-semibold text-teal-400 mb-2">Formação de Excelência</h3>
+                        <p class="text-sm">Capacitar jovens talentos da periferia do zero, com uma metodologia intensiva e focada no mercado.</p>
+                    </div>
+                     <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay:150ms;">
+                        <h3 class="text-xl font-semibold text-teal-400 mb-2">Produção de Alto Valor</h3>
+                        <p class="text-sm">Gerar material audiovisual de padrão internacional para a cidade, sob a supervisão de um Dream Team de especialistas.</p>
+                    </div>
+                     <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay:300ms;">
+                        <h3 class="text-xl font-semibold text-teal-400 mb-2">Inovação e Vanguarda</h3>
+                        <p class="text-sm">Ser a primeira escola de IA audiovisual para periferias do mundo, garantindo comunicação de ponta.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Contrate a Produtora do Futuro -->
+        <section class="py-20 relative bg-cover bg-center text-gray-800" style="background-image: url('complementare_images/16x9/alunos_no_estudio4.jpg');">
+            <div class="absolute inset-0 bg-white/85"></div>
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal relative z-10">
+                    <h2 class="text-3xl font-bold">Contrate a Produtora do Futuro: Economia Estratégica com Impacto Social Integrado.</h2>
+                    <p class="text-xl max-w-4xl mx-auto mt-4">Ao contratar os serviços de produção do Instituto, sua gestão obtém um duplo retorno: economia imediata para os cofres públicos e investimento direto na transformação de jovens, fortalecendo a economia criativa local.</p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-8 items-start relative z-10">
+                    <div class="bg-gray-50 p-8 rounded-lg card-hover reveal">
+                        <h3 class="text-2xl font-bold text-teal-600 mb-4">Economia Imediata de 35%</h3>
+                        <p class="mb-4">Garanta uma redução de custos de 35% em todas as produções audiovisuais, comparado ao mercado, sem comprometer a qualidade.</p>
+                        <ul class="text-sm space-y-2">
+                            <li><b>Campanhas de Saúde:</b> Economia de R$ 175.000</li>
+                            <li><b>Documentação de Obras:</b> Economia de R$ 420.000/ano</li>
+                            <li><b>Educação (200 videoaulas):</b> Economia de R$ 2.000.000</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-lg card-hover reveal" style="animation-delay:150ms;">
+                        <h3 class="text-2xl font-bold text-teal-600 mb-4">Impacto Direto e Validação Social</h3>
+                        <p>Cada projeto contratado é uma aula prática para nossos jovens e um investimento na comunidade. A narrativa criada por eles valida e legitima as ações da sua gestão com uma autenticidade que nenhuma agência pode oferecer.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PARALLAX DIVIDER -->
+        <section class="parallax-divider" style="background-image: url('complementare_images/16x9/o_sonhador_na_laje6.jpg');"></section>
+
+        <!-- 7. Parceria com a Prefeitura -->
+        <section id="parceria" class="py-20 relative bg-cover bg-center text-gray-800" style="background-image: url('complementare_images/16x9/composicao_poetica_jovem_cidade_camera4.jpg');">
+            <div class="absolute inset-0 bg-gray-100/90"></div>
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12 reveal relative z-10">
+                    <h2 class="text-3xl font-bold">Nossa Busca por Parceria com a Prefeitura: Investimento no Instituto, Legado para São Paulo.</h2>
+                     <p class="text-xl max-w-4xl mx-auto mt-4">Buscamos uma parceria sólida e colaborativa, baseada em pilares estratégicos, para materializar esta visão e colher os frutos deste investimento.</p>
+                </div>
+                <div class="max-w-4xl mx-auto space-y-8 relative z-10">
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal flex items-center gap-4"><div class="flex-shrink-0 bg-teal-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg">1</div><div><h4 class="font-bold text-lg">Investimento Público Estratégico</h4></div></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal flex items-center gap-4" style="animation-delay:150ms;"><div class="flex-shrink-0 bg-teal-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg">2</div><div><h4 class="font-bold text-lg">Concessão de Espaço Físico</h4></div></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal flex items-center gap-4" style="animation-delay:300ms;"><div class="flex-shrink-0 bg-teal-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg">3</div><div><h4 class="font-bold text-lg">Formalização via Termo de Cooperação</h4></div></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal flex items-center gap-4" style="animation-delay:450ms;"><div class="flex-shrink-0 bg-teal-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg">4</div><div><h4 class="font-bold text-lg">Sinergia com Programas Existentes</h4></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Retorno Total do Investimento -->
+        <section id="retorno" class="py-20 relative bg-cover bg-center text-white" style="background-image: url('complementare_images/16x9/jovem_operando_camera_cinema_estudio2.jpg');">
+            <div class="absolute inset-0 bg-black/80"></div>
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal relative z-10">
+                    <h2 class="text-3xl font-bold mb-4">Retorno Total do Investimento Público: Um Legado Multifacetado.</h2>
+                    <p class="text-xl max-w-3xl mx-auto text-gray-400 mb-12">O investimento no Instituto não é uma despesa, mas o investimento mais rentável que São Paulo pode realizar.</p>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                     <div class="bg-gray-800/50 p-6 rounded-lg reveal">
+                        <h3 class="font-bold text-lg mb-2 text-teal-400">ROI Financeiro Excepcional</h3>
+                        <p class="text-4xl font-bold">300%</p>
+                        <p class="text-sm">Para cada R$ 1 investido, retornam R$ 3 em economia direta, impostos futuros e redução de custos sociais.</p>
+                     </div>
+                     <div class="bg-gray-800/50 p-6 rounded-lg reveal" style="animation-delay: 150ms;">
+                        <h3 class="font-bold text-lg mb-2 text-teal-400">Impacto Socioeconômico</h3>
+                        <p class="text-4xl font-bold">R$ 78 Mi</p>
+                        <p class="text-sm">Adicionados ao PIB Cultural da cidade em 4 anos, com 1.200 empregos indiretos gerados.</p>
+                     </div>
+                     <div class="bg-gray-800/50 p-6 rounded-lg reveal" style="animation-delay: 300ms;">
+                        <h3 class="font-bold text-lg mb-2 text-teal-400">Comparativo Estratégico</h3>
+                        <p class="text-4xl font-bold">Menor Custo</p>
+                        <p class="text-sm">O investimento total é menor que 1km de ciclovia, 1 mês de publicidade ou a reforma de 1 praça.</p>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- 9. Credibilidade -->
+        <section id="credibilidade" class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal"><h2 class="text-3xl font-bold">Credibilidade, Governança e Sustentabilidade.</h2></div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal card-hover relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-5 bg-cover bg-center" style="background-image: url('complementare_images/1x1/professor_com_aluno.jpg');"></div>
+                        <div class="relative z-10">
+                            <h3 class="font-bold text-lg mb-2 text-teal-600">Validação Federal</h3>
+                            <p class="text-sm">R$ 2 milhões já investidos pelo FSA/ANCINE, comprovando nossa viabilidade técnica e impacto social.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal card-hover relative overflow-hidden" style="animation-delay: 150ms;">
+                        <div class="absolute inset-0 opacity-5 bg-cover bg-center" style="background-image: url('complementare_images/1x1/aula_direcao8.jpg');"></div>
+                        <div class="relative z-10">
+                            <h3 class="font-bold text-lg mb-2 text-teal-600">Equipe de Excelência</h3>
+                            <p class="text-sm">Liderada por <a href="fundador.html" class="underline hover:text-teal-700">Raphael Martinez</a> e com especialistas da USP, FGV, Disney e criador do Prêmio Bibi Ferreira.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal card-hover relative overflow-hidden" style="animation-delay: 300ms;">
+                        <div class="absolute inset-0 opacity-5 bg-cover bg-center" style="background-image: url('complementare_images/1x1/o_sonhador_na_laje3.jpg');"></div>
+                        <div class="relative z-10">
+                            <h3 class="font-bold text-lg mb-2 text-teal-600">Sustentabilidade Robusta</h3>
+                            <p class="text-sm">Modelo 123% autossustentável a partir do 4º ano, gerando excedente para expansão sem novos aportes públicos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 10. Momento Histórico -->
+        <section class="py-20 relative bg-cover bg-center" style="background-image: url('complementare_images/16x9/sinueta_jovem_gravando_saopaulo3.jpg');">
+            <div class="absolute inset-0 bg-black/70"></div>
+             <div class="container mx-auto px-6 relative z-10 text-white">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl font-bold">O Momento Histórico é Agora: Uma Decisão Civilizatória.</h2>
+                    <p class="text-xl max-w-3xl mx-auto text-gray-300">Sua gestão tem a oportunidade de criar um legado que posicionará São Paulo como referência mundial.</p>
+                </div>
+                 <div class="grid md:grid-cols-2 gap-8 text-center">
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg reveal"><h3 class="font-bold text-teal-400">Para a Liderança Executiva</h3><p class="text-sm">Construa um legado de inovação, eficiência e transformação social. Lidere o desenvolvimento de uma nova classe de empreendedores da economia criativa.</p></div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg reveal" style="animation-delay:150ms;"><h3 class="font-bold text-teal-400">Para os Gestores Públicos</h3><p class="text-sm">Obtenha uma ferramenta de comunicação sem precedentes, que otimiza orçamentos e fortalece a conexão com a população, tornando cada iniciativa visível e valorizada.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 11. CTA Final -->
+        <section id="contato" class="py-20 relative bg-cover bg-center text-white" style="background-image: url('complementare_images/16x9/Olhar_Que_ Enxerga_refletindo_cidade_sp7.jpg');">
+            <div class="absolute inset-0 bg-black/70"></div>
+            <div class="container mx-auto px-6 text-center reveal relative z-10">
+                <h2 class="text-3xl font-bold mb-4">Juntos, Vamos Transformar São Paulo.</h2>
+                <p class="max-w-3xl mx-auto mb-12">Sua gestão pode implementar um modelo que gera crescimento econômico sustentável, inclusivo e mensurável.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
+                    <div class="text-center"><div class="bg-white/20 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold mx-auto mb-2">1</div><p>Agende uma Apresentação Executiva.</p></div>
+                    <div class="text-center"><div class="bg-white/20 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold mx-auto mb-2">2</div><p>Receba a Proposta Oficial Completa.</p></div>
+                    <div class="text-center"><div class="bg-white/20 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold mx-auto mb-2">3</div><p>Apoie a Implementação.</p></div>
+                </div>
+                <div><a href="contato.html" class="bg-gray-900 text-white font-bold py-4 px-10 text-lg rounded-lg cta-button inline-block">Fale com o Fundador</a></div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Rodapé -->
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                     const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                             const headerOffset = document.getElementById('header').offsetHeight;
+                             const elementPosition = targetElement.getBoundingClientRect().top;
+                             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                             window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        }
+                    }
+                });
+            });
+            
+            // Intersection Observer for animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => observer.observe(el));
+            
+            // Custom Cursor Logic removed
+        });
+    </script>
+
+</body>
+</html>
+

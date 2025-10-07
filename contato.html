@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Instituto Paulista de Cinema</title>
+    <script src="https://cdn-tailwindcss.vercel.app/"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="menu.js"></script>
+    <script src="footer.js"></script>
+    <style>
+        :root {
+            --teal-500: #14b8a6;
+            --cyan-600: #0891b2;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-100: #f3f4f6;}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(3, 7, 18, 1) 15%, rgba(3, 7, 18, 0.8) 60%, rgba(3, 7, 18, 0.6) 100%);
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; }
+
+        .cta-button {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(20, 184, 166, 0.2);
+        }
+         .cta-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .animated-gradient-dark {
+            background: linear-gradient(-45deg, #030712, #111827, #1f2937, #030712);
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+        }
+        
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .reveal {
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+        
+        .reveal.visible { animation-duration: 0.8s; animation-fill-mode: forwards; animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); animation-name: fadeInUp; }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--teal-500);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Improved Form inputs */
+        .form-input, .form-textarea, .form-select {
+             @apply mt-4 block w-full bg-gray-50 border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-teal-500 text-xl p-3 transition-all duration-300 shadow-sm;
+        }
+        .form-textarea {
+            @apply resize-none;
+        }
+        
+        .form-label {
+             @apply block text-2xl md:text-3xl font-semibold text-gray-800;
+        }
+
+        .choice-card {
+            border: 2px solid #d1d5db;
+            transition: all 0.2s ease;
+        }
+        .choice-card:hover {
+            border-color: var(--teal-500);
+            transform: translateY(-4px);
+        }
+        .choice-card.selected {
+            border-color: var(--teal-500);
+            background-color: #f0fdfa;
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.5);
+        }
+        .choice-card input[type="radio"] {
+            @apply hidden;
+        }
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        #form-wrapper {
+            min-height: 450px;
+            position: relative;
+            overflow: hidden;
+        }
+        .form-step {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(30px);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .form-step.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+         .form-step.inactive-left {
+            transform: translateY(-30px);
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300"><main>
+        <!-- 2. Seção Principal (Hero Section) -->
+        <section class="hero-bg text-white min-h-[70vh] flex items-center">
+            <div class="hero-content container mx-auto px-6 py-24 md:py-40 text-center flex flex-col items-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 max-w-4xl reveal">Vamos Construir o Futuro Juntos.</h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto reveal" style="animation-delay: 0.2s;">Seja para uma parceria estratégica com o governo ou para contratar produções de alto impacto para sua empresa, estamos prontos para conversar.</p>
+            </div>
+        </section>
+
+        <!-- 3. Formulário de Contato -->
+        <section id="contact-form-section" class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-lg shadow-2xl reveal">
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 mb-8">
+                        <div id="progress-bar" class="bg-teal-500 h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+
+                    <form id="contact-form" novalidate>
+                        <div id="form-wrapper">
+                            <!-- Step 1: Tipo de Contato -->
+                            <div class="form-step active">
+                                <label class="form-label">Para começar, qual tipo de contato você representa?</label>
+                                <input type="hidden" id="tipo_contato" name="tipo_contato" required>
+                                <div class="choice-group grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                                    <label class="choice-card p-6 rounded-lg text-center cursor-pointer">
+                                        <input type="radio" name="contact_type_radio" value="Empresa">
+                                        <span class="font-bold text-lg">Empresa</span>
+                                    </label>
+                                    <label class="choice-card p-6 rounded-lg text-center cursor-pointer">
+                                        <input type="radio" name="contact_type_radio" value="Governo">
+                                        <span class="font-bold text-lg">Governo</span>
+                                    </label>
+                                </div>
+                                <div class="error-message" data-for="tipo_contato">Por favor, selecione uma opção.</div>
+                            </div>
+                            
+                            <!-- Step 2: Nome Completo -->
+                            <div class="form-step">
+                                <label for="nome_completo" class="form-label" data-empresa-label="Qual o seu nome?" data-governo-label="Qual o seu nome e cargo?">Qual o seu nome?</label>
+                                <input type="text" name="nome_completo" id="nome_completo" required class="form-input" placeholder="Seu nome completo">
+                                <div class="error-message"></div>
+                            </div>
+
+                            <!-- Step 3: Empresa/Órgão -->
+                            <div class="form-step">
+                                <label for="empresa_orgao" class="form-label" data-empresa-label="E o nome da sua Empresa?" data-governo-label="A qual Órgão ou Secretaria você pertence?">E o nome da sua Empresa ou Órgão Público?</label>
+                                <input type="text" name="empresa_orgao" id="empresa_orgao" required class="form-input" placeholder="Nome da sua organização">
+                                <div class="error-message"></div>
+                            </div>
+                            
+                            <!-- Step 4: Email -->
+                            <div class="form-step">
+                                <label for="email" class="form-label">Qual o seu e-mail corporativo?</label>
+                                <input type="email" name="email" id="email" required class="form-input" placeholder="seu@email.com">
+                                <div class="error-message"></div>
+                            </div>
+
+                            <!-- Step 5: Telefone -->
+                            <div class="form-step">
+                                <label for="telefone" class="form-label">Poderia nos informar um telefone para contato?</label>
+                                <input type="tel" name="telefone" id="telefone" required class="form-input" placeholder="(XX) XXXXX-XXXX">
+                                <div class="error-message"></div>
+                            </div>
+
+                            <!-- Step 6: Interesse -->
+                            <div class="form-step">
+                                <label for="interesse" class="form-label" data-empresa-label="Qual seu principal interesse em nossos serviços?" data-governo-label="Qual o principal objetivo do seu contato?">Qual seu principal interesse?</label>
+                                <select name="interesse" id="interesse" required class="form-select">
+                                    <option value="" disabled selected>Selecione uma opção...</option>
+                                    <!-- Options populated via JS -->
+                                </select>
+                                <div class="error-message"></div>
+                            </div>
+
+                             <!-- Step 7: Mensagem -->
+                            <div class="form-step">
+                                <label for="mensagem" class="form-label">Deixe uma mensagem (opcional)</label>
+                                <textarea name="mensagem" id="mensagem" rows="3" class="form-textarea" placeholder="Conte-nos um pouco mais sobre sua necessidade..."></textarea>
+                            </div>
+                            
+                            <!-- Step 8: Submit -->
+                             <div class="form-step text-center">
+                                <h3 class="form-label">Tudo pronto!</h3>
+                                <p class="text-gray-600 mt-2">Clique no botão abaixo para enviar suas informações. Nossa equipe entrará em contato em breve.</p>
+                                <div class="mt-8">
+                                    <button type="submit" class="w-full bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold py-4 px-6 rounded-lg cta-button text-lg flex justify-center items-center">
+                                        <span class="button-text">Enviar Contato</span>
+                                        <svg class="animate-spin h-5 w-5 text-white ml-3 hidden button-loader" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                    </button>
+                                    <div class="error-message text-center" data-for="submit"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- Navigation -->
+                        <div id="navigation-buttons" class="mt-8 pt-5 border-t border-gray-200 flex justify-between items-center">
+                            <button type="button" id="prev-btn" class="prev-btn bg-gray-200 text-gray-700 font-bold py-2 px-6 rounded-lg hover:bg-gray-300 transition-colors">Voltar</button>
+                             <div id="step-counter" class="text-sm text-gray-500"></div>
+                            <button type="button" id="next-btn" class="next-btn bg-teal-500 text-white font-bold py-2 px-6 rounded-lg cta-button">Avançar</button>
+                        </div>
+                    </form>
+                    <div id="success-message" class="hidden text-center">
+                        <h2 class="text-3xl font-bold text-teal-600 mb-4">Contato enviado com sucesso!</h2>
+                        <p class="text-xl">Obrigado por seu interesse. Nossa equipe entrará em contato em breve.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Rodapé -->
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Intersection Observer for animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => observer.observe(el));
+            
+            // Custom Cursor Logic removed
+
+            // Contact Form Logic (Multi-step)
+            const form = document.getElementById('contact-form');
+            if (form) {
+                const formSteps = Array.from(form.querySelectorAll('.form-step'));
+                const nextBtn = document.getElementById('next-btn');
+                const prevBtn = document.getElementById('prev-btn');
+                const progressBar = document.getElementById('progress-bar');
+                const stepCounter = document.getElementById('step-counter');
+                const successMessage = document.getElementById('success-message');
+                const formWrapper = document.getElementById('form-wrapper');
+                const navigationButtons = document.getElementById('navigation-buttons');
+                
+                let currentStep = 0;
+                const totalSteps = formSteps.length;
+
+                const interestOptions = {
+                    'Empresa': ["Quero contratar a produtora (Custo Zero via Incentivo)", "Quero contratar a produtora (35% de Economia Direta)", "Quero conhecer o Clube dos Fundadores", "Outro"],
+                    'Governo': ["Busco uma parceria institucional", "Quero contratar serviços de produção", "Outro"]
+                };
+
+                const updateInterestOptions = (type) => {
+                    const interestSelect = document.getElementById('interesse');
+                    interestSelect.innerHTML = '<option value="" disabled selected>Selecione uma opção...</option>';
+                    if (interestOptions[type]) {
+                        interestOptions[type].forEach(optionText => {
+                            const option = document.createElement('option');
+                            option.value = optionText;
+                            option.textContent = optionText;
+                            interestSelect.appendChild(option);
+                        });
+                    }
+                };
+                
+                const choiceCards = form.querySelectorAll('.choice-card');
+                choiceCards.forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        const radio = card.querySelector('input[type="radio"]');
+                        radio.checked = true;
+                        const hiddenInput = document.getElementById('tipo_contato');
+                        const contactType = radio.value;
+                        hiddenInput.value = contactType;
+                        
+                        choiceCards.forEach(c => c.classList.remove('selected'));
+                        card.classList.add('selected');
+
+                        updateInterestOptions(contactType);
+
+                        // Personalize labels
+                        const labelsToUpdate = form.querySelectorAll('[data-empresa-label], [data-governo-label]');
+                        labelsToUpdate.forEach(label => {
+                            if (contactType === 'Empresa') {
+                                label.innerText = label.dataset.empresaLabel;
+                            } else if (contactType === 'Governo') {
+                                label.innerText = label.dataset.governoLabel;
+                            }
+                        });
+                        
+                        const empresaOrgaoInput = document.getElementById('empresa_orgao');
+                        const nomeCompletoInput = document.getElementById('nome_completo');
+                        if (contactType === 'Governo') {
+                            empresaOrgaoInput.placeholder = "Ex: Secretaria da Cultura";
+                            nomeCompletoInput.placeholder = "Seu nome e cargo";
+                        } else {
+                            empresaOrgaoInput.placeholder = "Nome da sua organização";
+                            nomeCompletoInput.placeholder = "Seu nome completo";
+                        }
+
+                        clearError(hiddenInput);
+                        nextBtn.disabled = false;
+                    });
+                });
+
+                const updateFormView = () => {
+                    formSteps.forEach((step, index) => {
+                        step.classList.remove('active', 'inactive-left');
+                        if (index === currentStep) step.classList.add('active');
+                        else if (index < currentStep) step.classList.add('inactive-left');
+                    });
+                    
+                    const progress = (currentStep / (totalSteps - 1)) * 100;
+                    progressBar.style.width = `${progress}%`;
+                    stepCounter.textContent = `Passo ${currentStep + 1} de ${totalSteps}`;
+
+                    prevBtn.style.display = currentStep === 0 ? 'none' : 'inline-block';
+                    navigationButtons.style.display = 'flex';
+                    if (currentStep === totalSteps - 1) { // last step (submit)
+                       navigationButtons.style.display = 'none';
+                    }
+                };
+
+                const showError = (input, message) => {
+                    const errorDiv = input.parentElement.querySelector('.error-message') || document.querySelector(`.error-message[data-for="${input.id}"]`);
+                    if (errorDiv) {
+                        errorDiv.textContent = message;
+                        errorDiv.style.display = 'block';
+                    }
+                    if(input.type !== 'hidden') input.classList.add('border-red-500');
+                };
+
+                const clearError = (input) => {
+                    const errorDiv = input.parentElement.querySelector('.error-message') || document.querySelector(`.error-message[data-for="${input.id}"]`);
+                    if (errorDiv) errorDiv.style.display = 'none';
+                    if(input.type !== 'hidden') input.classList.remove('border-red-500');
+                };
+                
+                const validateStep = (stepIndex) => {
+                    const currentStepElement = formSteps[stepIndex];
+                    const inputs = currentStepElement.querySelectorAll('[required]');
+                    let isValid = true;
+                    
+                    inputs.forEach(input => {
+                        clearError(input);
+                        if (!input.value.trim()) {
+                            showError(input, 'Este campo é obrigatório.');
+                            isValid = false;
+                        } else if (input.type === 'email' && !/^\S+@\S+\.\S+$/.test(input.value)) {
+                            showError(input, 'Por favor, insira um e-mail válido.');
+                            isValid = false;
+                        }
+                    });
+
+                    nextBtn.disabled = !isValid;
+                    return isValid;
+                };
+
+                nextBtn.addEventListener('click', () => {
+                    if (validateStep(currentStep)) {
+                        if (currentStep < totalSteps - 1) {
+                            currentStep++;
+                            updateFormView();
+                            validateStep(currentStep);
+                        }
+                    }
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    if (currentStep > 0) {
+                        currentStep--;
+                        updateFormView();
+                        validateStep(currentStep);
+                    }
+                });
+
+                form.querySelectorAll('input[required], select[required]').forEach(input => {
+                    input.addEventListener('input', () => validateStep(currentStep));
+                });
+                
+                form.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                        e.preventDefault();
+                        if(!nextBtn.disabled) nextBtn.click();
+                    }
+                });
+
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    if (!validateStep(currentStep)) return;
+                    
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    const buttonText = submitButton.querySelector('.button-text');
+                    const buttonLoader = submitButton.querySelector('.button-loader');
+                    const submitErrorDiv = document.querySelector('.error-message[data-for="submit"]');
+
+                    buttonText.classList.add('hidden');
+                    buttonLoader.classList.remove('hidden');
+                    submitButton.disabled = true;
+                    if(submitErrorDiv) submitErrorDiv.style.display = 'none';
+
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData.entries());
+                    delete data.contact_type_radio;
+                    
+                    const webhookUrl = 'https://webhook.hypelead.io/webhook/a40cf321-8469-4c8f-aaa1-cb9ec697345a';
+                    
+                    try {
+                        const response = await fetch(webhookUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data),
+                        });
+                        if (response.ok) {
+                            form.style.display = 'none';
+                            progressBar.parentElement.style.display = 'none';
+                            successMessage.style.display = 'block';
+                            successMessage.classList.add('reveal', 'visible');
+                        } else {
+                            throw new Error('Falha no envio. Status: ' + response.status);
+                        }
+                    } catch (error) {
+                        console.error('Erro ao enviar webhook:', error);
+                        if(submitErrorDiv) {
+                            submitErrorDiv.textContent = 'Ocorreu um erro ao enviar seu contato. Por favor, tente novamente.';
+                            submitErrorDiv.style.display = 'block';
+                        }
+                    } finally {
+                        buttonText.classList.remove('hidden');
+                        buttonLoader.classList.add('hidden');
+                        submitButton.disabled = false;
+                    }
+                });
+
+                updateFormView();
+                validateStep(currentStep);
+            }
+        });
+    </script>
+
+</body>
+</html>
+

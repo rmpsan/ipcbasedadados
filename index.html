@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Paulista de Cinema - Home</title>
+    <script src="https://cdn-tailwindcss.vercel.app/"></script>
+    <script src="menu.js"></script>
+    <script src="footer.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal-500: #14b8a6;
+            --cyan-600: #0891b2;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-100: #f3f4f6;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('complementare_images/16x9/ARoteiristadosSonhos2.jpg');
+            background-size: cover;
+            background-position: center;
+            animation: kenburns 20s ease-out infinite alternate;
+            z-index: 1;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(3, 7, 18, 1) 15%, rgba(3, 7, 18, 0.7) 60%, rgba(3, 7, 18, 0.5) 100%);
+            z-index: 2;
+        }
+
+        .hero-content { 
+            position: relative; 
+            z-index: 3; 
+            transform-style: preserve-3d;
+        }
+
+        .cta-button {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(20, 184, 166, 0.2);
+        }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes kenburns {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(-2%, 2%); }
+        }
+        
+        .animated-gradient-dark {
+            position: relative;
+            background: linear-gradient(-45deg, #030712, #111827, #1f2937, #030712);
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+        }
+         .animated-gradient-dark::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2V6h4V4h-6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+        
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .reveal {
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+        
+        .reveal.visible { animation-duration: 0.8s; animation-fill-mode: forwards; animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); animation-name: fadeInUp; }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--teal-500);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .parallax-divider {
+            height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+
+        .h1-word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .h1-word.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item {
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 80vh;
+            transition: transform 0.3s ease;
+            transform: scale(0.8);
+        }
+        #lightbox.active img {
+            transform: scale(1);
+        }
+        .lightbox-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            padding: 0.5rem 1rem;
+            z-index: 1001;
+            transition: background 0.2s ease;
+        }
+        .lightbox-btn:hover { background: rgba(20, 184, 166, 0.8); }
+        #lightbox-close { top: 20px; right: 20px; font-size: 1.5rem; padding: 0.5rem 1rem; }
+        #lightbox-prev { left: 20px; }
+        #lightbox-next { right: 20px; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300"><div id="lightbox">
+        <button id="lightbox-close" class="lightbox-btn">&times;</button>
+        <button id="lightbox-prev" class="lightbox-btn">&#10094;</button>
+        <button id="lightbox-next" class="lightbox-btn">&#10095;</button>
+        <img id="lightbox-image" src="" alt="Imagem da Galeria em Destaque">
+    </div>
+
+    <!-- 1. Cabeçalho (Header) -->
+    <!-- Menu global será inserido aqui pelo JavaScript -->
+
+    <main>
+        <!-- 2. Seção Principal (Hero Section) -->
+        <section class="hero-bg text-white min-h-screen flex items-center">
+            <div class="hero-content container mx-auto px-6 py-24 md:py-40 text-center flex flex-col items-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 max-w-5xl">Onde o <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">Talento da Periferia</span> se Torna o <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">Futuro</span> da Comunicação Premium e com <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">Propósito.</span></h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 reveal" style="animation-delay: 0.8s;">A primeira produtora-escola do mundo que está redefinindo o audiovisual brasileiro.</p>
+                <div class="bg-black/30 backdrop-blur-sm border border-gray-700 rounded-lg p-4 max-w-4xl reveal" style="animation-delay: 1s;">
+                    <p class="font-semibold text-teal-300">Jovens são PAGOS para aprender IA e Cinema | Empresas produzem com Custo Efetivo ZERO | Impacto Social Genuíno e Mensurável</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Quem Somos -->
+        <section class="relative bg-cover bg-center py-20" style="background-image: url('complementare_images/16x9/professor_com_aluno6.jpg');">
+            <div class="absolute inset-0 bg-gray-900/80 backdrop-blur-sm"></div>
+            <div class="container mx-auto px-6 max-w-4xl text-center relative z-10 text-white">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-6">Quem Somos: Indignação, Propósito, Transformação.</h2>
+                    <div class="text-lg text-left space-y-4 text-gray-200">
+                        <p>Nascemos da indignação contra um paradoxo gritante em São Paulo: a cidade concentra 40% do mercado audiovisual brasileiro – uma economia de R$ 30 bilhões anuais – mas 2,4 milhões de jovens periféricos permanecem sistematicamente excluídos. Este cenário gera um déficit de 50 mil profissionais e um custo social de R$ 42.000 anuais por jovem excluído.</p>
+                        <p>Existimos para reescrever essa história. O Instituto Paulista de Cinema é a primeira produtora-escola do mundo onde jovens da periferia não pagam para aprender – eles são <span class="font-bold text-teal-400">remunerados para produzir conteúdo de classe mundial</span>. Nosso modelo é a transformação de potencial desperdiçado em PIB mensurável.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Primeiro Divisor Parallax -->
+        <section class="parallax-divider" style="background-image: url('complementare_images/16x9/Olhar_Que_ Enxerga_refletindo_cidade_sp3.jpg');"></section>
+        
+        <!-- 4. Manifesto -->
+        <section class="relative bg-cover bg-center py-20 animated-gradient-dark text-white">
+            <div class="container mx-auto px-6 max-w-4xl text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-6">Nosso Manifesto: O Chamado que Impulsiona uma Revolução!</h2>
+                    <blockquote class="text-xl italic border-l-4 border-teal-400 pl-6 mb-8">
+                        "Nós acreditamos que o talento não tem CEP. Que a criatividade não conhece fronteiras sociais. Que a periferia não é problema – é solução. É onde nasce a cultura que move o mundo."
+                    </blockquote>
+                    <p class="mb-8">Nosso manifesto é um convite para dizer BASTA! e construir um futuro onde você é remunerado para aprender cinema e dominar IA.</p>
+                    <a href="manifesto.html" class="bg-teal-500 text-white font-bold py-3 px-8 rounded-lg cta-button">Leia o Manifesto Completo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Sua Oportunidade (Split Section) -->
+        <section id="oportunidade" class="py-20 bg-gray-200 text-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl font-bold mb-4">Sua Oportunidade no Instituto</h2>
+                    <p class="text-xl max-w-3xl mx-auto">Descubra como você pode transformar sua vida, sua empresa ou sua cidade.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                    <div class="bg-white p-8 rounded-lg shadow-2xl reveal card-hover flex flex-col relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-5 bg-cover bg-center" style="background-image: url('complementare_images/1x1/alunos_no_estudio8.jpg');"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-4 text-teal-600">Para Jovens Talentos</h3>
+                            <p class="mb-6">Sua vida pode mudar em 12 meses. Construa uma carreira sólida no futuro do audiovisual.</p>
+                            <ul class="space-y-3 text-sm mb-8">
+                                <li>✓ Bolsa integral de R$ 1.412/mês + alimentação.</li>
+                                <li>✓ Formação intensiva de 1.200h em 6 áreas.</li>
+                                <li>✓ 90% de empregabilidade com salário médio de R$ 4.500.</li>
+                            </ul>
+                        </div>
+                        <div class="mt-auto relative z-10">
+                            <a href="escola.html" class="bg-teal-500 text-white font-bold py-3 px-8 rounded-lg cta-button block text-center">QUERO TRANSFORMAR MINHA VIDA</a>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-2xl reveal card-hover flex flex-col relative overflow-hidden" style="animation-delay: 150ms;">
+                        <div class="absolute inset-0 opacity-5 bg-cover bg-center" style="background-image: url('complementare_images/1x1/editora5.jpg');"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-4 text-blue-600">Para Empresas Visionárias</h3>
+                            <p class="mb-6">Transforme impostos em comunicação de alto impacto e fortaleça sua marca.</p>
+                            <ul class="space-y-3 text-sm mb-8">
+                                <li>✓ Produza com Custo Efetivo ZERO via Leis de Incentivo.</li>
+                                <li>✓ Garanta 35% de economia em contratação direta.</li>
+                                <li>✓ Qualidade premium e entrega 3x mais rápida.</li>
+                            </ul>
+                        </div>
+                        <div class="mt-auto relative z-10">
+                            <a href="empresas.html" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg cta-button block text-center">QUERO PRODUZIR COM CUSTO ZERO</a>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-2xl reveal card-hover flex flex-col relative overflow-hidden" style="animation-delay: 300ms;">
+                        <div class="absolute inset-0 opacity-5 bg-cover bg-center" style="background-image: url('complementare_images/1x1/o_sonhador_na_laje.jpg');"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-4 text-green-600">Para o Governo</h3>
+                            <p class="mb-6">Transforme desafios sociais em desenvolvimento econômico e comunicação eficaz.</p>
+                            <ul class="space-y-3 text-sm mb-8">
+                                <li>✓ ROI de 300% para cada R$ 1 investido.</li>
+                                <li>✓ Economia de 35% na produção de conteúdo para a prefeitura.</li>
+                                <li>✓ Resolve a crise de comunicação com uma narrativa autêntica.</li>
+                            </ul>
+                        </div>
+                        <div class="mt-auto relative z-10">
+                            <a href="gov.html" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg cta-button block text-center">APOIE A IMPLEMENTAÇÃO</a>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-2xl reveal card-hover flex flex-col relative overflow-hidden" style="animation-delay: 450ms;">
+                        <div class="absolute inset-0 opacity-5 bg-cover bg-center" style="background-image: url('complementare_images/1x1/professor_com_aluno.jpg');"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-4 text-purple-600">Para Profissionais e Parceiros</h3>
+                            <p class="mb-6">Sua expertise e paixão serão o catalisador para construir um legado duradouro.</p>
+                            <ul class="space-y-3 text-sm mb-8">
+                                <li>✓ Torne-se Professor (15+ anos exp.).</li>
+                                <li>✓ Seja um Padrinho/Tutor (5+ anos exp.).</li>
+                                <li>✓ Ofereça Oficinas e Palestras inovadoras.</li>
+                            </ul>
+                        </div>
+                        <div class="mt-auto relative z-10">
+                            <a href="trabalho_no_instituto.html" class="bg-purple-600 text-white font-bold py-3 px-8 rounded-lg cta-button block text-center">FAÇA PARTE DA EQUIPE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Segundo Divisor Parallax -->
+        <section class="parallax-divider" style="background-image: url('complementare_images/16x9/composicao_poetica_jovem_cidade_camera.jpg');"></section>
+
+        <!-- 6. Impacto e Credibilidade -->
+        <section id="impacto" class="py-20 animated-gradient-dark text-white relative z-10">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl font-bold">Impacto Social e Credibilidade Comprovada (ESG Genuíno)</h2>
+                    <p class="text-xl text-gray-400 max-w-3xl mx-auto mt-4">Um projeto sólido, validado pelo Governo Federal e com uma equipe de excelência.</p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="bg-gray-800/50 p-8 rounded-lg reveal"><h3 class="text-2xl font-bold text-center mb-6 text-teal-400">Transformação Social Mensurável</h3><div class="grid grid-cols-2 gap-6 text-center"><div><p class="text-3xl font-bold">400</p><p class="text-sm">Jovens Formados</p></div><div><p class="text-3xl font-bold">1.600</p><p class="text-sm">Famílias Impactadas</p></div><div><p class="text-3xl font-bold">R$ 78 Mi</p><p class="text-sm">em PIB Cultural</p></div><div><p class="text-3xl font-bold">-40%</p><p class="text-sm">na Violência</p></div></div></div>
+                    <div class="bg-gray-800/50 p-8 rounded-lg reveal" style="animation-delay:150ms;"><h3 class="text-2xl font-bold text-center mb-6 text-teal-400">Governança e Sustentabilidade</h3><ul class="text-sm space-y-3"><li>✓ <b>Validação Federal:</b> R$ 2 milhões já investidos pelo FSA/ANCINE.</li><li>✓ <b>Estrutura Jurídica:</b> OSCIP com conselho fiscal e auditoria externa.</li><li>✓ <b>Sustentabilidade:</b> Modelo 123% autossustentável a partir do 4º ano.</li><li>✓ <b>Expertise Comprovada:</b> Equipe com especialistas da USP, FGV e Disney.</li></ul></div>
+                </div>
+                 <div class="text-center mt-12 reveal"><a href="esg.html" class="text-teal-400 font-semibold hover:text-teal-300">Veja Nosso Impacto ESG em Detalhes →</a></div>
+            </div>
+        </section>
+
+        <!-- Terceiro Divisor Parallax -->
+        <section class="parallax-divider" style="background-image: url('complementare_images/16x9/o_sonhador_na_laje5.jpg');"></section>
+        
+        <!-- 7. História do Fundador -->
+         <section class="py-20 bg-gray-100 text-gray-800">
+             <div class="container mx-auto px-6 max-w-5xl">
+                 <div class="reveal">
+                     <h2 class="text-3xl font-bold mb-12 text-center">A História que nos Inspira: <span class="text-teal-600">Raphael Martinez</span></h2>
+                     <div class="md:flex md:gap-12 md:items-center">
+                         <div class="mb-8 md:mb-0 text-center md:w-1/3 flex-shrink-0">
+                             <img src="https://gov.institutopaulistadecinema.com.br/images/raphael_bio.png" class="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full mx-auto shadow-2xl">
+                         </div>
+                         <div class="text-lg md:w-2/3">
+                             <p class="mb-6">Nosso fundador nasceu no Capão Redondo e, sem dinheiro para faculdade, aprendeu cinema na prática. Fundou a Dummy Filmes com R$ 1.000, atendeu gigantes como Google e Santander, e teve seu longa aprovado com R$ 2 milhões pelo governo.</p>
+                             <p class="font-semibold italic">"Sua trajetória é a prova de que o talento não tem CEP. Ele está reescrevendo o roteiro de milhares de vidas."</p>
+                              <div class="mt-8"><a href="fundador.html" class="bg-gray-800 text-white font-bold py-3 px-8 rounded-lg cta-button inline-block">Conheça a História Completa</a></div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </section>
+        
+        <!-- 8. Momento Histórico -->
+        <section class="py-20 relative bg-cover bg-center" style="background-image: url('complementare_images/16x9/sinueta_jovem_gravando_saopaulo2.jpg');">
+            <div class="absolute inset-0 bg-black/70"></div>
+             <div class="container mx-auto px-6 relative z-10 text-white">
+                <div class="text-center mb-12 reveal"><h2 class="text-3xl font-bold">O Momento Histórico é Agora: Uma Decisão Estratégica.</h2></div>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg reveal"><h3 class="font-bold text-teal-400">Para o CFO</h3><p class="text-sm">ROI infinito, otimização tributária e redução drástica do TCO de comunicação.</p></div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg reveal" style="animation-delay:150ms;"><h3 class="font-bold text-teal-400">Para o CMO</h3><p class="text-sm">Qualidade superior, velocidade 3x maior e conexão autêntica com o público jovem.</p></div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg reveal" style="animation-delay:300ms;"><h3 class="font-bold text-teal-400">Para o CEO</h3><p class="text-sm">ESG genuíno com impacto mensurável, diferencial competitivo e legado empresarial.</p></div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg reveal" style="animation-delay:450ms;"><h3 class="font-bold text-teal-400">Para o Acionista</h3><p class="text-sm">Economia substancial, valorização da marca e mitigação de riscos.</p></div>
+                </div>
+                 <div class="text-center mt-12 reveal"><a href="projeto.html" class="text-teal-400 font-semibold hover:text-teal-300">Conheça o Projeto Completo →</a></div>
+            </div>
+        </section>
+
+        <!-- 9. Galeria do Futuro -->
+        <section id="galeria" class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl font-bold text-gray-900">Galeria do Futuro</h2>
+                    <p class="text-xl max-w-3xl mx-auto mt-4 text-gray-600">Como imaginamos o futuro do instituto e dos nossos jovens.</p>
+                </div>
+                <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Images will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. CTA Final -->
+        <section id="contato" class="py-20 animated-gradient-dark text-white relative z-10">
+            <div class="container mx-auto px-6 text-center reveal">
+                <h2 class="text-3xl font-bold mb-4">Próximos Passos: Junte-se à Revolução Audiovisual!</h2>
+                <p class="max-w-3xl mx-auto mb-12 text-lg text-gray-300">Enquanto seus concorrentes pagam fortunas e desperdiçam recursos, sua empresa pode construir um legado de impacto e eficiência.</p>
+                <div><a href="contato.html" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold py-4 px-10 text-lg rounded-lg cta-button inline-block">Agende sua Apresentação</a></div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer global será inserido aqui pelo JavaScript -->
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                     const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                             const headerOffset = document.querySelector('header').offsetHeight;
+                             const elementPosition = targetElement.getBoundingClientRect().top;
+                             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                             window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        }
+                    }
+                });
+            });
+            
+            // Intersection Observer for animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => observer.observe(el));
+            
+            // Custom Cursor Logic removed
+
+            // Hero Title Animation
+            const h1 = document.querySelector('.hero-content h1');
+            if(h1) {
+                const text = h1.innerText;
+                h1.innerHTML = '';
+                text.split(' ').forEach((word, index) => {
+                    const span = document.createElement('span');
+                    span.innerHTML = `${word}&nbsp;`;
+                    if (word.toLowerCase().includes('talento') || word.toLowerCase().includes('periferia') || word.toLowerCase().includes('futuro') || word.toLowerCase().includes('premium') || word.toLowerCase().includes('propósito')) {
+                        span.className = 'h1-word text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500';
+                    } else {
+                        span.className = 'h1-word';
+                    }
+                    span.style.transitionDelay = `${index * 0.05 + 0.2}s`;
+                    h1.appendChild(span);
+                });
+                setTimeout(() => {
+                    h1.querySelectorAll('.h1-word').forEach(span => {
+                        span.classList.add('visible');
+                    });
+                }, 100);
+            }
+
+            // Gallery and Lightbox Logic
+            const galleryContainer = document.getElementById('gallery-container');
+            const lightbox = document.getElementById('lightbox');
+
+            if (galleryContainer && lightbox) {
+                const lightboxImage = document.getElementById('lightbox-image');
+                const imageUrls = [
+                    'https://gov.institutopaulistadecinema.com.br/galeria/1.jpg', 'https://gov.institutopaulistadecinema.com.br/galeria/2.jpg',
+                    'https://gov.institutopaulistadecinema.com.br/galeria/3.jpg', 'https://gov.institutopaulistadecinema.com.br/galeria/5.jpg',
+                    'https://gov.institutopaulistadecinema.com.br/galeria/6.jpg', 'https://gov.institutopaulistadecinema.com.br/galeria/7.jpg',
+                    'https://gov.institutopaulistadecinema.com.br/galeria/9.jpg', 'https://gov.institutopaulistadecinema.com.br/galeria/10.jpg',
+                    'https://gov.institutopaulistadecinema.com.br/galeria/11.jpg', 'https://gov.institutopaulistadecinema.com.br/galeria/13.jpg',
+                    'https://gov.institutopaulistadecinema.com.br/galeria/16.jpg', 'https://gov.institutopaulistadecinema.com.br/galeria/17.jpg'
+                ];
+                let currentIndex = 0;
+
+                const showImage = (index) => {
+                    currentIndex = index;
+                    lightboxImage.src = imageUrls[index];
+                    lightbox.classList.add('active');
+                };
+
+                const hideLightbox = () => lightbox.classList.remove('active');
+                const showNext = () => showImage((currentIndex + 1) % imageUrls.length);
+                const showPrev = () => showImage((currentIndex - 1 + imageUrls.length) % imageUrls.length);
+                
+                imageUrls.forEach((url, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'reveal gallery-item';
+                    div.style.animationDelay = `${index * 50}ms`;
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = `Imagem da Galeria ${index + 1}`;
+                    img.className = 'rounded-lg object-cover aspect-square w-full h-full';
+                    div.appendChild(img);
+                    div.addEventListener('click', () => showImage(index));
+                    galleryContainer.appendChild(div);
+                });
+                
+                // Observe dynamically added gallery items
+                const galleryObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            galleryObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                document.querySelectorAll('#gallery-container .reveal').forEach(item => {
+                    galleryObserver.observe(item);
+                });
+                
+                document.getElementById('lightbox-close').addEventListener('click', hideLightbox);
+                document.getElementById('lightbox-next').addEventListener('click', showNext);
+                document.getElementById('lightbox-prev').addEventListener('click', showPrev);
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) hideLightbox();
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (!lightbox.classList.contains('active')) return;
+                    if (e.key === 'Escape') hideLightbox();
+                    if (e.key === 'ArrowRight') showNext();
+                    if (e.key === 'ArrowLeft') showPrev();
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
+

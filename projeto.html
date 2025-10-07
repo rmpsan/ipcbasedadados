@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Paulista de Cinema - Transformando Vidas e Empresas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="menu.js"></script>
+    <script src="footer.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal-500: #14b8a6;
+            --cyan-600: #0891b2;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-100: #f3f4f6;}
+
+        /* Poster Animations */
+        .poster-container {
+            perspective: 1000px;
+        }
+        
+        .poster-container:hover img {
+            animation: posterFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes posterFloat {
+            0%, 100% { transform: translateY(0px) rotateY(0deg); }
+            25% { transform: translateY(-5px) rotateY(2deg); }
+            50% { transform: translateY(-8px) rotateY(0deg); }
+            75% { transform: translateY(-5px) rotateY(-2deg); }
+        }
+        
+        .poster-container::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 20px;
+            background: radial-gradient(ellipse, rgba(0,0,0,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+        
+        .poster-container:hover::before {
+            opacity: 1;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background-image: url('https://institutopaulistadecinema.com.br/imagens%20abertura/1.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(3, 7, 18, 1) 5%, rgba(3, 7, 18, 0.7) 50%, rgba(3, 7, 18, 0.5) 100%);
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; transform-style: preserve-3d; }
+
+        .cta-button {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(20, 184, 166, 0.2);
+        }
+
+        .glass-effect {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-effect:hover {
+            background: rgba(31, 41, 55, 0.7);
+            border-color: rgba(20, 184, 166, 0.5);
+            transform: scale(1.05);
+        }
+        
+        /* Advanced Animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-gradient {
+            background: linear-gradient(-45deg, #14b8a6, #0891b2, #0369a1, #06b6d4);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+        }
+        
+        .animated-gradient-dark {
+            background: linear-gradient(-45deg, #030712, #111827, #1f2937, #030712);
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+        }
+
+        .reveal {
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+        
+        .reveal.visible { animation-duration: 0.8s; animation-fill-mode: forwards; animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .reveal.visible.fade-in-up { animation-name: fadeInUp; }
+        .reveal.visible.slide-in-left { animation-name: slideInLeft; }
+        .reveal.visible.slide-in-right { animation-name: slideInRight; }
+        
+        .tab-button {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .tab-button::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--teal-500);
+            transition: width 0.3s ease;
+        }
+        .tab-button.active { color: var(--teal-500); }
+        .tab-button.active::after { width: 100%; }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--teal-500);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        .gallery-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Lightbox styles */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 80vh;
+            transition: transform 0.3s ease;
+            transform: scale(0.8);
+        }
+        #lightbox.active img {
+            transform: scale(1);
+        }
+        .lightbox-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            padding: 0.5rem 1rem;
+            z-index: 1001;
+            transition: background 0.2s ease;
+        }
+        .lightbox-btn:hover { background: rgba(20, 184, 166, 0.8); }
+        #lightbox-close { top: 20px; right: 20px; font-size: 1.5rem; padding: 0.5rem 1rem; }
+        #lightbox-prev { left: 20px; }
+        #lightbox-next { right: 20px; }
+
+        .parallax-divider {
+            height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .clip-path-section {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .spotlight-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+         .spotlight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .spotlight-card::before {
+            content: '';
+            position: absolute;
+            top: var(--y, 0);
+            left: var(--x, 0);
+            transform: translate(-50%, -50%);
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.2), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .spotlight-card:hover::before {
+            opacity: 1;
+        }
+        
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300">
+
+    <div id="menu-placeholder"></div><!-- Lightbox Structure -->
+    <div id="lightbox">
+        <button id="lightbox-close" class="lightbox-btn">&times;</button>
+        <button id="lightbox-prev" class="lightbox-btn">&#10094;</button>
+        <button id="lightbox-next" class="lightbox-btn">&#10095;</button>
+        <img id="lightbox-image" src="" alt="Imagem da Galeria em Destaque">
+    </div>
+
+    <main>
+        <!-- 2. Seção Principal (Hero Section) -->
+        <section id="hero" class="hero-bg text-white min-h-screen flex items-center overflow-hidden" style="perspective: 1000px;">
+            <canvas id="particles-js" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
+            <div class="hero-content container mx-auto px-6 py-24 md:py-40 text-center flex flex-col items-center">
+                <h2 id="hero-subtitle" class="text-lg md:text-xl text-teal-400 font-semibold tracking-wider mb-4 reveal fade-in-up">Uma Oportunidade Sem Precedentes no Mercado Brasileiro</h2>
+                <h1 id="hero-title" class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 max-w-4xl" style="transition: transform 0.2s ease-out;">Produza conteúdo audiovisual premium com <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">custo efetivo zero</span>.</h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-10 reveal fade-in-up" style="animation-delay: 0.2s;">Utilize leis de incentivo fiscal e transforme a vida de 400 jovens periféricos em profissionais da economia criativa com a primeira produtora-escola do mundo.</p>
+                <div class="reveal fade-in-up mt-8" style="animation-delay: 0.4s;"><a href="#cta-final" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold py-4 px-10 text-lg rounded-lg cta-button inline-block">Agende Sua Apresentação Executiva</a><p class="mt-4 text-gray-400 text-sm">Explore as oportunidades e veja a transformação.</p></div>
+            </div>
+        </section>
+
+        <!-- 3. O Paradoxo do Mercado Audiovisual -->
+        <section class="bg-gray-100 text-gray-800 py-20 relative -mt-20 clip-path-section" style="background-image: linear-gradient(rgba(243, 244, 246, 0.95), rgba(243, 244, 246, 0.95)), url('complementare_images/16x9/composicao_poetica_jovem_cidade_camera.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+            <div class="container mx-auto px-6 text-center pt-20">
+                <div class="reveal fade-in-up">
+                    <h2 class="text-3xl font-bold mb-4">O Paradoxo do Mercado Audiovisual</h2>
+                    <p class="text-xl font-semibold text-red-600 mb-6">Uma Dupla Tributação Invisível e a Exclusão Social</p>
+                    <p class="max-w-4xl mx-auto mb-12 text-left space-y-4">
+                        O mercado audiovisual brasileiro movimenta R$ 30 bilhões anualmente, mas os custos para produzir são proibitivos. Um vídeo de 3 minutos custa em média R$ 80.000, e as empresas acabam pagando duas vezes: uma em impostos sem retorno direto, e outra para produzir conteúdo. Ao mesmo tempo, em São Paulo, 2,4 milhões de jovens periféricos estão excluídos dessa economia. Com 87% sem acesso ao ensino superior, gera-se um déficit de 50 mil profissionais no setor, enquanto cada jovem excluído custa R$ 42.000 anuais ao poder público.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal fade-in-up hover:-translate-y-2 transition-transform duration-300"><p class="text-3xl font-bold text-teal-600">R$ 30 bi</p><p>Volume anual do mercado audiovisual.</p></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal fade-in-up hover:-translate-y-2 transition-transform duration-300" style="animation-delay: 100ms;"><p class="text-3xl font-bold text-teal-600">2,4 M</p><p>Jovens periféricos excluídos em SP.</p></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal fade-in-up hover:-translate-y-2 transition-transform duration-300" style="animation-delay: 200ms;"><p class="text-3xl font-bold text-teal-600">50 mil</p><p>Déficit de profissionais no setor.</p></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal fade-in-up hover:-translate-y-2 transition-transform duration-300" style="animation-delay: 300ms;"><p class="text-3xl font-bold text-teal-600">R$ 42 mil</p><p>Custo social anual por jovem excluído.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PARALLAX DIVIDER -->
+        <section class="parallax-divider" style="background-image: url('complementare_images/16x9/jovem_operando_camera_cinema_estudio.jpg');"></section>
+
+        <!-- 4. A Solução Instituto -->
+        <section class="py-20 animated-gradient-dark text-white relative overflow-hidden" style="background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('complementare_images/1x1/composicao_poetica_jovem_cidade_camera6.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <div class="reveal fade-in-up">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                        A Solução: Um Modelo <span class="text-teal-500">Revolucionário</span>
+                    </h2>
+                    <p class="text-xl md:text-2xl text-gray-200 mb-8 font-medium">
+                        <span class="text-teal-500 font-semibold">Invertemos a lógica do mercado</span> para resolver múltiplos desafios simultaneamente.
+                    </p>
+                    <p class="text-lg md:text-xl text-gray-100 leading-relaxed max-w-4xl mx-auto mb-12">
+                        Somos a <span class="text-teal-500 font-bold text-xl md:text-2xl">primeira produtora-escola do mundo</span> onde 
+                        <span class="text-white font-semibold">jovens periféricos não pagam para aprender</span> – 
+                        <span class="text-teal-500 font-semibold">eles são remunerados para produzir conteúdo real</span> para grandes marcas.
+                    </p>
+                </div>
+                
+                <div class="relative flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-4">
+                    <div class="flex items-center flex-col md:flex-row reveal fade-in-up" style="animation-delay: 0s;"><div class="flow-step bg-teal-500 text-white rounded-full h-24 w-24 flex flex-col justify-center items-center shadow-lg p-2 transition-all duration-300"><span class="font-bold">Investimento</span><span class="text-xs">(Via Incentivo)</span></div></div>
+                    <div class="hidden md:block text-teal-400 text-4xl font-light mx-4 reveal fade-in-up" style="animation-delay: 0.1s;">→</div>
+                    <div class="flex items-center flex-col md:flex-row reveal fade-in-up" style="animation-delay: 0.2s;"><div class="flow-step bg-teal-500 text-white rounded-full h-24 w-24 flex flex-col justify-center items-center shadow-lg p-2 transition-all duration-300"><span class="font-bold">Dedução</span><span class="text-xs">(100% do Valor)</span></div></div>
+                    <div class="hidden md:block text-teal-400 text-4xl font-light mx-4 reveal fade-in-up" style="animation-delay: 0.3s;">→</div>
+                    <div class="flex items-center flex-col md:flex-row reveal fade-in-up" style="animation-delay: 0.4s;"><div class="flow-step bg-teal-500 text-white rounded-full h-24 w-24 flex flex-col justify-center items-center shadow-lg p-2 transition-all duration-300"><span class="font-bold">Produção</span><span class="text-xs">(Conteúdo Premium)</span></div></div>
+                    <div class="hidden md:block text-teal-400 text-4xl font-light mx-4 reveal fade-in-up" style="animation-delay: 0.5s;">→</div>
+                    <div class="flex items-center flex-col md:flex-row reveal fade-in-up" style="animation-delay: 0.6s;"><div class="flow-step bg-teal-500 text-white rounded-full h-24 w-24 flex flex-col justify-center items-center shadow-lg p-2 transition-all duration-300"><span class="font-bold">Impacto</span><span class="text-xs">(Jovens Formados)</span></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Para Empresas Visionárias -->
+        <section id="empresas" class="py-20 bg-gray-100 text-gray-800 relative" style="background-image: linear-gradient(rgba(243, 244, 246, 0.92), rgba(243, 244, 246, 0.92)), url('complementare_images/16x9/alunos_no_estudio2.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal fade-in-up"><h2 class="text-3xl font-bold mb-4">Benefícios para Empresas Visionárias</h2><p class="text-xl max-w-3xl mx-auto">Transforme impostos em ativos de comunicação de alto impacto.</p></div>
+                <div id="tabs-container" class="max-w-5xl mx-auto">
+                    <div class="flex flex-wrap justify-center border-b border-gray-300 mb-8 reveal fade-in-up"><button class="tab-button active py-2 px-6 font-semibold text-gray-600 focus:outline-none" data-tab="custo-zero">Custo Zero e Economia</button><button class="tab-button py-2 px-6 font-semibold text-gray-600 focus:outline-none" data-tab="qualidade">Qualidade e Velocidade</button><button class="tab-button py-2 px-6 font-semibold text-gray-600 focus:outline-none" data-tab="servicos">Portfólio de Serviços</button><button class="tab-button py-2 px-6 font-semibold text-gray-600 focus:outline-none" data-tab="fundadores">Clube dos Fundadores</button></div>
+                    <div id="custo-zero" class="tab-content"><div class="bg-white p-8 rounded-lg shadow-lg"><h3 class="text-2xl font-bold mb-6 text-center">ROI Infinito ou 35% de Economia Garantida</h3><div class="grid md:grid-cols-2 gap-8"><div class="bg-teal-50 p-6 rounded-lg border-l-4 border-teal-500"><h4 class="font-bold text-xl text-teal-700">Opção A: Custo Efetivo ZERO</h4><p>Invista através de leis de incentivo (Rouanet, Audiovisual, ProAC ICMS, ISS) e deduza 100% do valor. Uma empresa com R$ 500MM de faturamento pode ter R$ 3,2 milhões/ano disponíveis para 150+ produções.</p></div><div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500"><h4 class="font-bold text-xl text-blue-700">Opção B: 35% de Economia Direta</h4><p>Se preferir a contratação direta, garantimos 35% de economia. Um vídeo de R$ 80.000 sai por R$ 52.000, economizando R$ 28.000.</p></div></div></div></div>
+                    <div id="qualidade" class="tab-content hidden"><div class="bg-white p-8 rounded-lg shadow-lg"><h3 class="text-2xl font-bold mb-6">Qualidade Premium e Velocidade 3x Superior</h3><ul class="space-y-4 text-gray-700"><li class="flex items-start"><span class="text-green-500 mr-3 mt-1">✓</span><span><b>Dream Team de Supervisores:</b> Profissionais com 15+ anos de experiência supervisionam cada projeto.</span></li><li class="flex items-start"><span class="text-green-500 mr-3 mt-1">✓</span><span><b>Revisão Tripla:</b> Garantia de 95% de aprovação na primeira entrega.</span></li><li class="flex items-start"><span class="text-green-500 mr-3 mt-1">✓</span><span><b>Velocidade Imbatível:</b> Prazo médio de 15 dias, 3x mais rápido que o mercado.</span></li><li class="flex items-start"><span class="text-green-500 mr-3 mt-1">✓</span><span><b>Inovação com IA:</b> Acesso à primeira escola de IA audiovisual para periferias do mundo.</span></li></ul></div></div>
+                    <div id="servicos" class="tab-content hidden"><div class="bg-white p-8 rounded-lg shadow-lg"><h3 class="text-2xl font-bold mb-6">Soluções Audiovisuais Completas</h3><div class="grid md:grid-cols-2 gap-x-8 gap-y-4"><h4 class="font-bold text-teal-600 col-span-full md:col-span-1">Produção Corporativa</h4><ul class="list-disc list-inside text-sm"><li>Vídeos institucionais, documentários, cobertura de eventos.</li></ul><h4 class="font-bold text-teal-600 col-span-full md:col-span-1">Marketing Digital</h4><ul class="list-disc list-inside text-sm"><li>Campanhas para redes sociais, séries para YouTube, podcasts.</li></ul><h4 class="font-bold text-teal-600 col-span-full md:col-span-1">Comunicação Interna</h4><ul class="list-disc list-inside text-sm"><li>EAD, capacitação, endomarketing, webinars.</li></ul><h4 class="font-bold text-teal-600 col-span-full md:col-span-1">Inovação e Tecnologia</h4><ul class="list-disc list-inside text-sm"><li>IA, Realidade Virtual/Aumentada, animações.</li></ul></div></div></div>
+                    <div id="fundadores" class="tab-content hidden"><div class="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-8 rounded-lg shadow-lg"><h3 class="text-2xl font-bold mb-2 text-amber-400">Clube dos Fundadores: Oportunidade Limitada para 10 Pioneiros</h3><p class="mb-6">Garanta benefícios vitalícios como Status de Fundador, Prioridade Absoluta e Naming Rights de turmas.</p><div class="grid md:grid-cols-2 gap-4 text-sm"><div class="bg-gray-700 p-4 rounded-lg"><h4 class="font-bold text-amber-300">Patrocínio Master (R$ 1M/ano)</h4><p>40 produções anuais e 1 turma com nome da empresa.</p></div><div class="bg-gray-700 p-4 rounded-lg"><h4 class="font-bold text-amber-300">Patrocínio Fundador (R$ 2M/ano)</h4><p>100 produções anuais e 2 turmas com nome da empresa.</p></div></div><div class="text-center mt-8"><a href="#cta-final" class="bg-amber-500 text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-amber-600 cta-button">Garanta sua vaga</a></div></div></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PARALLAX DIVIDER -->
+        <section class="parallax-divider" style="background-image: url('complementare_images/16x9/aula_direcao3.jpg');"></section>
+        
+        <!-- 6. Para Jovens Transformadores -->
+        <section id="jovens" class="py-20 animated-gradient text-white relative overflow-hidden" style="background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('complementare_images/1x1/jovem_editando.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+             <div class="container mx-auto px-6 text-center relative z-10">
+                <div class="reveal fade-in-up">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                        A Jornada de <span class="text-teal-500">Transformação</span> para Jovens Talentos
+                    </h2>
+                    <p class="text-xl md:text-2xl text-gray-200 mb-8 font-medium">
+                        <span class="text-teal-500 font-semibold">Uma formação de 12 meses que equivale a 4 anos</span>, com benefícios completos e 90% de empregabilidade garantida.
+                    </p>
+                    <p class="text-lg md:text-xl text-gray-100 leading-relaxed max-w-4xl mx-auto mb-12">
+                        Você não paga para aprender – <span class="text-teal-500 font-bold text-xl md:text-2xl">você é remunerado para se transformar</span> em um 
+                        <span class="text-white font-semibold">profissional completo do audiovisual</span> com 
+                        <span class="text-teal-500 font-semibold">certificação DRT e empregabilidade garantida</span>.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <div class="glass-effect p-6 rounded-lg reveal fade-in-up"><p class="text-3xl font-bold">R$ 1.412/mês</p><p>Bolsa integral. Você é pago para aprender.</p></div>
+                    <div class="glass-effect p-6 rounded-lg reveal fade-in-up" style="animation-delay: 100ms;"><p class="text-3xl font-bold">DRT</p><p>Certificação profissional oficial.</p></div>
+                    <div class="glass-effect p-6 rounded-lg reveal fade-in-up" style="animation-delay: 200ms;"><p class="text-3xl font-bold">90%</p><p>Empregabilidade garantida.</p></div>
+                    <div class="glass-effect p-6 rounded-lg reveal fade-in-up" style="animation-delay: 300ms;"><p class="text-3xl font-bold">R$ 4.500</p><p>Salário médio para egressos.</p></div>
+                </div>
+        </section>
+        
+        <!-- PARALLAX DIVIDER -->
+        <section class="parallax-divider" style="background-image: url('complementare_images/16x9/sinueta_jovem_gravando_saopaulo2.jpg');"></section>
+        
+        <!-- História do Fundador -->
+         <section class="py-20 bg-gray-100 text-gray-800" style="background-image: linear-gradient(rgba(243, 244, 246, 0.94), rgba(243, 244, 246, 0.94)), url('complementare_images/16x9/o_sonhador_na_laje5.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+             <div class="container mx-auto px-6 max-w-5xl">
+                 <div class="reveal">
+                     <h2 class="text-3xl font-bold mb-12 text-center">A História que nos Inspira: <span class="text-teal-600">Raphael Martinez</span></h2>
+                     <div class="md:flex md:gap-12 md:items-center">
+                         <div class="mb-8 md:mb-0 text-center md:w-1/3 flex-shrink-0">
+                             <img src="https://gov.institutopaulistadecinema.com.br/images/raphael_bio.png" class="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full mx-auto shadow-2xl">
+                         </div>
+                         <div class="text-lg md:w-2/3">
+                             <p class="mb-6">Nosso fundador nasceu no Capão Redondo e, sem dinheiro para faculdade, aprendeu cinema na prática. Fundou a Dummy Filmes com R$ 1.000, atendeu gigantes como Google e Santander, e teve seu longa aprovado com R$ 2 milhões pelo governo.</p>
+                             <p class="font-semibold italic">"Sua trajetória é a prova de que o talento não tem CEP. Ele está reescrevendo o roteiro de milhares de vidas."</p>
+                              <div class="mt-8"><a href="fundador.html" class="bg-gray-800 text-white font-bold py-3 px-8 rounded-lg cta-button inline-block">Conheça a História Completa</a></div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+            </div>
+        </section>
+        
+        <!-- PARALLAX DIVIDER -->
+        <section class="parallax-divider" style="background-image: url('complementare_images/16x9/jovens_drone.jpg');"></section>
+
+        <!-- 7. Para Gestores Públicos -->
+        <section id="governo" class="py-20 bg-gray-200 text-gray-800" style="background-image: linear-gradient(rgba(229, 231, 235, 0.93), rgba(229, 231, 235, 0.93)), url('complementare_images/16x9/professor_com_aluno6.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal fade-in-up"><h2 class="text-3xl font-bold mb-4">Benefícios para o Governo: O Melhor Investimento Público de SP</h2><p class="text-xl max-w-3xl mx-auto">Com um investimento menor que 1km de ciclovia, o Instituto transforma despesa em legado.</p></div>
+                 <div class="bg-white p-8 rounded-lg shadow-lg mb-12 reveal fade-in-up"><h3 class="text-2xl font-bold mb-6 text-center">ROI de 300% Comprovado e Economia Direta</h3><div class="grid grid-cols-2 md:grid-cols-3 gap-8 text-center"><div><p class="text-3xl font-bold text-teal-600 counter" data-target="14">R$ 0 Mi</p><p>Investimento público em 4 anos</p></div><div><p class="text-3xl font-bold text-teal-600 counter" data-target="20">R$ 0 Mi</p><p>Economia direta para a Prefeitura</p></div><div><p class="text-3xl font-bold text-teal-600 counter" data-target="400">0</p><p>Jovens capacitados em 4 anos</p></div><div><p class="text-3xl font-bold text-teal-600 counter" data-target="1600">0</p><p>Famílias impactadas</p></div><div><p class="text-3xl font-bold text-teal-600 counter" data-target="78">R$ 0 Mi</p><p>Adicionados ao PIB cultural</p></div><div><p class="text-3xl font-bold text-teal-600">300%</p><p>Retorno sobre o Investimento</p></div></div></div>
+                <div class="text-center bg-red-600 text-white p-6 rounded-lg reveal fade-in-up"><p class="text-xl font-bold">Isto não é uma despesa orçamentária. É o investimento mais rentável que nossa cidade pode realizar.</p></div>
+                 <div class="mt-12 text-center reveal fade-in-up"><a href="#cta-final" class="bg-blue-800 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-900 cta-button">Apoiar a Implementação do Instituto</a></div>
+            </div>
+        </section>
+
+        <!-- PARALLAX DIVIDER -->
+        <section class="parallax-divider" style="background-image: url('complementare_images/16x9/editora5.jpg');"></section>
+
+        <!-- CREDIBILIDADE -->
+        <section id="credibilidade" class="py-20 animated-gradient text-white relative overflow-hidden" style="background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('complementare_images/O_fantastico_Laboratorio/backgroud_byte.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal fade-in-up">
+                    <h2 class="text-3xl font-bold">
+                        <span class="text-teal-500">Credibilidade e Validação</span> Comprovadas
+                    </h2>
+                    <p class="text-xl md:text-2xl text-gray-200 mb-8 font-medium">
+                        Um projeto sólido, com <span class="text-teal-500 font-semibold">equipe de excelência</span> e chancela do Governo Federal.
+                    </p>
+                </div>
+
+                <!-- Logo do Filme O Fantástico Laboratório -->
+                <div class="flex justify-center mb-12">
+                    <div class="relative">
+                        <img src="complementare_images/O_fantastico_Laboratorio/logo_branco.png" alt="Logo O Fantástico Laboratório" class="h-20 md:h-24 object-contain opacity-95 hover:opacity-100 transition-all duration-500 transform hover:scale-105 filter drop-shadow-lg">
+                        <div class="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-blue-500/20 rounded-lg blur-xl opacity-0 hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                    </div>
+                </div>
+
+                <!-- Posters do Filme O Fantástico Laboratório -->
+                <div class="relative mb-16">
+                    <!-- Fundo decorativo -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-teal-500/10 via-transparent to-blue-500/10 rounded-3xl blur-3xl"></div>
+                    
+                    <!-- Container dos posters -->
+                    <div class="relative flex justify-center items-end gap-8 md:gap-12 px-4">
+                        <!-- Poster 2 (esquerda) -->
+                        <div class="poster-container group">
+                            <div class="relative transform transition-all duration-700 hover:scale-110 hover:-translate-y-4">
+                                <img src="complementare_images/O_fantastico_Laboratorio/Poster_2.png" alt="Poster O Fantástico Laboratório 2" class="w-44 h-60 md:w-56 md:h-72 object-contain cursor-pointer poster-expandable filter drop-shadow-2xl" onclick="expandPoster(this)">
+                                <div class="absolute inset-0 bg-gradient-to-t from-teal-500/30 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                <div class="absolute -inset-2 bg-gradient-to-r from-teal-400/20 to-blue-400/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                            </div>
+                        </div>
+
+                        <!-- Poster 1 (centro) -->
+                        <div class="poster-container group">
+                            <div class="relative transform transition-all duration-700 hover:scale-105 hover:-translate-y-6">
+                                <img src="complementare_images/O_fantastico_Laboratorio/Poster_1.png" alt="Poster O Fantástico Laboratório 1" class="w-44 h-60 md:w-56 md:h-72 object-contain cursor-pointer poster-expandable filter drop-shadow-2xl" onclick="expandPoster(this)">
+                                <div class="absolute inset-0 bg-gradient-to-t from-yellow-500/20 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                <div class="absolute -inset-3 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 rounded-xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                            </div>
+                        </div>
+
+                        <!-- Poster 3 (direita) -->
+                        <div class="poster-container group">
+                            <div class="relative transform transition-all duration-700 hover:scale-110 hover:-translate-y-4">
+                                <img src="complementare_images/O_fantastico_Laboratorio/Poster_3.png" alt="Poster O Fantástico Laboratório 3" class="w-44 h-60 md:w-56 md:h-72 object-contain cursor-pointer poster-expandable filter drop-shadow-2xl" onclick="expandPoster(this)">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-500/30 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                <div class="absolute -inset-2 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reflexo sutil no fundo -->
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-8 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-sm"></div>
+                </div>
+
+                <!-- Modal para visualização expandida dos posters -->
+                <div id="posterModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4" onclick="closePosterModal()">
+                    <div class="relative max-w-4xl max-h-full">
+                        <img id="expandedPoster" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
+                        <button onclick="closePosterModal()" class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-teal-500 transition-colors duration-300 bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center">×</button>
+                    </div>
+                </div>
+
+                <!-- Logos das Empresas Parceiras -->
+                <div class="flex justify-center mb-12">
+                    <img src="complementare_images/O_fantastico_Laboratorio/logos_parceiros_empresas_filme.png" alt="Logos das Empresas Parceiras" class="max-w-full h-auto max-h-32 md:max-h-40 object-contain opacity-90 hover:opacity-100 transition-opacity duration-300">
+                </div>
+                
+                <div class="grid md:grid-cols-1 gap-8 text-center">
+                    <div class="spotlight-card bg-gray-800/70 p-6 rounded-lg border border-teal-500/30 reveal fade-in-up backdrop-blur-sm"><h3 class="text-xl font-semibold text-teal-500 mb-2">R$ 2 Milhões Investidos</h3><p class="text-sm text-gray-100">O FSA/ANCINE já investiu no projeto através do filme "O Fantástico Laboratório", validando sua viabilidade técnica e social.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- TRANSPARÊNCIA FINANCEIRA -->
+        <section id="transparencia" class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal fade-in-up"><h2 class="text-3xl font-bold">Transparência Financeira: Onde Cada Real é Transformação</h2><p class="text-xl max-w-2xl mx-auto">Custo anual de R$ 42.000 por jovem para uma transformação completa e sustentável.</p></div>
+                <div class="overflow-x-auto bg-white p-8 rounded-lg shadow-lg reveal fade-in-up">
+                    <table class="w-full text-left">
+                        <thead><tr class="bg-gray-200"><th class="p-3">Categoria</th><th class="p-3">Valor Anual por Jovem</th><th class="p-3">Impacto</th></tr></thead>
+                        <tbody>
+                            <tr class="border-b"><td class="p-3 font-bold">Formação Audiovisual</td><td class="p-3 font-bold text-teal-600">R$ 24.000 (57%)</td><td class="p-3">Corpo docente, supervisores e 1.200h de formação.</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">Alimentação Comunitária</td><td class="p-3 font-bold text-teal-600">R$ 8.400 (20%)</td><td class="p-3">Nutrição balanceada para dedicação exclusiva.</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">Marketing & Comercial</td><td class="p-3 font-bold text-teal-600">R$ 4.800 (11%)</td><td class="p-3">Gera os R$ 14M em receitas anuais para autossustentabilidade.</td></tr>
+                            <tr><td class="p-3 font-bold">Operação & Suporte</td><td class="p-3 font-bold text-teal-600">R$ 4.800 (12%)</td><td class="p-3">Administração, logística e infraestrutura.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUSTENTABILIDADE E EXPANSÃO -->
+        <section id="sustentabilidade" class="py-20 animated-gradient-dark text-white">
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal fade-in-up"><h2 class="text-3xl font-bold mb-4">Sustentabilidade e Plano de Expansão</h2><p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12">Um modelo financeiro robusto que garante independência e crescimento.</p></div>
+                <div class="relative flex flex-col md:flex-row justify-between items-center text-center">
+                    <div class="reveal fade-in-up"><p class="text-3xl font-bold text-teal-400">Ano 1</p><p>13% Autossustentável</p></div>
+                    <div class="text-teal-400 text-2xl mx-4 my-4 md:my-0">→</div>
+                    <div class="reveal fade-in-up" style="animation-delay:150ms;"><p class="text-3xl font-bold text-teal-400">Ano 2</p><p>68% Autossustentável</p></div>
+                     <div class="text-teal-400 text-2xl mx-4 my-4 md:my-0">→</div>
+                    <div class="reveal fade-in-up" style="animation-delay:300ms;"><p class="text-3xl font-bold text-teal-400">Ano 3</p><p>96% Autossustentável</p></div>
+                     <div class="text-teal-400 text-2xl mx-4 my-4 md:my-0">→</div>
+                    <div class="reveal fade-in-up" style="animation-delay:450ms;"><p class="text-3xl font-bold text-teal-400">Ano 4</p><p>123% Autossustentável</p></div>
+                </div>
+                <p class="mt-8 reveal fade-in-up">A partir do Ano 4, geramos R$ 1,4 milhão de superávit anual para expansão, sem novos aportes públicos.</p>
+            </div>
+        </section>
+        
+        <!-- Galeria -->
+        <section class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-white mb-4 reveal fade-in-up">Nossos Jovens em Ação</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12 reveal fade-in-up">O futuro do cinema brasileiro sendo construído hoje.</p>
+                <div id="gallery" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div class="reveal fade-in-up"><img src="https://gov.institutopaulistadecinema.com.br/galeria/4.jpg" alt="Galeria Imagem 4" class="rounded-lg gallery-img object-cover aspect-square"></div>
+                    <div class="reveal fade-in-up" style="animation-delay: 50ms;"><img src="https://gov.institutopaulistadecinema.com.br/galeria/8.jpg" alt="Galeria Imagem 8" class="rounded-lg gallery-img object-cover aspect-square"></div>
+                    <div class="reveal fade-in-up" style="animation-delay: 100ms;"><img src="https://gov.institutopaulistadecinema.com.br/galeria/12.jpg" alt="Galeria Imagem 12" class="rounded-lg gallery-img object-cover aspect-square"></div>
+                    <div class="reveal fade-in-up" style="animation-delay: 150ms;"><img src="https://gov.institutopaulistadecinema.com.br/galeria/15.jpg" alt="Galeria Imagem 15" class="rounded-lg gallery-img object-cover aspect-square"></div>
+                    <div class="reveal fade-in-up col-span-2 row-span-2" style="animation-delay: 200ms;"><img src="https://gov.institutopaulistadecinema.com.br/galeria/20.jpg" alt="Galeria Imagem 20" class="rounded-lg gallery-img object-cover w-full h-full"></div>
+                    <div class="reveal fade-in-up" style="animation-delay: 250ms;"><img src="https://gov.institutopaulistadecinema.com.br/galeria/22.jpg" alt="Galeria Imagem 22" class="rounded-lg gallery-img object-cover aspect-square"></div>
+                    <div class="reveal fade-in-up" style="animation-delay: 300ms;"><img src="https://gov.institutopaulistadecinema.com.br/galeria/24.jpg" alt="Galeria Imagem 24" class="rounded-lg gallery-img object-cover aspect-square"></div>
+                    <div class="reveal fade-in-up" style="animation-delay: 350ms;"><img src="https://gov.institutopaulistadecinema.com.br/galeria/5.jpg" alt="Galeria Imagem 5" class="rounded-lg gallery-img object-cover aspect-square"></div>
+                    <div class="reveal fade-in-up" style="animation-delay: 400ms;"><img src="https://gov.institutopaulistadecinema.com.br/galeria/10.jpg" alt="Galeria Imagem 10" class="rounded-lg gallery-img object-cover aspect-square"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- O Momento é Agora -->
+        <section id="momento" class="py-20 bg-gray-100 text-gray-800">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal fade-in-up"><h2 class="text-3xl font-bold">O Momento Histórico é Agora: Uma Decisão Estratégica</h2><p class="text-xl max-w-3xl mx-auto">Uma equação privilegiada para redefinir o padrão de excelência e propósito no mercado.</p></div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal fade-in-up"><h3 class="font-bold text-teal-600">Para o CFO</h3><p class="text-sm">ROI infinito, otimização tributária 100% legal e redução drástica do TCO de comunicação.</p></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal fade-in-up" style="animation-delay:150ms;"><h3 class="font-bold text-teal-600">Para o CMO</h3><p class="text-sm">Qualidade superior, velocidade 3x maior, produção ilimitada e conexão autêntica com o público jovem.</p></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal fade-in-up" style="animation-delay:300ms;"><h3 class="font-bold text-teal-600">Para o CEO</h3><p class="text-sm">ESG genuíno com impacto mensurável, diferencial competitivo único e legado empresarial tangível.</p></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal fade-in-up" style="animation-delay:450ms;"><h3 class="font-bold text-teal-600">Para o Acionista</h3><p class="text-sm">Economia substancial, valorização da marca e mitigação de riscos. Modelo sustentável e escalável.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Conclusão e Chamada para Ação Final -->
+        <section id="cta-final" class="py-20 animated-gradient text-white">
+            <div class="container mx-auto px-6 text-center reveal fade-in-up">
+                <h2 class="text-3xl font-bold mb-4">Próximos Passos: Transforme Impostos em Oportunidades</h2>
+                <p class="max-w-3xl mx-auto mb-8">Enquanto concorrentes desperdiçam recursos, sua empresa pode construir um legado de impacto e eficiência.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
+                    <div class="text-center"><div class="bg-white/20 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold mx-auto mb-2">1</div><p>Agende uma apresentação executiva.</p></div>
+                    <div class="text-center"><div class="bg-white/20 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold mx-auto mb-2">2</div><p>Receba um diagnóstico fiscal personalizado.</p></div>
+                    <div class="text-center"><div class="bg-white/20 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold mx-auto mb-2">3</div><p>Torne-se um dos 10 fundadores.</p></div>
+                </div>
+                <div><a href="#" class="bg-gray-900 text-white font-bold py-4 px-10 text-lg rounded-lg cta-button inline-block">Comece Sua Transformação Hoje</a></div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- 11. Rodapé (Footer) -->
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        const headerOffset = document.getElementById('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        if (!mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); }
+                    }
+                });
+            });
+            
+            // Intersection Observer for animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add animation classes based on element's classList
+                        if (entry.target.classList.contains('slide-in-left')) entry.target.classList.add('visible', 'slide-in-left');
+                        else if (entry.target.classList.contains('slide-in-right')) entry.target.classList.add('visible', 'slide-in-right');
+                        else entry.target.classList.add('visible', 'fade-in-up');
+                        
+                        // Counter animation
+                        const counters = entry.target.querySelectorAll('.counter');
+                        counters.forEach(counter => {
+                            if (!counter.classList.contains('animated')) {
+                                counter.classList.add('animated');
+                                const target = +counter.getAttribute('data-target');
+                                const duration = 2000;
+                                let start = 0;
+                                const stepTime = 16; 
+                                const totalSteps = Math.round(duration / stepTime);
+                                const increment = target / totalSteps;
+                                
+                                const updateCounter = () => {
+                                    start += increment;
+                                    if (start < target) {
+                                        let text = counter.innerText;
+                                        let prefix = text.includes('R$') ? 'R$ ' : '';
+                                        let suffix = text.includes('Mi') ? ' Mi' : (text.includes('%') ? '%' : '');
+                                        counter.innerText = `${prefix}${Math.ceil(start)}${suffix}`;
+                                        requestAnimationFrame(updateCounter);
+                                    } else {
+                                        let text = counter.innerText;
+                                        let prefix = text.includes('R$') ? 'R$ ' : '';
+                                        let suffix = text.includes('Mi') ? ' Mi' : (text.includes('%') ? '%' : '');
+                                        counter.innerText = `${prefix}${target}${suffix}`;
+                                    }
+                                };
+                                 requestAnimationFrame(updateCounter);
+                            }
+                        });
+
+                        // Animate flow steps
+                        const flowSteps = entry.target.querySelectorAll('.flow-step');
+                         if (flowSteps.length > 0) {
+                             flowSteps.forEach((step, index) => {
+                                 setTimeout(() => {
+                                    step.style.transform = 'scale(1.1)';
+                                    step.style.boxShadow = '0 0 25px rgba(20, 184, 166, 0.7)';
+                                 }, index * 200);
+                             });
+                         }
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => observer.observe(el));
+
+            // Tabs functionality
+            const tabsContainer = document.getElementById('tabs-container');
+            if (tabsContainer) {
+                const tabButtons = tabsContainer.querySelectorAll('.tab-button');
+                const tabContents = tabsContainer.querySelectorAll('.tab-content');
+                
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const tabId = button.dataset.tab;
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        tabContents.forEach(content => {
+                            content.classList.toggle('hidden', content.id !== tabId);
+                        });
+                    });
+                });
+            }
+
+            // 3D Hero Effect
+            const heroSection = document.getElementById('hero');
+            const heroContent = heroSection.querySelector('.hero-content');
+            heroSection.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+                const { offsetWidth, offsetHeight } = heroSection;
+                const rotateX = -((clientY / offsetHeight) - 0.5) * 15; // Max rotation 7.5deg
+                const rotateY = ((clientX / offsetWidth) - 0.5) * 15; // Max rotation 7.5deg
+                heroContent.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            // Lightbox Gallery Logic
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const galleryImages = Array.from(document.querySelectorAll('#gallery .gallery-img'));
+            let currentIndex = 0;
+
+            const showImage = (index) => {
+                currentIndex = index;
+                lightboxImage.src = galleryImages[index].src;
+                lightbox.classList.add('active');
+            };
+
+            const hideLightbox = () => lightbox.classList.remove('active');
+            const showNext = () => showImage((currentIndex + 1) % galleryImages.length);
+            const showPrev = () => showImage((currentIndex - 1 + galleryImages.length) % galleryImages.length);
+
+            galleryImages.forEach((img, index) => {
+                img.addEventListener('click', () => showImage(index));
+            });
+
+            document.getElementById('lightbox-close').addEventListener('click', hideLightbox);
+            document.getElementById('lightbox-next').addEventListener('click', showNext);
+            document.getElementById('lightbox-prev').addEventListener('click', showPrev);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) hideLightbox();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') hideLightbox();
+                if (e.key === 'ArrowRight') showNext();
+                if (e.key === 'ArrowLeft') showPrev();
+            });
+
+            // Particles.js
+            const canvas = document.getElementById('particles-js');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            let particlesArray;
+
+            // get mouse position
+            let mouse = {
+                x: null,
+                y: null,
+                radius: (canvas.height/120) * (canvas.width/120)
+            }
+            window.addEventListener('mousemove', (event) => {
+                mouse.x = event.x;
+                mouse.y = event.y;
+            });
+
+            // create particle
+            class Particle {
+                constructor(x, y, directionX, directionY, size, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.directionX = directionX;
+                    this.directionY = directionY;
+                    this.size = size;
+                    this.color = color;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                    ctx.fillStyle = 'rgba(20, 184, 166, 0.2)';
+                    ctx.fill();
+                }
+                update() {
+                    if(this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+                    if(this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+                    this.x += this.directionX;
+                    this.y += this.directionY;
+                    this.draw();
+                }
+            }
+            function init() {
+                particlesArray = [];
+                let numberOfParticles = (canvas.height * canvas.width) / 9000;
+                for(let i = 0; i < numberOfParticles; i++) {
+                    let size = (Math.random() * 2) + 1;
+                    let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                    let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                    let directionX = (Math.random() * .4) - 0.2;
+                    let directionY = (Math.random() * .4) - 0.2;
+                    particlesArray.push(new Particle(x, y, directionX, directionY, size, ''));
+                }
+            }
+            function animate() {
+                requestAnimationFrame(animate);
+                ctx.clearRect(0,0,innerWidth, innerHeight);
+                for(let i = 0; i < particlesArray.length; i++) particlesArray[i].update();
+                connect();
+            }
+
+            function connect() {
+                let opacityValue = 1;
+                for(let a = 0; a < particlesArray.length; a++) {
+                    for(let b = a; b < particlesArray.length; b++) {
+                        let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                        if(distance < (canvas.width/7) * (canvas.height/7)) {
+                            opacityValue = 1 - (distance/20000);
+                            ctx.strokeStyle = `rgba(20, 184, 166, ${opacityValue * 0.3})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                canvas.width = innerWidth;
+                canvas.height = innerHeight;
+                mouse.radius = ((canvas.height/80) * (canvas.height/80));
+                init();
+            });
+            init();
+            animate();// Spotlight Card Effect
+            const spotlightCards = document.querySelectorAll('.spotlight-card');
+            spotlightCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--x', `${x}px`);
+                    card.style.setProperty('--y', `${y}px`);
+                });
+            });
+
+        });
+
+        // Funcionalidade para expandir posters
+        function expandPoster(img) {
+            const modal = document.getElementById('posterModal');
+            const expandedPoster = document.getElementById('expandedPoster');
+            
+            expandedPoster.src = img.src;
+            expandedPoster.alt = img.alt;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Previne scroll do body
+        }
+
+        function closePosterModal() {
+            const modal = document.getElementById('posterModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restaura scroll do body
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePosterModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
+

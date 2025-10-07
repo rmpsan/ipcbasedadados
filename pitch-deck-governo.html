@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Paulista de Cinema - Pitch Deck Governamental</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f0f0f0;
+            letter-spacing: -0.011em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* SLIDES */
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            background: white;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 80px 60px;
+            page-break-after: always;
+            position: relative;
+        }
+
+        /* SLIDE CAPA */
+        .slide-cover {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-cover h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .slide-cover h1 strong {
+            font-weight: 700;
+            display: block;
+        }
+
+        .slide-cover .subtitle {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FF6B35 0%, #4361EE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* SLIDE PADRÃO */
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+        }
+
+        .slide-subtitle {
+            font-size: 1.3rem;
+            color: #6b7280;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* GRID DE CARDS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .card-problem {
+            border-left: 4px solid #dc2626;
+        }
+
+        .card-solution {
+            border-left: 4px solid #16a34a;
+        }
+
+        .card-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FF6B35 0%, #4361EE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* DESTAQUE */
+        .highlight-box {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .highlight-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .highlight-text {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .highlight-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .highlight-accent {
+            background: linear-gradient(135deg, #FF6B35 0%, #4361EE 100%);
+        }
+
+        .highlight-success {
+            background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+        }
+
+        .highlight-warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        }
+
+        /* LISTA */
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .bullet-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .bullet-list li:before {
+            content: "→";
+            color: #FF6B35;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            margin: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 30px 0;
+            align-items: flex-start;
+        }
+
+        .timeline-date {
+            width: 150px;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 1.1rem;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid #1a1a1a;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        /* COMPARAÇÃO */
+        .comparison-table {
+            width: 100%;
+            margin: 40px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 25px 40px;
+            border-bottom: 1px solid #e5e7eb;
+            align-items: center;
+            background: white;
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+            background: #f9fafb;
+        }
+
+        .comparison-row.highlight {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: white;
+            font-weight: 700;
+        }
+
+        .comparison-row.highlight strong {
+            color: white;
+        }
+
+        .comparison-item {
+            font-size: 1.25rem;
+        }
+
+        .comparison-cost {
+            font-weight: 700;
+            color: #374151;
+        }
+
+        /* ROI */
+        .roi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .roi-box {
+            padding: 30px;
+            border-radius: 12px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .roi-invest {
+            border-left: 4px solid #6b7280;
+        }
+
+        .roi-return {
+            border-left: 4px solid #1a1a1a;
+        }
+
+        .roi-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .roi-item {
+            margin: 20px 0;
+            font-size: 1.1rem;
+            color: #374151;
+        }
+
+        .roi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+            margin-top: 5px;
+            color: #1a1a1a;
+        }
+
+        /* SLIDE DARK */
+        .slide-dark {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: white;
+        }
+
+        .slide-dark .slide-title {
+            color: white;
+        }
+
+        .slide-dark .card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .slide-dark .card-text {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .slide-dark .card-number {
+            background: linear-gradient(135deg, #FF6B35 0%, #4361EE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* NÚMERO DO SLIDE */
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .slide-dark .slide-number,
+        .slide-cover .slide-number {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* CTA */
+        .cta-box {
+            background: rgba(255,255,255,0.95);
+            color: #1a1a1a;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #374151;
+        }
+
+        .cta-text strong {
+            color: #1a1a1a;
+        }
+
+        /* UTILITIES */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-4 {
+            margin-top: 40px;
+        }
+        
+        .mb-4 {
+            margin-bottom: 40px;
+        }
+        
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 30px;
+            }
+            
+            .slide-title {
+                font-size: 2rem;
+            }
+            
+            .grid-2, .grid-3, .roi-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-row {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+            }
+            
+            .timeline-date {
+                margin-bottom: 10px;
+            }
+        }
+
+        /* PRINT */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .slide {
+                box-shadow: none;
+                margin-bottom: 0;
+                min-height: 100vh;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- SLIDE 1: CAPA -->
+        <div class="slide slide-cover">
+            <h1>
+                INSTITUTO PAULISTA
+                <strong>DE CINEMA</strong>
+            </h1>
+            
+            <p class="subtitle">
+                Uma proposta transformadora para democratizar o acesso à indústria audiovisual 
+                através da convergência entre educação profissional, produção cinematográfica 
+                e inclusão social tecnológica
+            </p>
+            
+            <div class="stats-row">
+                <div class="stat-box">
+                    <div class="stat-number">14M</div>
+                    <div class="stat-label">Investimento Público</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">400</div>
+                    <div class="stat-label">Vidas Transformadas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">300%</div>
+                    <div class="stat-label">Retorno Garantido</div>
+                </div>
+            </div>
+            
+            <div class="slide-number">1/12</div>
+        </div>
+
+        <!-- SLIDE 2: O PROBLEMA -->
+        <div class="slide">
+            <h2 class="slide-title">O Desafio de São Paulo</h2>
+            <p class="slide-subtitle">
+                A maior metrópole da América Latina enfrenta um paradoxo econômico e social 
+                que demanda ação imediata e estratégica
+            </p>
+            
+            <div class="grid-2">
+                <div class="card card-problem">
+                    <span class="card-number">2,4M</span>
+                    <div class="card-title">Jovens Periféricos</div>
+                    <div class="card-text">
+                        População de 18 a 24 anos residindo nas periferias paulistanas, 
+                        sem acesso a oportunidades na economia criativa
+                    </div>
+                </div>
+                <div class="card card-problem">
+                    <span class="card-number">87%</span>
+                    <div class="card-title">Exclusão Educacional</div>
+                    <div class="card-text">
+                        Percentual destes jovens sem acesso ao ensino superior, 
+                        limitando drasticamente suas perspectivas profissionais
+                    </div>
+                </div>
+                <div class="card card-problem">
+                    <span class="card-number">50mil</span>
+                    <div class="card-title">Déficit de Profissionais</div>
+                    <div class="card-text">
+                        Vagas em aberto no setor audiovisual brasileiro, 
+                        evidenciando a urgência de formação qualificada
+                    </div>
+                </div>
+                <div class="card card-problem">
+                    <span class="card-number">R$42k</span>
+                    <div class="card-title">Custo Social</div>
+                    <div class="card-text">
+                        Custo anual de cada jovem excluído para o poder público 
+                        em programas sociais, segurança e saúde
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-text">
+                    São Paulo concentra 40% do mercado audiovisual brasileiro, 
+                    movimentando anualmente R$ 30 bilhões. Paradoxalmente, 
+                    2,4 milhões de jovens periféricos permanecem sistematicamente excluídos desta economia pujante.
+                </div>
+            </div>
+            
+            <div class="slide-number">2/12</div>
+        </div>
+
+        <!-- SLIDE 3: A SOLUÇÃO -->
+        <div class="slide">
+            <h2 class="slide-title">A Proposta Transformadora</h2>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">Instituto Paulista de Cinema</div>
+                <div class="highlight-text">
+                    Um conceito inédito mundialmente: uma instituição que transcende os limites tradicionais 
+                    entre educação e mercado, operando simultaneamente como centro de formação de excelência 
+                    e produtora audiovisual profissional. Jovens periféricos não pagam para aprender — 
+                    são remunerados para produzir conteúdo de classe mundial.
+                </div>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">Remuneração Educacional</div>
+                    <div class="card-text">
+                        Bolsa integral de R$ 1.412 mensais mais alimentação completa
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Produção Profissional</div>
+                    <div class="card-text">
+                        Portfolio com grandes marcas e produções cinematográficas
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Formação Intensiva</div>
+                    <div class="card-text">
+                        12 meses de capacitação completa e imersiva
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Certificação Profissional</div>
+                    <div class="card-text">
+                        DRT garantido e reconhecimento de mercado
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Inteligência Artificial</div>
+                    <div class="card-text">
+                        Primeira formação mundial em IA para periferias
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Empregabilidade</div>
+                    <div class="card-text">
+                        90% de inserção profissional garantida
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-number">3/12</div>
+        </div>
+
+        <!-- SLIDE 4: COMO FUNCIONA -->
+        <div class="slide">
+            <h2 class="slide-title">Modelo Operacional</h2>
+            <p class="slide-subtitle">
+                Instituto opera simultaneamente como escola e produtora profissional
+            </p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">ETAPA 1</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Seleção Inclusiva</div>
+                        <div>100 jovens periféricos por ano, selecionados por talento e vulnerabilidade social</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">ETAPA 2</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Formação Remunerada</div>
+                        <div>12 meses intensivos • Bolsa R$ 1.412/mês • Alimentação completa • 6 trilhas de especialização</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">ETAPA 3</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Produção Real</div>
+                        <div>Alunos produzem para clientes reais • Supervisão profissional • Portfolio construído</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">ETAPA 4</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Certificação e Carreira</div>
+                        <div>DRT profissional • Portfolio com grandes marcas • 90% empregabilidade • Salário médio R$ 4.500</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-text">
+                    Governo economiza 35% em todas as produções audiovisuais 
+                    enquanto forma profissionais de excelência internacional
+                </div>
+            </div>
+            
+            <div class="slide-number">4/12</div>
+        </div>
+
+        <!-- SLIDE 5: VALIDAÇÃO -->
+        <div class="slide">
+            <h2 class="slide-title">Credibilidade e Validação</h2>
+            
+            <div class="highlight-box">
+                <div class="highlight-text">Governo Federal já investiu</div>
+                <div class="highlight-number">R$ 2 MILHÕES</div>
+                <div class="highlight-text">
+                    através do FSA/ANCINE para o filme "O Fantástico Laboratório",
+                    primeira grande produção dos alunos
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin: 40px 0 20px; font-size: 1.5rem;">Instituições Fundadoras</h3>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 40px;">
+                <strong>Dummy Filmes • MPV Filmes • Sabiá Educação</strong>
+            </p>
+            
+            <h3 style="text-align: center; margin: 40px 0 20px; font-size: 1.3rem;">Equipe de Criação e Coordenação</h3>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">Raphael Martinez</div>
+                    <div class="card-text">Criador do projeto, empresário e diretor audiovisual com 15 anos de experiência. Ex-professor do MIS-SP e fundador da Dummy Filmes.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Julia Tomchinsky</div>
+                    <div class="card-text">Mestrado e Doutorado em Educação pela Universidade de São Paulo (USP). Especialista em metodologias educacionais inovadoras.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Daniel Neves Montezano</div>
+                    <div class="card-text">Sociologia e Política pela Fundação Escola de Sociologia e Política. Especialização em Sustentabilidade (FGV) e Mensuração de Impacto Social (Insper).</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Giancarlo Furlai</div>
+                    <div class="card-text">Criador do projeto Cinepalco, responsável por democratizar o acesso ao teatro através do cinema em todo o Brasil.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Felipe Aleixo</div>
+                    <div class="card-text">Diretor criativo responsável por levar diversos musicais nacionais para os cinemas de todo o Brasil.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Marilice Cosenza</div>
+                    <div class="card-text">Atriz e produtora executiva, formada em Administração pela FEA-USP, com vasta experiência em projetos audiovisuais privados. Mais de 4 mil projetos geridos.</div>
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin: 30px 0 20px; font-size: 1.2rem;">Conselho de Especialistas</h3>
+            <p style="text-align: center; font-size: 1rem; color: #6b7280;">
+                <strong>Mariana Elisabetsky</strong> (Roteirista Disney) • <strong>Marllos Silva</strong> (Prêmio Bibi Ferreira) • <strong>Tocko Michelazzo</strong> (Sound Design)
+            </p>
+            
+            <p style="text-align: center; margin-top: 30px; font-size: 1.1rem; color: #6b7280;">
+                <strong>Mais de 50 anos de experiência combinada</strong><br>
+                Atendimento a mais de 200 grandes empresas nacionais e multinacionais<br>
+                Produções premiadas nacional e internacionalmente
+            </p>
+            
+            <div class="slide-number">5/12</div>
+        </div>
+
+        <!-- SLIDE 6: MODELO FINANCEIRO -->
+        <div class="slide">
+            <h2 class="slide-title">Modelo Financeiro Sustentável</h2>
+            
+            <div class="roi-grid">
+                <div class="roi-box roi-invest">
+                    <div class="roi-title">Estrutura de Investimento</div>
+                    <div class="roi-item">
+                        Total 4 anos:
+                        <span class="roi-value">R$ 26 milhões</span>
+                    </div>
+                    <div class="roi-item">
+                        Recursos públicos (54%):
+                        <span class="roi-value">R$ 14 milhões</span>
+                    </div>
+                    <div class="roi-item">
+                        Recursos privados (46%):
+                        <span class="roi-value">R$ 12 milhões</span>
+                    </div>
+                </div>
+                
+                <div class="roi-box roi-return">
+                    <div class="roi-title">Trajetória de Autossustentabilidade</div>
+                    <div class="roi-item">
+                        Ano 1: <span class="roi-value">13%</span>
+                    </div>
+                    <div class="roi-item">
+                        Ano 2: <span class="roi-value">68%</span>
+                    </div>
+                    <div class="roi-item">
+                        Ano 3: <span class="roi-value">96%</span>
+                    </div>
+                    <div class="roi-item">
+                        Ano 4: <span class="roi-value" style="font-weight: 900;">123%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-text">
+                    A partir do quarto ano, o Instituto não apenas se sustenta integralmente, 
+                    como gera excedente de R$ 1,4 milhão anuais para expansão e criação de novas unidades
+                </div>
+            </div>
+            
+            <div class="slide-number">6/12</div>
+        </div>
+
+        <!-- SLIDE 7: ROI GOVERNO -->
+        <div class="slide">
+            <h2 class="slide-title">Retorno Garantido para o Governo</h2>
+            
+            <div class="roi-grid">
+                <div class="roi-box roi-invest">
+                    <div class="roi-title">Governo Investe</div>
+                    <div class="roi-item">
+                        Emendas parlamentares:
+                        <span class="roi-value">R$ 14 milhões</span>
+                    </div>
+                    <div class="roi-item">
+                        Por ano:
+                        <span class="roi-value">R$ 3,5 milhões</span>
+                    </div>
+                </div>
+                
+                <div class="roi-box roi-return">
+                    <div class="roi-title">Governo Recebe</div>
+                    <div class="roi-item">
+                        Economia em produções:
+                        <span class="roi-value">R$ 20 milhões</span>
+                    </div>
+                    <div class="roi-item">
+                        PIB cultural gerado:
+                        <span class="roi-value">R$ 78 milhões</span>
+                    </div>
+                    <div class="roi-item">
+                        Impostos futuros:
+                        <span class="roi-value">R$ 4,3 milhões</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">ROI Total: 300%</div>
+                <div class="highlight-text">
+                    Para cada R$ 1 investido, retornam R$ 3 em benefícios diretos para o poder público
+                </div>
+            </div>
+            
+            <div class="slide-number">7/12</div>
+        </div>
+
+        <!-- SLIDE 8: IMPACTO -->
+        <div class="slide slide-dark">
+            <h2 class="slide-title">Dimensão do Impacto</h2>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <span class="card-number">400</span>
+                    <div class="card-text">
+                        Jovens capacitados para liderar a economia criativa
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-number">1.200</span>
+                    <div class="card-text">
+                        Empregos indiretos gerados na cadeia produtiva
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-number">78M</span>
+                    <div class="card-text">
+                        Em PIB cultural adicionado à economia paulistana
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-number">380</span>
+                    <div class="card-text">
+                        Produções audiovisuais de classe mundial
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-number">4.5k</span>
+                    <div class="card-text">
+                        Salário médio mensal dos profissionais formados
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-number">65k</span>
+                    <div class="card-text">
+                        Investimento por vida transformada
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-number">8/12</div>
+        </div>
+
+        <!-- SLIDE 9: COMPARAÇÃO -->
+        <div class="slide">
+            <h2 class="slide-title">Perspectiva do Investimento</h2>
+            
+            <div class="comparison-table">
+                <div class="comparison-row">
+                    <span>1 quilômetro de metrô</span>
+                    <span class="comparison-cost">R$ 300 milhões</span>
+                </div>
+                <div class="comparison-row">
+                    <span>1 viaduto urbano</span>
+                    <span class="comparison-cost">R$ 50 milhões</span>
+                </div>
+                <div class="comparison-row">
+                    <span>3 meses de publicidade municipal</span>
+                    <span class="comparison-cost">R$ 24 milhões</span>
+                </div>
+                <div class="comparison-row">
+                    <span>1 escola estadual</span>
+                    <span class="comparison-cost">R$ 15 milhões</span>
+                </div>
+                <div class="comparison-row highlight">
+                    <span>Instituto Paulista de Cinema (investimento público)</span>
+                    <span><strong>R$ 14 milhões</strong></span>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">Por que este é o melhor investimento?</div>
+                <div class="highlight-text">
+                    Diferente de obras físicas, forma capital humano que continuará gerando valor por décadas. 
+                    São Paulo será estudada mundialmente como pioneira em inclusão produtiva através do audiovisual.
+                </div>
+            </div>
+            
+            <div class="slide-number">9/12</div>
+        </div>
+
+        <!-- SLIDE 10: TIMELINE -->
+        <div class="slide">
+            <h2 class="slide-title">Plano de Implementação</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">TRIMESTRE 1</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Estruturação Institucional</div>
+                        <div>Constituição jurídica, formação dos conselhos, captação inicial de R$ 2 milhões e início das adequações físicas</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">TRIMESTRE 2</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Operação Piloto</div>
+                        <div>Seleção e início da formação de 30 alunos pioneiros, integração com produção do longa-metragem</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">TRIMESTRE 3</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Consolidação Operacional</div>
+                        <div>Conclusão da infraestrutura completa, primeiras 5 produções comerciais entregues</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">MÊS 10</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Inauguração Oficial</div>
+                        <div>100 alunos em formação plena, 10 produções mensais, modelo validado e operacional</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-text">
+                    Cronograma executivo estruturado para garantir resultados rápidos e sustentáveis
+                </div>
+            </div>
+            
+            <div class="slide-number">10/12</div>
+        </div>
+
+        <!-- SLIDE 11: O PEDIDO -->
+        <div class="slide slide-dark">
+            <h2 class="slide-title">O Momento Histórico</h2>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <span class="card-number">R$ 6M</span>
+                    <div class="card-text">Emendas Federais</div>
+                </div>
+                <div class="card">
+                    <span class="card-number">R$ 4M</span>
+                    <div class="card-text">Emendas Estaduais</div>
+                </div>
+                <div class="card">
+                    <span class="card-number">R$ 4M</span>
+                    <div class="card-text">Emendas Municipais</div>
+                </div>
+            </div>
+            
+            <div class="cta-box">
+                <div class="cta-title">Com investimento público de R$ 14 milhões em emendas parlamentares:</div>
+                <div class="cta-text">
+                    <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                        <div style="margin: 15px 0;">• Transforma definitivamente 400 vidas e 1.600 famílias</div>
+                        <div style="margin: 15px 0;">• Economiza R$ 20 milhões em recursos municipais</div>
+                        <div style="margin: 15px 0;">• Cria modelo educacional pioneiro e replicável nacionalmente</div>
+                        <div style="margin: 15px 0;">• Posiciona São Paulo como pioneira nacional em cinema inclusivo</div>
+                        <div style="margin: 15px 0;">• Estabelece legado permanente de transformação social</div>
+                    </div>
+                    
+                    <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #e5e7eb;">
+                        <span style="font-size: 1.5rem; color: #1a1a1a; font-weight: 600;">
+                            Este não é um custo orçamentário.<br>
+                            É o investimento mais rentável que nossa cidade pode realizar.
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-number">11/12</div>
+        </div>
+
+        <!-- SLIDE 12: CONTATO -->
+        <div class="slide">
+            <h2 class="slide-title" style="text-align: center;">Vamos Transformar São Paulo Juntos</h2>
+            
+            <div style="text-align: center; margin: 60px 0;">
+                <p style="font-size: 1.3rem; color: #6b7280; margin-bottom: 40px;">
+                    Esta gestão tem a oportunidade única de criar um legado que transcenderá gerações
+                </p>
+                
+                <div style="font-size: 1.2rem; line-height: 2;">
+                    <p><strong style="font-size: 1.5rem;">Raphael Martinez</strong></p>
+                    <p>Fundador e Diretor Executivo</p>
+                    <p style="margin-top: 30px;">Instituto Paulista de Cinema</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <div class="highlight-text">
+                        <strong>Agosto 2025</strong><br>
+                        Proposta completa disponível mediante solicitação<br>
+                        O momento de transformar vidas é agora
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-number">12/12</div>
+        </div>
+        
+    </div>
+</body>
+</html>

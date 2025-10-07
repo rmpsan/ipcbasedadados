@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifesto - Instituto Paulista de Cinema</title>
+    <script src="https://cdn-tailwindcss.vercel.app/"></script>
+    <script src="menu.js"></script>
+    <script src="footer.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal-500: #14b8a6;
+            --cyan-600: #0891b2;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-100: #f3f4f6;}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://institutopaulistadecinema.com.br/gov/galeria/11.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(3, 7, 18, 1) 15%, rgba(3, 7, 18, 0.8) 60%, rgba(3, 7, 18, 0.6) 100%);
+            z-index: 2;
+        }
+
+        .hero-content { position: relative; z-index: 3; }
+
+        .cta-button {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(20, 184, 166, 0.2);
+        }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .animated-gradient-dark {
+            background: linear-gradient(-45deg, #030712, #111827, #1f2937, #030712);
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+        }
+        
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .reveal {
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+        
+        .reveal.visible { animation-duration: 0.8s; animation-fill-mode: forwards; animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); animation-name: fadeInUp; }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--teal-500);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .parallax-divider {
+            height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .action-card {
+            transition: all 0.3s ease;
+        }
+        .action-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2), 0 10px 10px -5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300"><!-- 1. Cabeçalho (Header) -->
+    <div id="menu-placeholder"></div>
+
+    <main>
+        <!-- 2. Seção Principal (Hero Section) -->
+        <section class="hero-bg text-white min-h-screen flex items-center">
+            
+            <div class="hero-content container mx-auto px-6 py-24 md:py-40 text-center flex flex-col items-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 max-w-4xl reveal">Sua Voz É a Força que Impulsiona o Futuro de São Paulo – E do Brasil!</h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto reveal" style="animation-delay: 0.2s;">Jovens da Periferia: O Instituto Paulista de Cinema É NOSSA OPORTUNIDADE REAL DE FUTURO!</p>
+            </div>
+        </section>
+
+        <!-- 3. Introdução -->
+        <section class="relative bg-cover bg-center text-gray-800 py-20" style="background-image: url('complementare_images/16x9/alunos_no_estudio4.jpg');">
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-white/85"></div>
+            <div class="container mx-auto px-6 max-w-4xl text-center relative z-10">
+                <div class="reveal">
+                    <p class="text-2xl font-bold leading-relaxed mb-10">Cansados de um sistema que nos diz que talento não é suficiente? De uma cidade que pulsa inovação, mas ignora o potencial de 2,4 milhões de jovens das periferias? Nós dizemos <span class="bg-yellow-300 px-2 text-gray-900 rounded">BASTA!</span></p>
+                    <div class="text-lg text-left space-y-4 mb-12">
+                        <p>O Instituto Paulista de Cinema não é uma promessa, é uma revolução em ação! Somos a primeira escola-produtora do mundo que inverte a lógica: aqui, <span class="font-bold text-teal-600">VOCÊ É REMUNERADO PARA APRENDER CINEMA E DOMINAR INTELIGÊNCIA ARTIFICIAL!</span></p>
+                    </div>
+                </div>
+                 <!-- Benefícios em Destaque -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 text-left">
+                    <div class="bg-white/90 p-6 rounded-lg shadow-lg reveal relative z-10"><h4 class="font-bold text-teal-600">Bolsa de R$ 1.412/mês</h4><p class="text-sm">Para sua dedicação exclusiva, com alimentação completa.</p></div>
+                    <div class="bg-white/90 p-6 rounded-lg shadow-lg reveal relative z-10" style="animation-delay:100ms;"><h4 class="font-bold text-teal-600">Equipamentos de R$ 4 Mi</h4><p class="text-sm">Acesso a câmeras 4K/8K e estúdios de última geração.</p></div>
+                    <div class="bg-white/90 p-6 rounded-lg shadow-lg reveal relative z-10" style="animation-delay:200ms;"><h4 class="font-bold text-teal-600">Certificação DRT</h4><p class="text-sm">Você sai com o registro profissional oficial para o mercado.</p></div>
+                    <div class="bg-white/90 p-6 rounded-lg shadow-lg reveal relative z-10" style="animation-delay:300ms;"><h4 class="font-bold text-teal-600">90% de Empregabilidade</h4><p class="text-sm">Garantia de inserção profissional com salário 3x maior que a média.</p></div>
+                </div>
+                 <div class="reveal">
+                    <p class="text-lg">Para que essa revolução aconteça em sua plenitude, para que mais portas se abram e mais jovens sejam alcançados, <span class="font-bold">precisamos da SUA VOZ!</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Seu Chamado -->
+        <section id="chamado" class="py-20 relative bg-cover bg-center text-white" style="background-image: url('complementare_images/16x9/o_sonhador_na_laje5.jpg');">
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gray-900/80"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl font-bold">Este é o SEU chamado. Seja o Embaixador do Instituto!</h2>
+                    <p class="text-xl text-gray-400 max-w-3xl mx-auto mt-4">Como VOCÊ pode fazer a diferença AGORA:</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-800/70 p-8 rounded-lg border border-gray-700 reveal action-card relative z-10">
+                        <div class="flex items-center mb-4"><div class="bg-teal-500 text-white rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl mr-4">1</div><h3 class="text-2xl font-bold">Fale e Compartilhe</h3></div>
+                        <p class="text-sm mb-4">Sua voz é o eco da transformação. Conte para todos de forma simples: "Existe uma escola de cinema e IA em SP que PAGA para o jovem estudar!".</p>
+                        <div class="text-xs bg-gray-700/50 p-3 rounded-lg"><b>Quem pode participar?</b> Jovens de 18-29 anos, de SP, com ensino médio (completo/cursando) e renda familiar de até 3 salários mínimos. Disponibilidade integral.</div>
+                    </div>
+                     <div class="bg-gray-800/70 p-8 rounded-lg border border-gray-700 reveal action-card relative z-10" style="animation-delay:150ms;">
+                        <div class="flex items-center mb-4"><div class="bg-teal-500 text-white rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl mr-4">2</div><h3 class="text-2xl font-bold">Seja um Embaixador</h3></div>
+                        <p class="text-sm mb-4">Apresente o Instituto aos seus vereadores e deputados como a SOLUÇÃO INTELIGENTE para os desafios de São Paulo. Mostre os números:</p>
+                        <ul class="text-xs space-y-1 list-disc list-inside"><li><b>ROI de 300%</b> para o poder público.</li><li><b>Economia de 35%</b> para a prefeitura ao contratar a produtora.</li><li><b>Preenche 50.000 vagas</b> que faltam no mercado.</li></ul>
+                    </div>
+                     <div class="bg-gray-800/70 p-8 rounded-lg border border-gray-700 reveal action-card relative z-10" style="animation-delay:300ms;">
+                        <div class="flex items-center mb-4"><div class="bg-teal-500 text-white rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl mr-4">3</div><h3 class="text-2xl font-bold">Crie e Divulgue Vídeos</h3></div>
+                        <p class="text-sm">Use sua criatividade! Faça reels, stories, vídeos curtos. Explique o que é o Instituto, por que ele é VITAL e como ele pode transformar vidas e a cidade. Mostre a realidade e a esperança que o Instituto representa.</p>
+                    </div>
+                     <div class="bg-gray-800/70 p-8 rounded-lg border border-gray-700 reveal action-card relative z-10" style="animation-delay:450ms;">
+                        <div class="flex items-center mb-4"><div class="bg-teal-500 text-white rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl mr-4">4</div><h3 class="text-2xl font-bold">Gere um Movimento</h3></div>
+                        <p class="text-sm">Use a hashtag <b class="text-teal-400">#IPCNaoPara</b> e marque nosso Instagram @ipcine. Compartilhe, comente, interaja. Queremos que a voz da periferia ecoe em todos os gabinetes e em todas as telas!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DIVISOR PARALLAX ADICIONAL -->
+        <section class="parallax-divider" style="background-image: url('complementare_images/16x9/jovem_operando_camera_cinema_estudio2.jpg');"></section>
+
+        <!-- 5. Expansão -->
+        <section id="expansao" class="py-20 relative bg-cover bg-center text-gray-800" style="background-image: url('complementare_images/16x9/sinueta_jovem_gravando_saopaulo3.jpg');">
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-white/90"></div>
+            <div class="container mx-auto px-6 max-w-4xl text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-6">Uma Visão Além de São Paulo: Leve o Instituto para Sua Cidade!</h2>
+                    <div class="text-lg text-left space-y-4">
+                        <p>Acreditamos que o talento não tem CEP. São Paulo é apenas o começo! Se você não mora na capital, mas acredita neste projeto, você também pode ser um agente de mudança.</p>
+                        <p>Apresente este manifesto ao poder público local. Explique que qualquer prefeitura pode, através de Verbas e Emendas Parlamentares, destinar recursos para que o Instituto tenha uma sede e opere em sua cidade. Juntos, podemos expandir essa revolução para todo o Brasil.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- DIVISOR PARALLAX FINAL -->
+        <section class="parallax-divider" style="background-image: url('complementare_images/16x9/professor_com_aluno7.jpg');"></section>
+
+        <!-- 6. CTA Final -->
+        <section class="py-20 relative bg-cover bg-center text-white" style="background-image: url('complementare_images/16x9/ARoteiristadosSonhos3.jpg');">
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gray-900/75"></div>
+            <div class="container mx-auto px-6 text-center reveal relative z-10">
+                <h2 class="text-3xl font-bold mb-4">Juntos, faremos o projeto ser ouvido e apoiado por todos.</h2>
+                <p class="max-w-3xl mx-auto mb-8 text-lg text-gray-300">Seu engajamento não é apenas um apoio; é a construção de um futuro onde a educação de excelência e a oportunidade chegam a quem mais precisa. A hora é AGORA! Sua voz tem o poder de mudar tudo!</p>
+                <div><a href="cadastro_alunos.html" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold py-4 px-10 text-lg rounded-lg cta-button inline-block">Pré-Cadastro para Jovens</a></div>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                     const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                             const headerOffset = document.getElementById('header').offsetHeight;
+                             const elementPosition = targetElement.getBoundingClientRect().top;
+                             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                             window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        }
+                    }
+                });
+            });
+            
+            // Intersection Observer for animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => observer.observe(el));
+            
+            // Custom Cursor Logic removed
+        });
+    </script>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+</body>
+</html>
+

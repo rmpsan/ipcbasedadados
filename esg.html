@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESG - Instituto Paulista de Cinema</title>
+    <script src="https://cdn-tailwindcss.vercel.app/"></script>
+    <script src="menu.js"></script>
+    <script src="footer.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal-500: #14b8a6;
+            --cyan-600: #0891b2;
+            --blue-500: #3b82f6;
+            --green-500: #22c55e;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-100: #f3f4f6;}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://institutopaulistadecinema.com.br/imagens%20para%20site%20home/Antes_e_depois_aluno_do_instituto_rapaz.jpg');
+            background-size: cover;
+            background-position: center;
+            animation: kenburns 20s ease-out infinite alternate;
+            z-index: 1;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(3, 7, 18, 1) 15%, rgba(3, 7, 18, 0.8) 60%, rgba(3, 7, 18, 0.6) 100%);
+            z-index: 2;
+        }
+
+        .hero-content { 
+            position: relative; 
+            z-index: 3; 
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease-out;
+        }
+
+        .cta-button {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(20, 184, 166, 0.2);
+        }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes kenburns {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(-2%, 2%); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
+        }
+        
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-gradient {
+            background: linear-gradient(-45deg, #14b8a6, #0891b2, #0369a1, #06b6d4);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+        }
+        
+        .animated-gradient-dark {
+            background: linear-gradient(-45deg, #030712, #111827, #1f2937, #030712);
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+        }
+
+        .reveal {
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+        
+        .reveal.visible { animation-duration: 0.8s; animation-fill-mode: forwards; animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); animation-name: fadeInUp; }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--teal-500);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .parallax-divider {
+            height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        .h1-word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .h1-word.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-down-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2.5s infinite;
+            z-index: 10;
+        }
+
+        .esg-tab-button {
+            transition: all 0.3s ease;
+        }
+        .esg-tab-button.active {
+            transform: translateY(-5px);
+        }
+        .esg-tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .esg-tab-content.active {
+            display: block;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300"><main>
+        <!-- 2. Seção Principal (Hero Section) -->
+        <section class="hero-bg text-white min-h-screen flex items-center" style="perspective: 1000px;">
+            <div class="hero-content container mx-auto px-6 py-24 md:py-40 text-center flex flex-col items-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 max-w-5xl">ESG Genuíno: Transformando <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">Obrigações Fiscais</span> em Propósito, Retorno e Sustentabilidade.</h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-8 reveal" style="animation-delay: 0.8s;">O Primeiro Modelo do Mundo Onde o Desenvolvimento Social Gera Retorno Financeiro Mensurável e Impacto Ambiental Positivo na Comunidade.</p>
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm font-semibold uppercase tracking-wider text-teal-300 reveal" style="animation-delay: 1s;">
+                    <span>ZERO Custo Efetivo Via Incentivos</span><span class="hidden md:inline">|</span>
+                    <span>ROI Infinito/350%</span><span class="hidden md:inline">|</span>
+                    <span>400 Vidas Transformadas</span>
+                </div>
+            </div>
+             <div class="scroll-down-indicator reveal" style="animation-delay: 1.5s;">
+                <svg class="w-8 h-8 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </div>
+        </section>
+
+        <!-- 3. Propósito ESG -->
+        <section class="bg-gray-100 text-gray-800 py-20">
+            <div class="container mx-auto px-6 max-w-4xl text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-6">Nosso Propósito ESG: Da Indignação à Transformação Estrutural e Sustentável.</h2>
+                    <div class="text-lg text-left space-y-4">
+                        <p>Nascemos da indignação contra a ineficiência econômica e a exclusão social que afetam São Paulo. A maior metrópole da América Latina, com uma economia criativa que movimenta R$ 30 bilhões anualmente, paradoxalmente, desperdiça o potencial de 2,4 milhões de jovens periféricos.</p>
+                        <p>O Instituto Paulista de Cinema é a primeira produtora-escola do mundo. Invertemos a lógica: jovens da periferia não pagam para aprender – eles são <span class="font-bold text-teal-600">remunerados para produzir conteúdo profissional de classe mundial</span>. Nosso modelo é a transformação de potencial desperdiçado em PIB mensurável, de custo social em investimento produtivo, e de exceções em um modelo sistêmico de desenvolvimento econômico sustentável.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Pilares ESG - Interactive Tabs -->
+        <section id="pilares-esg" class="py-20 bg-gray-200 text-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="max-w-5xl mx-auto">
+                    <!-- Tab Buttons -->
+                    <div class="grid grid-cols-3 gap-4 md:gap-8 mb-8 reveal">
+                        <button class="esg-tab-button p-4 md:p-6 rounded-lg shadow-lg focus:outline-none bg-teal-500 text-white active" data-tab="social">
+                            <div class="flex flex-col items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 md:w-10 md:h-10 mb-2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="font-bold text-lg">Social</span></div>
+                        </button>
+                        <button class="esg-tab-button p-4 md:p-6 rounded-lg shadow-lg focus:outline-none bg-white" data-tab="governance">
+                            <div class="flex flex-col items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 md:w-10 md:h-10 mb-2"><path d="m12 15 2 5L9 9l7.5 1.5L16.5 21l-3-6-3.5 1.5L6 2l1.5 7.5L2 12l3.5 3L12 15z"/></svg><span class="font-bold text-lg">Governança</span></div>
+                        </button>
+                        <button class="esg-tab-button p-4 md:p-6 rounded-lg shadow-lg focus:outline-none bg-white" data-tab="environmental">
+                            <div class="flex flex-col items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 md:w-10 md:h-10 mb-2"><path d="M11 20A7 7 0 0 1 4 13H2a9 9 0 0 0 18 0h-2a7 7 0 0 1-7 7Z"/><path d="M12 12a4 4 0 0 0 4-4H8a4 4 0 0 0 4 4Z"/><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M2 13h2"/><path d="M20 13h2"/><path d="m17.66 6.34 1.41-1.41"/></svg><span class="font-bold text-lg">Ambiental</span></div>
+                        </button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="bg-white p-8 md:p-12 rounded-lg shadow-2xl reveal">
+                        <div id="social" class="esg-tab-content active">
+                            <h3 class="text-3xl font-extrabold mb-6 text-teal-500">Social: Impacto Mensurável em Vidas e Comunidades</h3>
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                <div><p class="text-2xl font-bold">400 Jovens</p><p class="text-sm">Capacitados em 4 anos com DRT e bolsa integral.</p></div>
+                                <div><p class="text-2xl font-bold">90%</p><p class="text-sm">Empregabilidade garantida com salário médio de R$ 4.500.</p></div>
+                                <div><p class="text-2xl font-bold">1.600 Famílias</p><p class="text-sm">Reestruturadas com aumento de 300% na renda média.</p></div>
+                                <div><p class="text-2xl font-bold">R$ 78 Milhões</p><p class="text-sm">em PIB Cultural adicionado à economia de São Paulo.</p></div>
+                                <div><p class="text-2xl font-bold">-40%</p><p class="text-sm">na Violência do entorno, com valorização imobiliária de 30%.</p></div>
+                                <div><p class="text-2xl font-bold">IA Pioneira</p><p class="text-sm">Primeira escola de IA audiovisual para periferias do mundo.</p></div>
+                            </div>
+                        </div>
+                        <div id="governance" class="esg-tab-content">
+                            <h3 class="text-3xl font-extrabold mb-6 text-blue-500">Governança: Transparência e Responsabilidade Estrutural</h3>
+                            <ul class="grid md:grid-cols-2 gap-6 text-sm">
+                                <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">✓</span><b>Estrutura Jurídica:</b> OSCIP com conselho fiscal independente e auditoria externa permanente.</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">✓</span><b>Certificações Planejadas:</b> Busca por ISO 9001, ISO 26000, GPTW e B Corporation.</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">✓</span><b>Transparência Total:</b> Portal online em tempo real com relatórios mensais de impacto.</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">✓</span><b>Equipe de Excelência:</b> Liderança com mais de 50 anos de experiência e conselho com especialistas da USP, FGV e Disney.</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">✓</span><b>Validação Federal:</b> R$ 2 milhões já investidos pelo Governo Federal (FSA/ANCINE).</li>
+                             </ul>
+                        </div>
+                        <div id="environmental" class="esg-tab-content">
+                            <h3 class="text-3xl font-extrabold mb-6 text-green-500">Ambiental: Sustentabilidade Operacional e Urbana</h3>
+                            <p class="mb-6 text-sm">Nosso modelo contribui para a sustentabilidade urbana e o uso eficiente de recursos, essenciais para uma visão Ambiental completa.</p>
+                            <div class="grid md:grid-cols-3 gap-8">
+                                 <div><h4 class="font-bold text-lg">Autossustentabilidade</h4><p class="text-sm">Modelo 123% autossustentável a partir do 4º ano, gerando excedente para expansão sem novos aportes públicos.</p></div>
+                                 <div><h4 class="font-bold text-lg">Uso Otimizado de Recursos</h4><p class="text-sm">Para cada R$ 1 investido pelo governo, retornam R$ 3. Um investimento menor que a reforma de 1 praça.</p></div>
+                                 <div><h4 class="font-bold text-lg">Desenvolvimento Urbano</h4><p class="text-sm">A transformação territorial contribui para a qualidade de vida e a sustentabilidade social das regiões periféricas.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARALLAX DIVIDER -->
+        <section class="parallax-divider" style="background-image: url('https://gov.institutopaulistadecinema.com.br/galeria/14.jpg');"></section>
+
+        <!-- 5. Para Empresas -->
+        <section id="para-empresas" class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl font-bold">Para Empresas: Produza com Propósito e ROI ESG Multiplicado.</h2>
+                    <p class="text-xl max-w-3xl mx-auto mt-4">Uma solução de comunicação que economiza recursos e constrói um legado ESG tangível, auditável e audível.</p>
+                </div>
+                 <div class="grid lg:grid-cols-2 gap-8 items-start">
+                    <div class="bg-white p-8 rounded-lg shadow-lg reveal card-hover">
+                        <h3 class="text-2xl font-bold text-teal-600 mb-4">Custo Efetivo ZERO via Leis de Incentivo</h3>
+                        <p class="text-sm">Transforme impostos em produção audiovisual premium. Deduz até 4% do IR (Lei Rouanet), 3% do IR (Lei do Audiovisual), 3% do ICMS (ProAC) ou 20% do ISS.</p>
+                        <p class="text-sm mt-2 font-semibold">Seu ROI é infinito através da dedução fiscal.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg reveal card-hover" style="animation-delay:150ms;">
+                        <h3 class="text-2xl font-bold text-teal-600 mb-4">Economia Direta de 35%</h3>
+                        <p class="text-sm">Garantimos 35% de economia em comparação com o mercado para contratações diretas, com qualidade premium e agilidade 3x maior.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Clube dos Fundadores -->
+        <section id="fundadores" class="py-20 animated-gradient-dark text-white">
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-4">Clube dos Fundadores: <span class="text-amber-400">Lidere a Revolução ESG e Crie um Legado.</span></h2>
+                    <p class="text-xl max-w-3xl mx-auto text-gray-400 mb-12">Seja uma das apenas 10 empresas visionárias a fazer parte do nosso Clube dos Fundadores e redefinir o padrão de excelência e propósito no mercado.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal"><h3 class="font-bold text-lg mb-2 text-amber-400">Patrocínio Corporativo</h3><p class="text-2xl font-bold">R$ 500 mil/ano</p><p class="text-sm mt-2">20 produções anuais e certificações de impacto.</p></div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg border-2 border-amber-400 shadow-lg shadow-amber-500/10 reveal" style="animation-delay:150ms;"><h3 class="font-bold text-lg mb-2 text-amber-400">Patrocínio Master</h3><p class="text-2xl font-bold">R$ 1 milhão/ano</p><p class="text-sm mt-2">40 produções anuais e Naming Rights de 1 turma.</p></div>
+                    <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay:300ms;"><h3 class="font-bold text-lg mb-2 text-amber-400">Patrocínio Fundador</h3><p class="text-2xl font-bold">R$ 2 milhões/ano</p><p class="text-sm mt-2">100 produções anuais e Naming Rights de 2 turmas.</p></div>
+                </div>
+                 <div class="mt-12 reveal"><a href="contato.html" class="bg-amber-500 text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-amber-600 cta-button">Garanta sua Vaga no Clube</a></div>
+            </div>
+        </section>
+
+        <!-- 7. Decisão Estratégica -->
+        <section class="py-20 relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1543086176-953458434431?q=80&w=2070&auto=format&fit=crop');">
+            <div class="absolute inset-0 bg-black/70"></div>
+             <div class="container mx-auto px-6 relative z-10 text-white">
+                <div class="text-center mb-12 reveal"><h2 class="text-3xl font-bold">A Decisão Estratégica: Invista no Futuro, Hoje.</h2></div>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg reveal"><h3 class="font-bold text-teal-400">Para o CFO</h3><p class="text-sm">ROI infinito, otimização tributária e redução drástica do TCO de comunicação.</p></div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg reveal" style="animation-delay:150ms;"><h3 class="font-bold text-teal-400">Para o CMO</h3><p class="text-sm">Qualidade superior, velocidade 3x maior e conexão autêntica com o público jovem.</p></div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg reveal" style="animation-delay:300ms;"><h3 class="font-bold text-teal-400">Para o CEO</h3><p class="text-sm">ESG genuíno com impacto mensurável, diferencial competitivo e legado empresarial.</p></div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg reveal" style="animation-delay:450ms;"><h3 class="font-bold text-teal-400">Para o Acionista</h3><p class="text-sm">Economia substancial, valorização da marca e mitigação de riscos.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 8. CTA Final -->
+        <section id="contato" class="py-20 animated-gradient text-white">
+            <div class="container mx-auto px-6 text-center reveal">
+                <h2 class="text-3xl font-bold mb-4">Junte-se à Revolução ESG do Audiovisual.</h2>
+                <p class="max-w-3xl mx-auto mb-12">Enquanto concorrentes desperdiçam recursos, sua empresa pode construir um legado de impacto e eficiência.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
+                    <div class="text-center"><div class="bg-white/20 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold mx-auto mb-2">1</div><p>Agende uma Apresentação Executiva.</p></div>
+                    <div class="text-center"><div class="bg-white/20 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold mx-auto mb-2">2</div><p>Receba um Diagnóstico Fiscal Personalizado.</p></div>
+                    <div class="text-center"><div class="bg-white/20 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold mx-auto mb-2">3</div><p>Torne-se um dos 10 Fundadores.</p></div>
+                </div>
+                <div><a href="contato.html" class="bg-gray-900 text-white font-bold py-4 px-10 text-lg rounded-lg cta-button inline-block">Fale com um Especialista</a></div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Rodapé -->
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                     const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                             const headerOffset = document.getElementById('header').offsetHeight;
+                             const elementPosition = targetElement.getBoundingClientRect().top;
+                             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                             window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        }
+                    }
+                });
+            });
+            
+            // Intersection Observer for animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => observer.observe(el));
+            
+            // Custom Cursor Logic removed
+
+            // Hero Section Animations
+            const heroSection = document.querySelector('.hero-bg');
+            const heroContent = document.querySelector('.hero-content');
+            
+            heroSection.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+                const { offsetWidth, offsetHeight } = heroSection;
+                const rotateX = -((clientY / offsetHeight) - 0.5) * 10;
+                const rotateY = ((clientX / offsetWidth) - 0.5) * 10;
+                heroContent.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            const h1 = heroContent.querySelector('h1');
+            const text = h1.innerText;
+            h1.innerHTML = '';
+            text.split(' ').forEach((word, index) => {
+                const span = document.createElement('span');
+                span.innerHTML = `${word}&nbsp;`;
+                span.classList.add('h1-word');
+                span.style.transitionDelay = `${index * 0.05 + 0.2}s`;
+                h1.appendChild(span);
+            });
+            setTimeout(() => {
+                h1.querySelectorAll('.h1-word').forEach(span => {
+                    span.classList.add('visible');
+                });
+            }, 100);
+
+            // ESG Tabs Logic
+            const tabButtons = document.querySelectorAll('.esg-tab-button');
+            const tabContents = document.querySelectorAll('.esg-tab-content');
+            const tabColors = {
+                social: ['bg-teal-500', 'text-white'],
+                governance: ['bg-blue-500', 'text-white'],
+                environmental: ['bg-green-500', 'text-white']
+            };
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+
+                    // Reset all buttons
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        // Remove all possible color classes
+                        Object.values(tabColors).forEach(colorPair => {
+                            btn.classList.remove(...colorPair);
+                        });
+                        btn.classList.add('bg-white', 'text-gray-800');
+                    });
+                    
+                    // Activate the clicked button
+                    button.classList.add('active');
+                    button.classList.add(...tabColors[tabId]);
+                    button.classList.remove('bg-white', 'text-gray-800');
+                    
+                    // Show the correct content
+                    tabContents.forEach(content => {
+                        content.classList.toggle('active', content.id === tabId);
+                    });
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
+

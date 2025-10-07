@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Paulista de Cinema - One-Page Empresarial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            color: #1f2937;
+            background: white;
+            font-weight: 400;
+            letter-spacing: -0.011em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 210mm;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            padding: 12mm;
+            position: relative;
+            page-break-after: always;
+            background: white;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .logo-section {
+            flex: 1;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #111827;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-align: right;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .hero-text {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            color: #e5e7eb;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 1px solid rgba(229, 231, 235, 0.2);
+        }
+
+        .stat {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+
+        .stat-label {
+            font-size: 0.6rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 2px;
+            color: #e5e7eb;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        /* GRID */
+        .grid-2 {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .grid-2 > div {
+            flex: 1;
+        }
+
+        /* CARDS */
+        .card {
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 5px;
+            font-size: 0.8rem;
+        }
+
+        .card-text {
+            font-size: 0.7rem;
+            color: #4b5563;
+            line-height: 1.3;
+        }
+
+        .problem-card {
+            border-left: 3px solid #6b7280;
+            background: #f9fafb;
+        }
+
+        .solution-card {
+            border-left: 3px solid #3b82f6;
+            background: #f0f9ff;
+        }
+
+        /* NUMBERS */
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .number-card {
+            text-align: center;
+            padding: 8px;
+            background: #f9fafb;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .number-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #3b82f6;
+            display: block;
+        }
+
+        .number-label {
+            font-size: 0.6rem;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        /* VALUE PROP */
+        .value-prop {
+            background: #3b82f6;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .value-prop-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .value-prop-text {
+            font-size: 0.75rem;
+            opacity: 0.95;
+        }
+
+        /* COMPARISON TABLE */
+        .comparison-table {
+            width: 100%;
+            margin: 10px 0;
+            font-size: 0.7rem;
+            border-collapse: collapse;
+        }
+
+        .comparison-table thead {
+            background: #f3f4f6;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 6px;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+
+        .comparison-table th {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .comparison-table td {
+            color: #4b5563;
+        }
+
+        .comparison-highlight {
+            background: #eff6ff;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        /* FISCAL BENEFITS */
+        .fiscal-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #3b82f6;
+            margin: 12px 0;
+        }
+
+        .fiscal-title {
+            font-size: 0.75rem;
+            color: #3b82f6;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .fiscal-main {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 5px;
+        }
+
+        .fiscal-detail {
+            font-size: 0.7rem;
+            color: #4b5563;
+            line-height: 1.3;
+        }
+
+        /* LAWS LIST */
+        .laws-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .law-item {
+            padding: 8px;
+            background: #f9fafb;
+            border-radius: 5px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .law-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .law-benefit {
+            font-size: 0.65rem;
+            color: #6b7280;
+        }
+
+        /* GUARANTEE */
+        .guarantee-box {
+            background: #374151;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 12px 0;
+        }
+
+        .guarantee-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #3b82f6;
+        }
+
+        .guarantee-text {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            line-height: 1.3;
+            color: #e5e7eb;
+        }
+
+        /* ROI SECTION */
+        .roi-highlight {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 12px 0;
+            border: 1px solid #3b82f6;
+        }
+
+        .roi-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            display: block;
+        }
+
+        .roi-text {
+            font-size: 0.75rem;
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: #1f2937;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .cta-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .cta-text {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            color: #e5e7eb;
+        }
+
+        .cta-contact {
+            background: #3b82f6;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #f9fafb;
+            color: #6b7280;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: auto;
+            font-size: 0.65rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .footer strong {
+            color: #111827;
+        }
+
+        /* HIGHLIGHT BOX */
+        .highlight-box {
+            padding: 10px;
+            background: #f9fafb;
+            border-left: 3px solid #3b82f6;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .highlight-box strong {
+            color: #1e40af;
+            font-size: 0.8rem;
+        }
+
+        .highlight-box span {
+            font-size: 0.7rem;
+            color: #4b5563;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* TEAM */
+        .team-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 8px;
+        }
+
+        .team-tag {
+            padding: 3px 8px;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        /* UTILITIES */
+        strong {
+            font-weight: 600;
+        }
+
+        .text-gradient {
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e5e7eb;
+            margin: 10px 0;
+        }
+
+        /* ACCENT ELEMENTS */
+        .blue-accent {
+            color: #3b82f6;
+        }
+
+        /* PRINT */
+        @media print {
+            body {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .page {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page">
+            <!-- HEADER -->
+            <div class="header">
+                <div class="logo-section">
+                    <div class="logo-text">
+                        INSTITUTO PAULISTA<br>
+                        <span class="blue-accent">DE CINEMA</span>
+                    </div>
+                </div>
+                <div class="tagline">
+                    Transformando obrigações fiscais<br>
+                    em ativos de comunicação e impacto social
+                </div>
+            </div>
+
+            <!-- HERO -->
+            <div class="hero">
+                <h1 class="hero-title">
+                    Produza conteúdo audiovisual premium com custo efetivo ZERO
+                    através de leis de incentivo fiscal
+                </h1>
+                <p class="hero-text">
+                    Sua empresa pode produzir todo seu conteúdo audiovisual sem custo adicional, 
+                    utilizando recursos que hoje são direcionados apenas para pagamento de impostos, 
+                    enquanto transforma 400 jovens periféricos em profissionais da economia criativa.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">ZERO</span>
+                        <span class="stat-label">Custo Efetivo</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Dedução Fiscal</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">35%</span>
+                        <span class="stat-label">Economia Direta</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15 dias</span>
+                        <span class="stat-label">Prazo Entrega</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- O PARADOXO -->
+            <div class="section">
+                <h2 class="section-title">O Paradoxo do Mercado Audiovisual</h2>
+                <div class="grid-2">
+                    <div class="card problem-card">
+                        <div class="card-title">A Dupla Tributação Invisível</div>
+                        <div class="card-text">
+                            Empresas pagam impostos sem contrapartida (R$ 1MM) 
+                            + investem em produção audiovisual (R$ 1MM) = 
+                            R$ 2MM de investimento total para R$ 1MM em produção
+                        </div>
+                    </div>
+                    <div class="card solution-card">
+                        <div class="card-title">A Solução Instituto</div>
+                        <div class="card-text">
+                            Investe via lei de incentivo (R$ 1MM) 
+                            + deduz 100% do imposto (R$ 1MM) = 
+                            R$ 0 de custo efetivo para R$ 1MM em produção
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NÚMEROS DO MERCADO -->
+            <div class="numbers-grid">
+                <div class="number-card">
+                    <span class="number-value">R$ 80k</span>
+                    <span class="number-label">Vídeo 3 min</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-value">45 dias</span>
+                    <span class="number-label">Prazo médio</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-value">82%</span>
+                    <span class="number-label">Preferem vídeo</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-value">0%</span>
+                    <span class="number-label">Retorno impostos</span>
+                </div>
+            </div>
+
+            <!-- PROPOSTA DE VALOR -->
+            <div class="value-prop">
+                <div class="value-prop-title">
+                    OPÇÃO A: Custo Zero via Leis de Incentivo | OPÇÃO B: Economia de 35% em Contratação Direta
+                </div>
+                <div class="value-prop-text">
+                    Qualidade Premium Garantida • Supervisão Profissional • Entrega em 15 dias
+                </div>
+            </div>
+
+            <!-- LEIS DE INCENTIVO -->
+            <div class="section">
+                <h2 class="section-title">Portfolio de Leis de Incentivo Aplicáveis</h2>
+                <div class="laws-grid">
+                    <div class="law-item">
+                        <div class="law-name">LEI ROUANET</div>
+                        <div class="law-benefit">100% dedução • Até 4% IR</div>
+                    </div>
+                    <div class="law-item">
+                        <div class="law-name">LEI AUDIOVISUAL</div>
+                        <div class="law-benefit">100% dedução • Até 3% IR</div>
+                    </div>
+                    <div class="law-item">
+                        <div class="law-name">ProAC ICMS</div>
+                        <div class="law-benefit">100% dedução • Até 3% ICMS</div>
+                    </div>
+                    <div class="law-item">
+                        <div class="law-name">LEI MUNICIPAL ISS</div>
+                        <div class="law-benefit">20% desconto • ISS devido</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIMULAÇÃO -->
+            <div class="fiscal-box">
+                <div class="fiscal-title">Simulação - Empresa R$ 500MM faturamento</div>
+                <div class="fiscal-main">R$ 3,2 milhões disponíveis via incentivos</div>
+                <div class="fiscal-detail">
+                    = 150+ produções anuais com custo efetivo ZERO<br>
+                    OU economia de R$ 1,12 milhão em contratação direta
+                </div>
+            </div>
+
+            <!-- TABELA COMPARATIVA -->
+            <div class="section">
+                <h2 class="section-title">Economia Garantida em Cada Produção</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>SERVIÇO</th>
+                            <th>MERCADO</th>
+                            <th>INSTITUTO</th>
+                            <th>ECONOMIA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Vídeo Institucional (3 min)</td>
+                            <td>R$ 80.000</td>
+                            <td>R$ 52.000</td>
+                            <td class="comparison-highlight">R$ 28.000</td>
+                        </tr>
+                        <tr>
+                            <td>Campanha Digital (10 peças)</td>
+                            <td>R$ 250.000</td>
+                            <td>R$ 162.500</td>
+                            <td class="comparison-highlight">R$ 87.500</td>
+                        </tr>
+                        <tr>
+                            <td>Documentário (30 min)</td>
+                            <td>R$ 180.000</td>
+                            <td>R$ 117.000</td>
+                            <td class="comparison-highlight">R$ 63.000</td>
+                        </tr>
+                        <tr>
+                            <td>Live Profissional (2h)</td>
+                            <td>R$ 40.000</td>
+                            <td>R$ 26.000</td>
+                            <td class="comparison-highlight">R$ 14.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- GARANTIA DE QUALIDADE -->
+            <div class="guarantee-box">
+                <div class="guarantee-title">Garantia de Excelência Premium</div>
+                <div class="guarantee-text">
+                    Dream Team de supervisores com 15+ anos de experiência • 
+                    Sistema de Padrinhos Profissionais • 
+                    95% aprovação na primeira entrega • 
+                    Equipamentos 4K/8K última geração • 
+                    Primeira escola de IA audiovisual para periferias do mundo
+                </div>
+            </div>
+
+            <!-- IMPACTO SOCIAL -->
+            <div class="section">
+                <h2 class="section-title">Transformação Social Mensurável</h2>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-title">400 Jovens</div>
+                        <div class="card-text">Capacitados em 4 anos com DRT garantido</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">R$ 4.500</div>
+                        <div class="card-text">Salário médio pós-formação</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">90%</div>
+                        <div class="card-text">Empregabilidade garantida</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROI -->
+            <div class="roi-highlight">
+                <span class="roi-number">∞</span>
+                <span class="roi-text">ROI via Lei de Incentivo (divisão por zero)</span>
+            </div>
+
+            <!-- VALIDAÇÃO -->
+            <div class="highlight-box">
+                <strong>R$ 2 milhões já investidos pelo Governo Federal (FSA/ANCINE)</strong>
+                <span>Validação oficial do modelo através do filme "O Fantástico Laboratório"</span>
+            </div>
+
+            <!-- CLUBE DOS FUNDADORES -->
+            <div class="section">
+                <h2 class="section-title">Clube dos Fundadores - Oportunidade Limitada</h2>
+                <div class="fiscal-box">
+                    <div class="fiscal-title">Apenas 10 empresas pioneiras</div>
+                    <div class="fiscal-main">Torne-se cofundador do Instituto com benefícios exclusivos perpétuos</div>
+                    <div class="fiscal-detail">
+                        <strong>• Status Vitalício:</strong> Reconhecimento permanente como Empresa Fundadora em todos os materiais<br>
+                        <strong>• Prioridade Máxima:</strong> Suas produções sempre na frente da fila, sem exceções<br>
+                        <strong>• Naming Rights:</strong> Uma turma por ano levará o nome da sua empresa<br>
+                        <strong>• Preços Congelados:</strong> Valores de 2025 mantidos perpetuamente, imunes a reajustes<br>
+                        <strong>• Conselho Consultivo:</strong> Participação nas decisões estratégicas do Instituto<br>
+                        <strong>• Cota Garantida:</strong> 20 produções anuais reservadas, independente da demanda
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-section">
+                <h3 class="cta-title">A Decisão Mais Inteligente em Comunicação</h3>
+                <p class="cta-text">
+                    Enquanto seus concorrentes pagam fortunas para agências e desperdiçam recursos em impostos, 
+                    sua empresa constrói um legado de impacto e eficiência.
+                </p>
+                <div class="cta-contact">
+                    www.institutopaulistadecinema.com.br
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="footer">
+                <strong>INSTITUTO PAULISTA DE CINEMA</strong><br>
+                Transformando impostos em investimento • Transformando jovens em profissionais • Transformando empresas em agentes de mudança<br>
+                © 2025 - São Paulo, Brasil
+            </div>
+        </div>
+    </div>
+</body>
+</html>

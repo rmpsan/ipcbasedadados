@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raphael Martinez - Biografia</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #fff;
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 25mm;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8mm;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+        
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: #2c3e50;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        .divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a1a2e 100%);
+            margin: 0 auto 40px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a1a2e 100%);
+            border-radius: 2px;
+        }
+        
+        .content {
+            font-size: 12px;
+            text-align: justify;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(44, 62, 80, 0.1) 0%, rgba(26, 26, 46, 0.1) 100%);
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #2c3e50;
+            border-left: 4px solid #2c3e50;
+            padding-left: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        
+        .stats {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.05) 0%, rgba(26, 26, 46, 0.05) 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 1px solid rgba(44, 62, 80, 0.2);
+        }
+        
+        .stats-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .stats-content {
+            font-size: 11px;
+            text-align: center;
+            color: #5a6c7d;
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 15mm;
+            left: 25mm;
+            right: 25mm;
+            text-align: center;
+            font-size: 10px;
+            color: #7f8c8d;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 10px;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .page {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+            
+            .page:last-child {
+                page-break-after: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <h1 class="main-title">RAPHAEL MARTINEZ</h1>
+            <p class="subtitle">A Arte de Transformar Histórias em Destino</p>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Das Periferias de São Paulo aos Sets de Filmagem</h2>
+            <div class="content">
+                Raphael Martinez nasceu há 38 anos nas margens de São Paulo, onde as oportunidades são escassas mas os sonhos teimam em florescer. Crescido entre os conjuntos habitacionais do Capão Redondo e Campo Limpo, ele é o mais velho de três irmãos que aprenderam cedo que a vida na periferia paulistana exige reinvenção constante.
+            </div>
+            
+            <div class="content">
+                Sua infância transitou dos blocos cinzentos dos conjuntos habitacionais para o bairro humilde de Cidade Dutra, próximo ao Autódromo de Interlagos, onde o ronco dos motores de Fórmula 1 contrastava com a quietude das aspirações locais. Foi ali, aos 13 anos, que a vida lhe apresentou seu primeiro grande roteiro de superação: o pai abandonou o lar, deixando sua mãe – até então dona de casa – com três filhos para criar sozinha. Raphael, o mais velho, tinha 13 anos. Seus irmãos, 8 e 3.
+            </div>
+            
+            <div class="quote">
+                "E aos treze anos de idade eu já sentia todo peso do mundo em minhas costas", cantavam os Titãs em "Marvin", música que ecoava perfeitamente o momento que vivia. Mas foi justamente neste período de aparente derrota que sua verdadeira história começou a ser escrita.
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">O Garoto que Aprendeu a Contar Histórias</h2>
+            <div class="content">
+                A necessidade transformou o adolescente em homem precocemente. Aos 13 anos, sua mãe conseguiu-lhe um trabalho informal como garçom em um buffet infantil. Ali, entre festas e balões coloridos, Raphael descobriu seu primeiro talento: conectar-se com pessoas. Logo passou de garçom a recreador, duplicando suas oportunidades de trabalho e aprendendo que entreter era uma forma poderosa de comunicação.
+            </div>
+            
+            <div class="content">
+                O destino – ou a sorte, como ele prefere chamar – colocou em seu caminho um professor atento que percebeu não apenas seu talento para o desenho, mas também sua situação familiar delicada. Este educador, cujo nome a história injustamente não registrou, ensinou-lhe os primeiros passos do design gráfico nos primórdios do CorelDraw e Photoshop. Aos 15 anos, Raphael já desenhava flyers para as casas noturnas da Avenida Atlântica, transitando por um mundo adulto com a desenvoltura de quem nasceu para quebrar barreiras.
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">O Bartender Prodígio da Noite Paulistana</h2>
+            <div class="content">
+                Uma indicação levou a outra, e logo o jovem designer estava criando sites para empresas em Pinheiros. Foi durante um desses trabalhos que recebeu uma proposta inusitada: trabalhar também como ajudante de bar. Em poucos meses, o adolescente que treinava malabarismo com garrafas no canteiro central da Avenida Henrique Schaumann tornou-se um dos principais bartenders da noite paulistana – tudo isso antes dos 17 anos.
+            </div>
+            
+            <div class="content">
+                Sua juventude era um segredo bem guardado. Participou de programas de televisão, incluindo uma memorável aparição no programa de Ronnie Von, onde levou sua mãe como acompanhante e, inadvertidamente, deixou sua marca – literalmente – no ombro do apresentador com uma mancha de suor durante o abraço final. "Os anos 90 e começo dos anos 2000 eram realmente outro mundo", relembra com humor.
+            </div>
+            
+            <div class="content">
+                Como bartender oficial de uma grande marca nacional de bebidas, viajou pelo Brasil inteiro, transformando-se numa atração em eventos e festas. Foi durante o São Paulo Fashion Week, recém-completados os 18 anos, que descobriu seu próximo chamado: as câmeras de televisão.
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Raphael Martinez — Biografia Profissional | São Paulo, 2025</p>
+        </div>
+    </div>
+    
+    <div class="page page-break">
+        <div class="section">
+            <h2 class="section-title">Do Bar para as Telas</h2>
+            <div class="content">
+                "Coloca o Rapha, ele é engraçado", disse alguém da empresa durante o Fashion Week. E assim, o bartender contador de histórias começou a apresentar matérias para programas de TV. Percebendo o potencial dessa nova direção, conquistou uma bolsa de estudos na prestigiada Escola de Atores Wolf Maya, onde dividiu seu tempo entre servir drinks, estudar artes cênicas e aprender produção.
+            </div>
+            
+            <div class="content">
+                Foi ali que criou seu primeiro conteúdo audiovisual: um reality show sobre os bastidores da escolha de elenco para um musical. A experiência o levou a trabalhar em praticamente todas as emissoras menores, fazendo figuração, pequenos papéis e apresentando quadros que raramente iam ao ar.
+            </div>
+            
+            <div class="content">
+                Aos 20 anos, o destino sorriu novamente: um teste para uma novela da Rede Globo, ironicamente para o papel de bartender. A vida, afinal, o havia preparado perfeitamente para aquele momento. Mudou-se para o Rio de Janeiro, viveu o sonho de ser ator global, mas logo percebeu que aquela não era sua verdadeira vocação.
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">O Nascimento de um Diretor</h2>
+            <div class="content">
+                De volta a São Paulo, Raphael compreendeu sua verdadeira missão: contar histórias, mesmo que o público nunca soubesse quem estava por trás delas. Com cerca de mil reais na conta e ao lado de sua sócia – parceira até hoje –, fundou sua produtora começando com o que sabia fazer: design e sites.
+            </div>
+            
+            <div class="content">
+                Em um cubículo de 2x2 metros nos fundos de um imóvel em Veleiros, região de Interlagos, construiu seu primeiro estúdio com madeira e luzes de construção. A primeira gravação foi o monólogo de uma atriz, filmado enquanto a tinta das paredes ainda secava em suas roupas.
+            </div>
+            
+            <div class="content">
+                O ponto de virada veio com dois projetos especiais: a criação de almanaques multimídia para bancas de jornal e um documentário sobre o fundador da Sadia. Com o pagamento deste último, comprou sua primeira câmera profissional e conquistou uma bolsa para estudar na Academia Internacional de Cinema de São Paulo.
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Consolidação e Reconhecimento</h2>
+            <div class="content">
+                Ainda no primeiro ano de formação, seu filme conquistou prêmios tradicionalmente reservados aos formandos: Melhor Filme de Novos Diretores e Melhor Roteiro. Uma comédia popular competindo com filmes cult – e vencendo.
+            </div>
+            
+            <div class="content">
+                O reconhecimento o levou a lecionar no Museu da Imagem e do Som de São Paulo (MIS), onde por anos ensinou Produção Cinematográfica através dos projetos Lab MIS e Pontos MIS, este último levando aulas de cinema por todo o estado de São Paulo.
+            </div>
+            
+            <div class="content">
+                Sua produtora cresceu exponencialmente, atendendo gigantes como Google, Santander, IBM, Petrobras e Dell. Foram pioneiros no uso de drones no Brasil, captações 360° e transmissões ao vivo. Tornaram-se responsáveis por captar, dirigir e transmitir eventos para instituições prestigiadas como Sala São Paulo, MASP e Cultura Artística, além de cobrir prêmios como o Bibi Ferreira.
+            </div>
+            
+            <div class="content">
+                Entre suas realizações mais significativas está a produção de Vila Sésamo para distribuição mundial – um marco que coloca sua produtora entre as poucas no mundo com tal responsabilidade.
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Raphael Martinez — Biografia Profissional | São Paulo, 2025</p>
+        </div>
+    </div>
+    
+    <div class="page page-break">
+        <div class="section">
+            <h2 class="section-title">O Fantástico Laboratório: Um Sonho de Infância Realizado</h2>
+            <div class="content">
+                Em 2025, aos 38 anos, Raphael alcançou o que o menino que brincava com uma câmera VHS quebrada jamais imaginaria: escreveu e dirigirá seu primeiro longa-metragem, "O Fantástico Laboratório" – uma homenagem ao sonho de infância de ser cientista.
+            </div>
+            
+            <div class="content">
+                O projeto foi contemplado pelo FSA (Fundo Setorial do Audiovisual) com um aporte de 2 milhões de reais do governo federal, um reconhecimento oficial de que o garoto da periferia havia se tornado um dos mais promissores diretores do cinema brasileiro contemporâneo.
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Legado em Construção</h2>
+            <div class="content">
+                A trajetória de Raphael Martinez é um testemunho poderoso de como educação, conhecimento e arte podem transformar vidas. Do garçom adolescente ao diretor premiado, do bartender malabarista ao professor do MIS, cada capítulo de sua história reforça uma verdade fundamental: o talento não conhece CEP.
+            </div>
+            
+            <div class="content">
+                Hoje, prestes a lançar seu primeiro longa-metragem, Raphael Martinez representa uma nova geração de cineastas brasileiros que não apenas contam histórias, mas vivem narrativas extraordinárias de superação e criatividade. Sua biografia não é apenas sobre sucesso individual, mas sobre o poder transformador da arte e da determinação em um país onde nascer na periferia ainda é começar a vida com desvantagem.
+            </div>
+            
+            <div class="content">
+                Alguns chamam de sorte. Outros, destino. Outros ainda falam em mérito ou providência divina. Raphael prefere creditar sua jornada ao estudo, ao conhecimento e à arte – as ferramentas que transformaram um menino do Capão Redondo em um dos mais versáteis contadores de histórias do audiovisual brasileiro.
+            </div>
+            
+            <div class="content">
+                E sua história está apenas começando.
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Raphael Martinez — Biografia Profissional | São Paulo, 2025</p>
+        </div>
+    </div>
+</body>
+</html>

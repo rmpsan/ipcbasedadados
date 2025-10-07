@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Aluno - Instituto Paulista de Cinema</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .portal-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .portal-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #ffffff;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(6, 182, 212, 0.2);
+            border-top: 3px solid #06b6d4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        .loading-text {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            text-align: center;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            max-width: 400px;
+            z-index: 20;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .error-icon {
+            font-size: 3rem;
+            color: #ef4444;
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 0.5rem;
+        }
+
+        .error-description {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .retry-button {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: #ffffff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .retry-button:hover {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="portal-container">
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">
+                Carregando Portal do Aluno...<br>
+                <small>Aguarde alguns instantes</small>
+            </div>
+        </div>
+
+        <div class="error-message" id="errorMessage">
+            <div class="error-icon">⚠️</div>
+            <div class="error-title">Erro ao Carregar Portal</div>
+            <div class="error-description">
+                Não foi possível carregar o Portal do Aluno.<br>
+                Verifique sua conexão e tente novamente.
+            </div>
+            <button class="retry-button" onclick="retryLoad()">Tentar Novamente</button>
+        </div>
+
+        <iframe 
+            id="portalIframe"
+            class="portal-iframe"
+            src="https://ipcportalalunosv2-9mp9.vercel.app/"
+            title="Portal do Aluno - Instituto Paulista de Cinema"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation allow-popups-to-escape-sandbox"
+            loading="lazy">
+        </iframe>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const iframe = document.getElementById('portalIframe');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const errorMessage = document.getElementById('errorMessage');
+            let loadTimeout;
+
+            function showError() {
+                loadingOverlay.style.display = 'none';
+                errorMessage.style.display = 'block';
+            }
+
+            function hideLoading() {
+                setTimeout(() => {
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none';
+                    }, 500);
+                }, 1000);
+            }
+
+            // Timeout para mostrar erro se demorar muito para carregar
+            loadTimeout = setTimeout(showError, 15000); // 15 segundos
+
+            // Quando o iframe carregar com sucesso
+            iframe.addEventListener('load', function() {
+                clearTimeout(loadTimeout);
+                hideLoading();
+            });
+
+            // Se houver erro no carregamento
+            iframe.addEventListener('error', function() {
+                clearTimeout(loadTimeout);
+                showError();
+            });
+
+            // Função global para retry
+            window.retryLoad = function() {
+                errorMessage.style.display = 'none';
+                loadingOverlay.style.display = 'flex';
+                loadingOverlay.style.opacity = '1';
+                
+                // Recarregar o iframe
+                iframe.src = iframe.src;
+                
+                // Reiniciar timeout
+                loadTimeout = setTimeout(showError, 15000);
+            };
+        });
+    </script>
+</body>
+</html>

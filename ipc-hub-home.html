@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Paulista de Cinema - Transformando Vidas Através do Audiovisual</title>
+    <meta name="description" content="Instituto Paulista de Cinema - A primeira escola-produtora do mundo onde jovens periféricos são pagos para aprender cinema e produzir conteúdo de classe mundial.">
+    <meta property="og:title" content="Instituto Paulista de Cinema">
+    <meta property="og:description" content="Transformando jovens periféricos em protagonistas da economia criativa através do cinema e inteligência artificial.">
+    <meta property="og:url" content="https://institutopaulistadecinema.com.br">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://institutopaulistadecinema.com.br">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+        :root {
+            --primary-dark: #1a1a1a;
+            --secondary-dark: #2d3436;
+            --text-dark: #1a1a1a;
+            --text-gray: #6b7280;
+            --text-light: #374151;
+            --bg-white: #ffffff;
+            --bg-light: #f9fafb;
+            --bg-off-white: #fafafa;
+            --border-light: #e5e7eb;
+            
+            --accent-orange: #FF6B35;
+            --accent-blue: #4361EE;
+            --accent-green: #16a34a;
+            --accent-green-light: #22c55e;
+            --accent-red: #dc2626;
+            
+            --gradient-main: linear-gradient(135deg, #FF6B35 0%, #4361EE 100%);
+            --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            --gradient-success: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+            
+            --shadow-subtle: 0 4px 6px rgba(0,0,0,0.07);
+            --shadow-soft: 0 10px 20px rgba(0,0,0,0.08);
+            --shadow-medium: 0 20px 40px rgba(0,0,0,0.1);
+            --shadow-hard: 0 30px 60px rgba(0,0,0,0.15);
+            
+            --transition-smooth: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-white);
+            font-weight: 400;
+            letter-spacing: -0.011em;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* LOADER */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-dark);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeOut 0.5s ease 1.5s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .loader-logo strong {
+            font-weight: 700;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .loader-text {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.7;
+        }
+
+        /* NAVEGAÇÃO */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 30px 60px;
+            transition: var(--transition-smooth);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 20px 60px;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        nav.scrolled .nav-link {
+            color: var(--text-gray);
+        }
+
+        nav.scrolled .logo {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            transition: var(--transition-smooth);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 0.975rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            transition: var(--transition-smooth);
+            position: relative;
+            opacity: 0.9;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-main);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 12px 30px;
+            background: white;
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-size: 0.975rem;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: var(--transition-smooth);
+            letter-spacing: -0.01em;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255,255,255,0.2);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 100px 60px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255,107,53,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(67,97,238,0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .hero-title strong {
+            font-weight: 700;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 60px;
+            font-weight: 300;
+            line-height: 1.6;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 8px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            letter-spacing: -0.01em;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(255,255,255,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+
+        /* SEÇÕES */
+        .section {
+            padding: 80px 60px;
+        }
+
+        .section-bg {
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .highlight-text {
+            font-size: 1.375rem;
+            line-height: 1.7;
+            color: var(--text-light);
+            margin: 30px 0;
+        }
+
+        .emphasis {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        /* SUMÁRIO EXECUTIVO REDESIGN */
+        .executive-summary {
+            padding: 100px 60px;
+            background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg-light) 100%);
+        }
+
+        .executive-header {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 60px;
+        }
+
+        .executive-header .section-title {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .executive-header .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-main);
+        }
+
+        .executive-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .executive-highlight {
+            background: linear-gradient(135deg, #fff8f5 0%, #fff5f0 100%);
+            border-left: 4px solid var(--accent-orange);
+            padding: 40px 50px;
+            margin: 50px 0;
+            border-radius: 0 20px 20px 0;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .executive-highlight::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            font-size: 80px;
+            color: rgba(255, 107, 53, 0.1);
+            font-family: Georgia, serif;
+        }
+
+        .executive-highlight p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            font-weight: 300;
+        }
+
+        .executive-highlight .emphasis {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .executive-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin: 60px 0;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .metric-card {
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .metric-card:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 60%;
+            width: 1px;
+            background: var(--border-light);
+        }
+
+        .metric-card:hover {
+            background: var(--bg-light);
+            transform: scale(1.05);
+            z-index: 1;
+            box-shadow: var(--shadow-hard);
+        }
+
+        .metric-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 25px;
+            background: var(--gradient-main);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-5deg);
+            transition: var(--transition-smooth);
+        }
+
+        .metric-icon svg {
+            width: 32px;
+            height: 32px;
+            color: white;
+        }
+
+        .metric-card:hover .metric-icon {
+            transform: rotate(0deg) scale(1.1);
+        }
+
+        .metric-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .metric-text {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* CARDS */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .cards-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cards-grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .card {
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-2px);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 0.975rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* IMPACTO SECTION */
+        .impact-section {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 100px 60px;
+        }
+
+        .impact-section .section-title {
+            color: white;
+        }
+
+        .impact-section .section-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .impact-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition-smooth);
+        }
+
+        .impact-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-5px);
+        }
+
+        .impact-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 15px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .impact-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* PROBLEMA E SOLUÇÃO REDESIGN */
+        .challenge-section {
+            padding: 100px 60px;
+            background: var(--bg-white);
+            position: relative;
+        }
+
+        .challenge-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(180deg, var(--bg-light) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .challenge-header {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 80px;
+            position: relative;
+        }
+
+        .challenge-header .section-title {
+            font-size: 3rem;
+            margin-bottom: 25px;
+        }
+
+        .challenge-header .section-subtitle {
+            font-size: 1.375rem;
+            line-height: 1.7;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+        }
+
+        .challenge-card {
+            position: relative;
+            padding: 0;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition-smooth);
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hard);
+        }
+
+        .challenge-card-header {
+            padding: 30px 40px;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .problem-card .challenge-card-header {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+        }
+
+        .solution-card .challenge-card-header {
+            background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+        }
+
+        .challenge-card-header::before {
+            content: '⚠️';
+            font-size: 1.5rem;
+            opacity: 1;
+        }
+
+        .solution-card .challenge-card-header::before {
+            content: '✅';
+        }
+
+        .challenge-card-content {
+            padding: 40px;
+        }
+
+        .challenge-list {
+            list-style: none;
+        }
+
+        .challenge-list li {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: var(--transition-smooth);
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+
+        .challenge-list li:hover {
+            transform: translateX(10px);
+            background: white;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .challenge-list li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .problem-card .challenge-list li::before {
+            background: var(--accent-red);
+        }
+
+        .solution-card .challenge-list li::before {
+            background: var(--accent-green);
+        }
+
+        /* CUSTO SOCIAL */
+        .social-cost {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-cost::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .social-cost-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .social-cost-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cost-comparison {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+        }
+
+        .cost-comparison:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.05);
+        }
+
+        .cost-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 15px;
+        }
+
+        .cost-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .cost-comparison:first-child .cost-amount {
+            color: #ef4444;
+        }
+
+        .cost-comparison:last-child .cost-amount {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cost-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .cost-arrow {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-hard);
+            z-index: 2;
+        }
+
+        .cost-arrow::after {
+            content: '→';
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        /* MODELO */
+        .model-highlight {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 60px;
+            border-radius: 24px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .model-highlight h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .model-highlight p {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin: 50px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--border-light);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px var(--border-light);
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--accent-orange);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 1.125rem;
+        }
+
+        .timeline-description {
+            color: var(--text-gray);
+            font-size: 0.975rem;
+            line-height: 1.5;
+        }
+
+        /* VALIDAÇÃO */
+        .validation-badge {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--gradient-success);
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(22, 163, 74, 0.4);
+        }
+
+        .validation-amount {
+            font-size: 4rem;
+            font-weight: 700;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .partners-logos {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .partner-logo {
+            padding: 25px 45px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: white;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            font-size: 0.975rem;
+        }
+
+        .partner-logo:hover {
+            background: rgba(255,255,255,0.1);
+            transform: scale(1.05);
+        }
+
+        /* CTA FINAL */
+        .cta-section {
+            background: var(--gradient-dark);
+            color: white;
+            text-align: center;
+            padding: 100px 60px;
+            position: relative;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-subtitle {
+            font-size: 1.375rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .btn-cta {
+            padding: 18px 40px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            letter-spacing: -0.01em;
+        }
+
+        .btn-cta-primary {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        .btn-cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(255,255,255,0.2);
+        }
+
+        .btn-cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-cta-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 80px 60px 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+
+        .footer-section h4 {
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.875rem;
+        }
+
+        /* UTILITIES */
+        .text-gradient {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border-light);
+            margin: 60px 0;
+        }
+
+        /* ANIMAÇÕES */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MENU MOBILE */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: var(--transition-smooth);
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 1024px) {
+            .cards-grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .cards-grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .ps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                flex-direction: column !important;
+                margin-left: 40px;
+            }
+            
+            .timeline-content {
+                width: 100%;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+            
+            .executive-metrics {
+                grid-template-columns: 1fr;
+            }
+            
+            .metric-card:not(:last-child)::after {
+                display: none;
+            }
+            
+            .challenge-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-cost-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .cost-arrow {
+                position: static;
+                transform: rotate(90deg);
+                margin: 20px auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 30px;
+            }
+            
+            nav {
+                padding: 20px 30px;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 100px 30px 60px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .partners-logos {
+                flex-direction: column;
+            }
+            
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .executive-highlight {
+                padding: 30px;
+                border-radius: 20px;
+            }
+            
+            .executive-highlight p {
+                font-size: 1.25rem;
+            }
+            
+            .challenge-header .section-title {
+                font-size: 2rem;
+            }
+            
+            .social-cost {
+                padding: 40px 30px;
+            }
+            
+            .cost-amount {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- LOADER -->
+        <div class="loader">
+            <div class="loader-content">
+                <div class="loader-logo">
+                    INSTITUTO PAULISTA<br>
+                    <strong>DE CINEMA</strong>
+                </div>
+                <div class="loader-text">Transformando vidas através do audiovisual</div>
+            </div>
+        </div>
+
+        <!-- NAVEGAÇÃO -->
+        <nav id="navbar">
+            <div class="nav-container">
+                <a href="https://institutopaulistadecinema.com.br" class="logo">IPC</a>
+                <ul class="nav-menu">
+                    <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="#modelo" class="nav-link">Modelo</a></li>
+                    <li><a href="#impacto" class="nav-link">Impacto</a></li>
+                    <li><a href="#validacao" class="nav-link">Validação</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                </ul>
+                <a href="https://institutopaulistadecinema.com.br/apoiar" class="nav-cta">Apoiar Projeto</a>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    INSTITUTO PAULISTA<br>
+                    <strong>DE CINEMA</strong>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    A primeira escola-produtora do mundo onde jovens periféricos 
+                    são pagos R$ 1.412/mês para aprender cinema, dominar inteligência 
+                    artificial e produzir conteúdo de classe mundial.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">14M</span>
+                        <span class="stat-label">Investimento Público</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">400</span>
+                        <span class="stat-label">Vidas Transformadas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">300%</span>
+                        <span class="stat-label">Retorno Garantido</span>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="https://institutopaulistadecinema.com.br/inscricao" class="btn btn-primary">Conhecer o Projeto</a>
+                    <a href="https://institutopaulistadecinema.com.br/proposta.pdf" class="btn btn-secondary" target="_blank">Baixar Proposta</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUMÁRIO EXECUTIVO -->
+        <section class="section executive-summary">
+            <div class="executive-header reveal">
+                <h2 class="section-title">Sumário Executivo</h2>
+                <p class="section-subtitle">
+                    Uma síntese estratégica da proposta que representa o futuro 
+                    da educação profissional e inclusão produtiva em São Paulo
+                </p>
+            </div>
+            
+            <div class="executive-content">
+                <div class="executive-highlight reveal">
+                    <p>
+                        O Instituto Paulista de Cinema propõe um modelo revolucionário de formação profissional 
+                        que <span class="emphasis">transforma jovens periféricos em protagonistas da economia criativa</span>. 
+                        Com investimento público de R$ 14 milhões em emendas parlamentares, o projeto formará 
+                        400 profissionais em 4 anos, gerando economia de R$ 20 milhões para o poder público.
+                    </p>
+                </div>
+
+                <div class="executive-metrics reveal">
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 2L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8 2L8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="7" cy="13" r="1" fill="currentColor"/>
+                                <circle cx="12" cy="13" r="1" fill="currentColor"/>
+                                <circle cx="17" cy="13" r="1" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="metric-title">Inovação Pedagógica</div>
+                        <div class="metric-text">Primeiro centro mundial a unir formação em cinema e inteligência artificial para juventude periférica</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 13L7 9L13 15L21 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17 7H21V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="metric-title">Sustentabilidade Financeira</div>
+                        <div class="metric-text">Modelo autossustentável a partir do ano 4, operando como produtora-escola profissional</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 2V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M12 19V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M22 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M5 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="metric-title">Impacto Mensurável</div>
+                        <div class="metric-text">90% de empregabilidade garantida, salário médio de R$ 4.500 para egressos</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROBLEMA E SOLUÇÃO -->
+        <section id="sobre" class="section challenge-section">
+            <div class="challenge-header reveal">
+                <h2 class="section-title">O Desafio e a Solução</h2>
+                <p class="section-subtitle">
+                    São Paulo concentra 40% do mercado audiovisual brasileiro, 
+                    mas 2,4 milhões de jovens estão excluídos desta economia
+                </p>
+            </div>
+            
+            <div class="challenge-grid reveal">
+                <div class="challenge-card problem-card">
+                    <div class="challenge-card-header">
+                        O Problema
+                    </div>
+                    <div class="challenge-card-content">
+                        <ul class="challenge-list">
+                            <li>Faculdade de cinema custa R$ 216.000</li>
+                            <li>50.000 vagas em aberto no setor</li>
+                            <li>87% dos jovens sem ensino superior</li>
+                            <li>80% das vagas por indicação</li>
+                            <li>R$ 42.000/ano de custo social por jovem</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="challenge-card solution-card">
+                    <div class="challenge-card-header">
+                        Nossa Solução
+                    </div>
+                    <div class="challenge-card-content">
+                        <ul class="challenge-list">
+                            <li>Formação 100% gratuita</li>
+                            <li>Bolsa de R$ 1.412/mês + alimentação</li>
+                            <li>12 meses de formação intensiva</li>
+                            <li>Portfolio com grandes marcas</li>
+                            <li>90% de empregabilidade garantida</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-cost reveal">
+                <h3 class="social-cost-title">O Custo Social da Exclusão</h3>
+                
+                <div class="social-cost-content">
+                    <div class="cost-comparison">
+                        <div class="cost-label">Custo Anual por Jovem Excluído</div>
+                        <div class="cost-amount">R$ 42.000</div>
+                        <div class="cost-description">
+                            Gastos do poder público com programas sociais, segurança e saúde
+                        </div>
+                    </div>
+                    
+                    <div class="cost-arrow"></div>
+                    
+                    <div class="cost-comparison">
+                        <div class="cost-label">Retorno por Profissional Formado</div>
+                        <div class="cost-amount">R$ 195.000</div>
+                        <div class="cost-description">
+                            Geração de impostos e consumo ao longo da carreira profissional
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODELO -->
+        <section id="modelo" class="section">
+            <h2 class="section-title reveal">Como Funciona</h2>
+            <p class="section-subtitle reveal">
+                Operamos simultaneamente como escola e produtora profissional
+            </p>
+            
+            <div class="model-highlight reveal">
+                <h3>Escola-Produtora Revolucionária</h3>
+                <p>
+                    Jovens periféricos não pagam para aprender — são remunerados para produzir 
+                    conteúdo de classe mundial enquanto desenvolvem competências para liderar 
+                    a próxima geração do audiovisual brasileiro.
+                </p>
+            </div>
+
+            <div class="timeline reveal">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Fase 1</div>
+                        <div class="timeline-title">Fundamentos (4 meses)</div>
+                        <div class="timeline-description">
+                            História do cinema, linguagem audiovisual, storytelling, 
+                            fundamentos técnicos e ética profissional.
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Fase 2</div>
+                        <div class="timeline-title">Especialização (6 meses)</div>
+                        <div class="timeline-description">
+                            Escolha entre seis trilhas: Produção, Roteiro, Direção, 
+                            Inteligência Artificial, Pós-produção ou Áudio.
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Fase 3</div>
+                        <div class="timeline-title">Produção Real (2 meses)</div>
+                        <div class="timeline-description">
+                            Imersão em projetos comerciais reais, trabalho com 
+                            clientes corporativos e produções cinematográficas.
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPACTO -->
+        <section id="impacto" class="section impact-section">
+            <h2 class="section-title reveal">Dimensão do Impacto</h2>
+            <p class="section-subtitle reveal">
+                Métricas que demonstram o potencial transformador do investimento
+            </p>
+            
+            <div class="impact-grid reveal">
+                <div class="impact-card">
+                    <span class="impact-number">400</span>
+                    <span class="impact-label">Jovens capacitados</span>
+                </div>
+                <div class="impact-card">
+                    <span class="impact-number">1.200</span>
+                    <span class="impact-label">Empregos indiretos</span>
+                </div>
+                <div class="impact-card">
+                    <span class="impact-number">78M</span>
+                    <span class="impact-label">PIB cultural adicionado</span>
+                </div>
+                <div class="impact-card">
+                    <span class="impact-number">380</span>
+                    <span class="impact-label">Produções realizadas</span>
+                </div>
+                <div class="impact-card">
+                    <span class="impact-number">4.5k</span>
+                    <span class="impact-label">Salário médio mensal</span>
+                </div>
+                <div class="impact-card">
+                    <span class="impact-number">65k</span>
+                    <span class="impact-label">Custo por vida transformada</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- VALIDAÇÃO -->
+        <section id="validacao" class="section section-bg">
+            <div style="text-align: center;">
+                <div class="validation-badge reveal">Projeto Aprovado</div>
+                <h2 class="section-title reveal">Credibilidade Comprovada</h2>
+                <div class="validation-amount reveal">R$ 2 milhões</div>
+                <p class="section-subtitle reveal" style="max-width: 700px; margin: 0 auto;">
+                    Já investidos pelo Governo Federal através do FSA/ANCINE 
+                    para o filme "O Fantástico Laboratório", validando a 
+                    viabilidade técnica e o impacto social do projeto.
+                </p>
+                
+                <div class="partners-logos reveal">
+                    <div class="partner-logo">Dummy Filmes</div>
+                    <div class="partner-logo">MPV Filmes</div>
+                    <div class="partner-logo">Sabiá Educação</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section id="contato" class="cta-section">
+            <h2 class="cta-title reveal">Transforme o Futuro do Cinema Brasileiro</h2>
+            
+            <p class="cta-subtitle reveal">
+                Junte-se a nós na construção do primeiro centro de formação 
+                onde jovens periféricos lideram a revolução audiovisual
+            </p>
+            
+            <div class="cta-buttons reveal">
+                <a href="https://institutopaulistadecinema.com.br/apoiar" class="btn-cta btn-cta-primary">Apoiar o Instituto</a>
+                <a href="https://institutopaulistadecinema.com.br/proposta-completa.pdf" class="btn-cta btn-cta-secondary" target="_blank">Baixar Proposta Completa</a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>IPC</h3>
+                    <p>
+                        Instituto Paulista de Cinema - Transformando jovens periféricos 
+                        em protagonistas da economia criativa através da convergência 
+                        entre educação, tecnologia e produção audiovisual.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Para Você</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://institutopaulistadecinema.com.br/jovens" target="_blank">Jovens</a></li>
+                        <li><a href="https://institutopaulistadecinema.com.br/empresas" target="_blank">Empresas</a></li>
+                        <li><a href="https://institutopaulistadecinema.com.br/governo" target="_blank">Governo</a></li>
+                        <li><a href="https://institutopaulistadecinema.com.br/investidores" target="_blank">Investidores</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Documentos</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://institutopaulistadecinema.com.br/apresentacoes" target="_blank">Apresentações</a></li>
+                        <li><a href="https://institutopaulistadecinema.com.br/propostas" target="_blank">Propostas</a></li>
+                        <li><a href="https://institutopaulistadecinema.com.br/one-pagers" target="_blank">One-Pagers</a></li>
+                        <li><a href="https://institutopaulistadecinema.com.br/manifesto" target="_blank">Manifesto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contato@institutopaulistadecinema.com.br">contato@institutopaulistadecinema.com.br</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Instituto Paulista de Cinema. Transformando potencial em realização.</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">
+                    <a href="https://institutopaulistadecinema.com.br" style="color: rgba(255,255,255,0.7); text-decoration: none;">
+                        www.institutopaulistadecinema.com.br
+                    </a>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal animations
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

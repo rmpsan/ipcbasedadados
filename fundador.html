@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raphael Martinez: O Fundador - Instituto Paulista de Cinema</title>
+    <script src="https://cdn-tailwindcss.vercel.app/"></script>
+    <script src="menu.js"></script>
+    <script src="footer.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal-500: #14b8a6;
+            --cyan-600: #0891b2;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-100: #f3f4f6;}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background-image: url('https://gov.institutopaulistadecinema.com.br/galeria/12.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(3, 7, 18, 1) 15%, rgba(3, 7, 18, 0.7) 60%, rgba(3, 7, 18, 0.3) 100%);
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; }
+
+        .cta-button {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(20, 184, 166, 0.2);
+        }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-gradient {
+            background: linear-gradient(-45deg, #14b8a6, #0891b2, #0369a1, #06b6d4);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+        }
+        
+        .animated-gradient-dark {
+            background: linear-gradient(-45deg, #030712, #111827, #1f2937, #030712);
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+        }
+
+        .reveal {
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+        
+        .reveal.visible { animation-duration: 0.8s; animation-fill-mode: forwards; animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); animation-name: fadeInUp; }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--teal-500);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .parallax-divider {
+            height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        .prose-custom {
+            @apply text-lg text-gray-700;
+        }
+        .prose-custom h3 {
+            @apply text-2xl font-bold text-gray-900 mt-12 mb-4 border-l-4 border-teal-500 pl-4;
+        }
+        .prose-custom p {
+            @apply mb-6 leading-relaxed;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300"><main>
+        <!-- 2. Seção Principal (Hero Section) -->
+        <section class="hero-bg text-white h-[80vh] flex items-end overflow-hidden">
+            <div class="hero-content container mx-auto px-6 pb-20 text-center flex flex-col items-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 max-w-4xl reveal">RAPHAEL MARTINEZ: O Arquiteto da Revolução Audiovisual Inclusiva</h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-6 reveal" style="animation-delay: 0.2s;">Do Capão Redondo aos Sets de Filmagem, construindo a primeira produtora-escola do mundo que paga para o jovem aprender e transformar o futuro.</p>
+                <blockquote class="max-w-3xl mx-auto border-l-4 border-teal-400 pl-6 italic text-gray-300 reveal" style="animation-delay: 0.4s;">
+                    "Eu sei que existem milhares de jovens talentosos nas periferias que só precisam de uma oportunidade. O Instituto será a porta que nunca existiu para nós."
+                    <cite class="block not-italic mt-2 font-semibold text-teal-400">— Raphael Martinez, Fundador e Diretor Executivo</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- 3. Biografia -->
+        <section class="bg-gray-100 text-gray-800 py-20">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <article class="prose-custom">
+                    <div class="reveal">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">A História que Inspira e Transforma Exceções em Regras</h2>
+                        
+                        <div class="my-12 reveal text-center">
+                            <img src="https://gov.institutopaulistadecinema.com.br/images/raphael_bio.png" alt="Raphael Martinez, fundador do Instituto Paulista de Cinema" class="inline-block rounded-lg shadow-2xl w-full max-w-md mx-auto">
+                        </div>
+
+                        <p>Raphael Martinez representa muito mais que uma história pessoal de superação; ele personifica um modelo econômico replicável: a transformação sistemática de potencial individual em valor econômico estrutural. Sua trajetória é a prova viva de que o talento não tem CEP.</p>
+                        <p>Nascido há 38 anos nas periferias de São Paulo, entre os conjuntos habitacionais do Capão Redondo e Campo Limpo, Raphael é o mais velho de três irmãos que aprenderam precocemente que a vida exige reinvenção constante. Aos 13 anos, enfrentou seu primeiro grande roteiro de superação: o abandono do lar por seu pai, um momento-chave que transformou potencial em necessidade, o catalisador que converteria talento nato em competência de mercado.</p>
+                    </div>
+                    
+                    <div class="reveal">
+                        <h3>Os Fundamentos de uma Metodologia de Sucesso</h3>
+                        <p>A necessidade foi sua primeira escola de negócios. Começou como garçom e recreador em um buffet infantil, descobrindo seu talento para a comunicação. Um professor atento ensinou-lhe CorelDraw e Photoshop, e aos 15 anos, já criava flyers para casas noturnas. Antes dos 17, tornou-se um dos principais bartenders da noite paulistana, aprendendo performance sob pressão e a gerar valor através da diferenciação técnica.</p>
+                    </div>
+
+                    <div class="reveal">
+                        <h3>Do Bar para as Câmeras: A Descoberta do Audiovisual</h3>
+                        <p>Aos 18 anos, uma sugestão casual durante o São Paulo Fashion Week – "Coloca o Rapha, ele é engraçado" – foi o ponto de inflexão que o levou para as câmeras de TV. Ele conquistou uma bolsa na Escola de Atores Wolf Maya, dividindo seu tempo entre servir drinks, estudar artes cênicas e aprender produção. Sua experiência em múltiplas emissoras menores foi sua pós-graduação prática, culminando em um teste para uma novela da Rede Globo.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <!-- PARALLAX DIVIDER -->
+        <section class="parallax-divider" style="background-image: url('https://gov.institutopaulistadecinema.com.br/galeria/4.jpg');"></section>
+
+        <!-- Biografia Continuação -->
+        <section class="bg-gray-100 text-gray-800 py-20">
+            <div class="container mx-auto px-6 max-w-4xl">
+                 <article class="prose-custom">
+                     <div class="reveal">
+                        <h3>O Nascimento de uma Produtora e o Reconhecimento</h3>
+                        <p>De volta a São Paulo, com mil reais na conta e ao lado de sua sócia, Raphael fundou a Dummy Filmes. O primeiro estúdio foi um cubículo de 2x2 metros, construído com madeira de construção e equipamentos improvisados. Projetos inovadores impulsionaram a produtora, permitindo investir em equipamentos profissionais e na sua formação na Academia Internacional de Cinema de São Paulo, onde seus filmes conquistaram prêmios de Melhor Filme de Novos Diretores e Melhor Roteiro.</p>
+                        <p>Esse reconhecimento o levou a lecionar no Museu da Imagem e do Som (MIS). A Dummy Filmes cresceu exponencialmente, atendendo gigantes como Google, Santander e IBM, e tornando-se pioneira em tecnologias como drones e transmissões ao vivo para instituições como MASP e Sala São Paulo. Em 2025, seu primeiro longa-metragem como diretor, "O Fantástico Laboratório", foi contemplado pelo FSA/ANCINE com R$ 2 milhões do governo federal, uma chancela oficial de sua capacidade técnica e visão cultural.</p>
+                     </div>
+                 </article>
+            </div>
+        </section>
+
+        <!-- Legado -->
+        <section class="py-20 animated-gradient-dark text-white">
+            <div class="container mx-auto px-6 max-w-4xl text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-6">O Instituto Paulista de Cinema: Um Legado em Construção</h2>
+                    <p class="text-lg leading-relaxed text-gray-300 mb-6">A trajetória de Raphael transcende a biografia para se tornar um estudo de caso de desenvolvimento econômico. Sua história não é excepcional por talento, mas por ter navegado um sistema que exclui jovens de sua origem. Agora, ele está transformando sua exceção em regra.</p>
+                    <p class="text-lg leading-relaxed text-gray-300">O Instituto nasce da indignação e existe para transformar. Raphael acredita que sua história só faz sentido completo quando se torna metodologia para que milhares de outras deixem de depender de sorte, e passem a ser resultado de oportunidade estruturada, educação direcionada e investimento estratégico em capital humano. Ele não está apenas ensinando cinema. Ele está reescrevendo o roteiro de milhares de vidas.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Final -->
+        <section class="py-20 animated-gradient text-white">
+            <div class="container mx-auto px-6 text-center reveal">
+                <h2 class="text-3xl font-bold mb-4">Faça Parte Desta Transformação</h2>
+                <p class="max-w-3xl mx-auto mb-8">O legado de Raphael Martinez e do Instituto Paulista de Cinema está sendo construído. Sua empresa pode ser parte desta história, transformando obrigações fiscais em oportunidades reais e impactando vidas.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                    <a href="index.html" class="bg-white/20 backdrop-blur-sm text-white font-bold py-3 px-8 rounded-lg cta-button">Saiba Mais sobre o Instituto</a>
+                    <a href="contato.html" class="bg-gray-900 text-white font-bold py-3 px-8 rounded-lg cta-button">Torne-se um Parceiro</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Rodapé -->
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                             const headerOffset = document.getElementById('header').offsetHeight;
+                             const elementPosition = targetElement.getBoundingClientRect().top;
+                             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                             window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        }
+                    }
+                });
+            });
+            
+            // Intersection Observer for animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => observer.observe(el));
+            
+            // Custom Cursor Logic removed
+        });
+    </script>
+
+</body>
+</html>
+

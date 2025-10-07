@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Paulista de Cinema - Manifesto da Produtora</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&display=swap');
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: white;
+            font-weight: 400;
+            letter-spacing: -0.011em;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+        }
+
+        /* SEÇÕES */
+        .section {
+            padding: 80px 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            page-break-after: always;
+        }
+
+        /* CAPA */
+        .cover {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
+            animation: pulse 20s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover-title {
+            font-size: 4rem;
+            font-weight: 200;
+            letter-spacing: -0.02em;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .cover-title strong {
+            font-weight: 700;
+            display: block;
+            color: #3b82f6;
+            margin-top: 10px;
+        }
+
+        .cover-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            line-height: 1.6;
+        }
+
+        /* MANIFESTO */
+        .manifesto-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.75rem;
+            line-height: 1.8;
+            color: #1f2937;
+            max-width: 800px;
+            margin: 40px auto;
+            font-style: italic;
+        }
+
+        .manifesto-highlight {
+            color: #3b82f6;
+            font-weight: 600;
+            font-style: normal;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* QUOTE */
+        .quote-large {
+            font-size: 3rem;
+            font-weight: 200;
+            color: #111827;
+            text-align: center;
+            margin: 60px 0;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+        }
+
+        .quote-large strong {
+            font-weight: 700;
+            color: #3b82f6;
+        }
+
+        /* STATS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 30px 20px;
+            background: #f9fafb;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* PRINCIPLES */
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .principle-card {
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 4px solid #3b82f6;
+        }
+
+        .principle-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #3b82f6;
+            opacity: 0.2;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .principle-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 15px;
+        }
+
+        .principle-text {
+            font-size: 1.125rem;
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        /* DIFFERENTIALS */
+        .differentials {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            padding: 60px;
+            border-radius: 24px;
+            margin: 60px 0;
+        }
+
+        .differentials-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .differential-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 30px 0;
+        }
+
+        .differential-icon {
+            width: 40px;
+            height: 40px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .differential-content {
+            flex: 1;
+        }
+
+        .differential-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .differential-text {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* VISION */
+        .vision-box {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            padding: 60px;
+            border-radius: 24px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .vision-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .vision-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* PORTFOLIO */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .portfolio-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-list {
+            list-style: none;
+        }
+
+        .portfolio-list li {
+            padding: 8px 0;
+            color: #6b7280;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .portfolio-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* PROCESS */
+        .process-timeline {
+            position: relative;
+            padding: 40px 0;
+            margin: 60px 0;
+        }
+
+        .process-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e5e7eb;
+            transform: translateX(-50%);
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .process-content {
+            width: 45%;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .process-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #e5e7eb;
+        }
+
+        .process-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .process-text {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* TEAM */
+        .team-section {
+            background: #f9fafb;
+            padding: 60px;
+            border-radius: 24px;
+            margin: 60px 0;
+        }
+
+        .team-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #111827;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .team-description {
+            font-size: 1.125rem;
+            color: #4b5563;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .team-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .team-stat {
+            text-align: center;
+        }
+
+        .team-stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            display: block;
+        }
+
+        .team-stat-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 5px;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 80px;
+            border-radius: 24px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .cta-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: white;
+            color: #3b82f6;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        /* FOOTER */
+        .footer-section {
+            background: #111827;
+            color: white;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact {
+            font-size: 1.125rem;
+            margin-top: 30px;
+        }
+
+        .footer-contact a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        /* UTILITIES */
+        .text-blue {
+            color: #3b82f6;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 60px;
+            line-height: 1.6;
+        }
+
+        /* PRINT */
+        @media print {
+            body {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .section {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- CAPA -->
+        <section class="section cover">
+            <div class="cover-content">
+                <h1 class="cover-title">
+                    Somos a produtora que
+                    <strong>o futuro estava esperando</strong>
+                </h1>
+                
+                <p class="cover-subtitle">
+                    Onde jovens periféricos não pagam para aprender.<br>
+                    São pagos para revolucionar o audiovisual brasileiro.
+                </p>
+                
+                <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.2);">
+                    <p style="font-size: 1.125rem; opacity: 0.8;">
+                        Instituto Paulista de Cinema<br>
+                        <strong style="color: #3b82f6;">A Produtora</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MANIFESTO -->
+        <section class="section">
+            <div class="quote-large">
+                "Nascemos da <strong>indignação</strong>.<br>
+                Crescemos com <strong>propósito</strong>.<br>
+                Existimos para <strong>transformar</strong>."
+            </div>
+            
+            <div class="manifesto-text">
+                Em cada esquina das periferias de São Paulo, existe um Spike Lee, 
+                uma Ava DuVernay, um Fernando Meirelles esperando para nascer. 
+                <span class="manifesto-highlight">Mas o cinema brasileiro insiste em 
+                ser um clube fechado</span>, onde o CEP define o futuro e o sobrenome 
+                abre portas que o talento sozinho jamais abriria.
+            </div>
+            
+            <div class="manifesto-text">
+                Nós nos recusamos a aceitar isso. Somos a primeira produtora do mundo 
+                que <span class="manifesto-highlight">inverte completamente a lógica 
+                do mercado</span>: aqui, jovens da quebrada não apenas aprendem as 
+                técnicas mais avançadas do audiovisual — eles são remunerados para 
+                criar o futuro da comunicação visual brasileira.
+            </div>
+            
+            <div class="manifesto-text">
+                Não somos uma escola que finge ser produtora. Não somos uma produtora 
+                que finge ter responsabilidade social. <span class="manifesto-highlight">
+                Somos uma revolução em forma de empresa</span>. Cada frame que produzimos 
+                carrega a autenticidade das ruas. Cada projeto que entregamos transforma 
+                uma vida. Cada cliente que nos escolhe, escolhe mudar o mundo.
+            </div>
+        </section>
+
+        <!-- NOSSA ESSÊNCIA -->
+        <section class="section">
+            <h2 class="section-title">Nossa Essência</h2>
+            <p class="section-subtitle">
+                Não produzimos vídeos. Produzimos futuros.
+            </p>
+            
+            <div class="principles">
+                <div class="principle-card">
+                    <span class="principle-number">01</span>
+                    <h3 class="principle-title">Excelência Sem Compromisso</h3>
+                    <p class="principle-text">
+                        Nossos jovens são supervisionados por profissionais com 
+                        15+ anos de mercado. O resultado? Qualidade idêntica ou 
+                        superior às melhores produtoras, com a autenticidade que 
+                        só a periferia pode entregar.
+                    </p>
+                </div>
+                
+                <div class="principle-card">
+                    <span class="principle-number">02</span>
+                    <h3 class="principle-title">Velocidade do Futuro</h3>
+                    <p class="principle-text">
+                        Enquanto o mercado demora 45 dias, entregamos em 15. 
+                        Não porque corremos mais, mas porque eliminamos a 
+                        burocracia e abraçamos a agilidade da geração digital.
+                    </p>
+                </div>
+                
+                <div class="principle-card">
+                    <span class="principle-number">03</span>
+                    <h3 class="principle-title">Tecnologia Como Libertação</h3>
+                    <p class="principle-text">
+                        Primeira escola de IA audiovisual para periferias do mundo. 
+                        Nossos jovens não apenas usam as ferramentas mais avançadas 
+                        — eles as dominam e as reinventam.
+                    </p>
+                </div>
+                
+                <div class="principle-card">
+                    <span class="principle-number">04</span>
+                    <h3 class="principle-title">Impacto Real, Não Marketing</h3>
+                    <p class="principle-text">
+                        400 vidas transformadas. 1.600 famílias impactadas. 
+                        R$ 78 milhões em PIB gerado. Não são projeções. 
+                        São compromissos contratuais.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOSSOS NÚMEROS -->
+        <section class="section" style="background: #f9fafb;">
+            <h2 class="section-title">Os Números da Revolução</h2>
+            <p class="section-subtitle">
+                Métricas que provam: outro modelo é possível
+            </p>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Aprovação na 1ª entrega</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">15 dias</span>
+                    <span class="stat-label">Prazo médio</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">35%</span>
+                    <span class="stat-label">Mais barato</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Impacto social</span>
+                </div>
+            </div>
+            
+            <div class="vision-box">
+                <h3 class="vision-title">Nossa Visão</h3>
+                <p class="vision-text">
+                    Ser a maior produtora audiovisual do Brasil em 5 anos. 
+                    Não pelo faturamento, mas pelo número de vidas transformadas. 
+                    Não pelo tamanho, mas pelo impacto. Não pelo lucro, 
+                    mas pelo legado.
+                </p>
+            </div>
+        </section>
+
+        <!-- O QUE FAZEMOS -->
+        <section class="section">
+            <h2 class="section-title">O Que Criamos</h2>
+            <p class="section-subtitle">
+                Tudo que sua marca precisa para se comunicar com o futuro
+            </p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <h3 class="portfolio-title">Produção Premium</h3>
+                    <ul class="portfolio-list">
+                        <li>Filmes institucionais</li>
+                        <li>Documentários</li>
+                        <li>Branded content</li>
+                        <li>Manifestos de marca</li>
+                    </ul>
+                </div>
+                
+                <div class="portfolio-card">
+                    <h3 class="portfolio-title">Digital Nativo</h3>
+                    <ul class="portfolio-list">
+                        <li>Campanhas sociais</li>
+                        <li>Séries web</li>
+                        <li>Podcasts visuais</li>
+                        <li>Lives e streaming</li>
+                    </ul>
+                </div>
+                
+                <div class="portfolio-card">
+                    <h3 class="portfolio-title">Inovação Pura</h3>
+                    <ul class="portfolio-list">
+                        <li>Conteúdo com IA</li>
+                        <li>Realidade virtual</li>
+                        <li>Experiências 360°</li>
+                        <li>Motion graphics</li>
+                    </ul>
+                </div>
+                
+                <div class="portfolio-card">
+                    <h3 class="portfolio-title">Educação Visual</h3>
+                    <ul class="portfolio-list">
+                        <li>EAD premium</li>
+                        <li>Tutoriais técnicos</li>
+                        <li>Treinamentos</li>
+                        <li>Onboarding visual</li>
+                    </ul>
+                </div>
+                
+                <div class="portfolio-card">
+                    <h3 class="portfolio-title">Eventos ao Vivo</h3>
+                    <ul class="portfolio-list">
+                        <li>Cobertura multicâmera</li>
+                        <li>Transmissão streaming</li>
+                        <li>Highlights em tempo real</li>
+                        <li>Aftermovies</li>
+                    </ul>
+                </div>
+                
+                <div class="portfolio-card">
+                    <h3 class="portfolio-title">Comunicação Interna</h3>
+                    <ul class="portfolio-list">
+                        <li>Endomarketing</li>
+                        <li>Mensagens CEO</li>
+                        <li>Cultura corporativa</li>
+                        <li>Resultados visuais</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOSSO PROCESSO -->
+        <section class="section" style="background: #f9fafb;">
+            <h2 class="section-title">Como Fazemos Magia</h2>
+            <p class="section-subtitle">
+                Um processo que une agilidade de startup com rigor de multinacional
+            </p>
+            
+            <div class="process-timeline">
+                <div class="process-line"></div>
+                
+                <div class="process-step">
+                    <div class="process-content">
+                        <h3 class="process-title">Imersão Total</h3>
+                        <p class="process-text">
+                            Não fazemos briefing. Fazemos imersão. Nossos jovens 
+                            mergulham no universo da sua marca para criar de dentro 
+                            para fora.
+                        </p>
+                    </div>
+                    <div class="process-dot"></div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-content">
+                        <h3 class="process-title">Criação Coletiva</h3>
+                        <p class="process-text">
+                            Times multidisciplinares com visões diversas. 
+                            A quebrada e o mercado criando juntos.
+                        </p>
+                    </div>
+                    <div class="process-dot"></div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-content">
+                        <h3 class="process-title">Produção Supervisionada</h3>
+                        <p class="process-text">
+                            Jovens talentos + veteranos do mercado = 
+                            frescor com experiência, ousadia com segurança.
+                        </p>
+                    </div>
+                    <div class="process-dot"></div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-content">
+                        <h3 class="process-title">Entrega que Transforma</h3>
+                        <p class="process-text">
+                            Cada projeto entregue é uma vida transformada, 
+                            uma marca fortalecida, um futuro construído.
+                        </p>
+                    </div>
+                    <div class="process-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOSSOS DIFERENCIAIS -->
+        <section class="section">
+            <h2 class="section-title">Por Que Somos Únicos</h2>
+            <p class="section-subtitle">
+                Diferenciais que nenhuma outra produtora pode copiar
+            </p>
+            
+            <div class="differentials">
+                <h3 class="differentials-title">Nossa Proposta de Valor</h3>
+                
+                <div class="differential-item">
+                    <div class="differential-icon">✓</div>
+                    <div class="differential-content">
+                        <h4 class="differential-title">Custo Zero via Incentivos Fiscais</h4>
+                        <p class="differential-text">
+                            Transforme impostos em produção. 100% dedutível através de 
+                            múltiplas leis de incentivo. ROI infinito.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="differential-item">
+                    <div class="differential-icon">✓</div>
+                    <div class="differential-content">
+                        <h4 class="differential-title">Dream Team de Supervisores</h4>
+                        <p class="differential-text">
+                            Profissionais com 4.000+ projetos realizados garantem 
+                            qualidade premium em cada entrega.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="differential-item">
+                    <div class="differential-icon">✓</div>
+                    <div class="differential-content">
+                        <h4 class="differential-title">Autenticidade Impossível de Replicar</h4>
+                        <p class="differential-text">
+                            A voz real das ruas. Conexão genuína com 70% da população 
+                            que as agências tradicionais não conseguem alcançar.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="differential-item">
+                    <div class="differential-icon">✓</div>
+                    <div class="differential-content">
+                        <h4 class="differential-title">Velocidade 3x Maior</h4>
+                        <p class="differential-text">
+                            15 dias onde outros levam 45. Sem comprometer qualidade. 
+                            Agilidade da nova geração.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="differential-item">
+                    <div class="differential-icon">✓</div>
+                    <div class="differential-content">
+                        <h4 class="differential-title">Impacto Social Mensurável</h4>
+                        <p class="differential-text">
+                            Cada produção transforma vidas. Relatórios auditados. 
+                            ESG real, não marketing.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOSSA EQUIPE -->
+        <section class="section" style="background: #f9fafb;">
+            <h2 class="section-title">Quem Somos</h2>
+            <p class="section-subtitle">
+                A fusão perfeita entre juventude e experiência
+            </p>
+            
+            <div class="team-section">
+                <h3 class="team-title">O Time dos Sonhos</h3>
+                <p class="team-description">
+                    400 jovens talentos supervisionados por veteranos do mercado. 
+                    Cada projeto une o frescor da periferia com a experiência de 
+                    quem já fez história no audiovisual brasileiro.
+                </p>
+                
+                <div class="team-stats">
+                    <div class="team-stat">
+                        <span class="team-stat-number">15+</span>
+                        <span class="team-stat-label">Anos experiência</span>
+                    </div>
+                    <div class="team-stat">
+                        <span class="team-stat-number">4.000+</span>
+                        <span class="team-stat-label">Projetos realizados</span>
+                    </div>
+                    <div class="team-stat">
+                        <span class="team-stat-number">200+</span>
+                        <span class="team-stat-label">Grandes marcas</span>
+                    </div>
+                    <div class="team-stat">
+                        <span class="team-stat-number">100%</span>
+                        <span class="team-stat-label">Diversidade</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quote-large" style="margin-top: 60px;">
+                "Não contratamos jovens periféricos por caridade.<br>
+                Contratamos porque eles são <strong>os melhores</strong>."
+            </div>
+        </section>
+
+        <!-- CHAMADA FINAL -->
+        <section class="section">
+            <h2 class="section-title">O Futuro é Agora</h2>
+            <p class="section-subtitle">
+                E ele está sendo escrito nas periferias de São Paulo
+            </p>
+            
+            <div class="manifesto-text">
+                Cada empresa que nos escolhe faz uma declaração poderosa: 
+                <span class="manifesto-highlight">acredita que o talento não tem CEP</span>. 
+                Entende que autenticidade vale mais que tradição. Sabe que transformar 
+                vidas enquanto constrói sua marca não é custo — é investimento no 
+                futuro que todos queremos ver.
+            </div>
+            
+            <div class="cta-section">
+                <h3 class="cta-title">
+                    Junte-se à Revolução
+                </h3>
+                
+                <p class="cta-text">
+                    Seja uma das 10 empresas fundadoras que vão mudar para sempre 
+                    a forma como o audiovisual brasileiro é produzido. 
+                    Não é apenas sobre fazer vídeos. É sobre fazer história.
+                </p>
+                
+                <a href="#" class="cta-button">
+                    Quero Fazer Parte
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <section class="footer-section">
+            <div class="footer-logo">
+                INSTITUTO PAULISTA DE CINEMA
+            </div>
+            
+            <p class="footer-text">
+                A produtora que o mercado temia.<br>
+                A oportunidade que os jovens esperavam.<br>
+                A transformação que o Brasil precisava.
+            </p>
+            
+            <div style="margin: 40px 0; padding: 30px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <p style="font-size: 1.125rem; line-height: 1.8; opacity: 0.9;">
+                    <strong style="color: #3b82f6;">Nossa Promessa:</strong><br>
+                    Qualidade de multinacional. Preço de produtora independente.<br>
+                    Velocidade de startup. Impacto de ONG.<br>
+                    Autenticidade que dinheiro não compra.
+                </p>
+            </div>
+            
+            <div class="footer-contact">
+                <p>
+                    <strong>Vamos conversar sobre o futuro?</strong><br>
+                    <a href="mailto:contato@institutopaulistadecinema.com.br">contato@institutopaulistadecinema.com.br</a><br>
+                    <a href="http://www.institutopaulistadecinema.com.br">www.institutopaulistadecinema.com.br</a>
+                </p>
+                
+                <p style="margin-top: 30px; font-size: 0.875rem; opacity: 0.6;">
+                    São Paulo • 2025<br>
+                    Transformando o audiovisual. Uma vida por vez.
+                </p>
+            </div>
+        </section>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Paulista de Cinema - Produtora com Impacto Social</title>
+    <script src="https://cdn-tailwindcss.vercel.app/"></script>
+    <script src="menu.js"></script>
+    <script src="footer.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal-500: #14b8a6;
+            --cyan-600: #0891b2;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-100: #f3f4f6;}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background-image: url('https://institutopaulistadecinema.com.br/imagens%20abertura/1.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(3, 7, 18, 1) 5%, rgba(3, 7, 18, 0.7) 50%, rgba(3, 7, 18, 0.5) 100%);
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; transform-style: preserve-3d; }
+
+        .cta-button {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(20, 184, 166, 0.2);
+        }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-gradient {
+            background: linear-gradient(-45deg, #14b8a6, #0891b2, #0369a1, #06b6d4);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+        }
+        
+        .animated-gradient-dark {
+            background: linear-gradient(-45deg, #030712, #111827, #1f2937, #030712);
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+        }
+
+        .reveal {
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+        
+        .reveal.visible { animation-duration: 0.8s; animation-fill-mode: forwards; animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); animation-name: fadeInUp; }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--teal-500);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .parallax-divider {
+            height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .tab-button {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .tab-button::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--teal-500);
+            transition: width 0.3s ease;
+        }
+        .tab-button.active { color: var(--teal-500); }
+        .tab-button.active::after { width: 100%; }
+        
+        .founder-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .founder-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--teal-500);
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300"><main>
+        <!-- 2. Seção Principal (Hero Section) -->
+        <section id="hero" class="hero-bg text-white min-h-screen flex items-center overflow-hidden" style="perspective: 1000px;">
+            <div class="hero-content container mx-auto px-6 py-24 md:py-40 text-center flex flex-col items-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 max-w-4xl reveal">A Produtora que Redefine o Futuro da sua <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">Comunicação e Impacto Social</span></h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-10 reveal" style="animation-delay: 0.2s;">Produza Conteúdo Audiovisual Premium com Custo Efetivo ZERO através de Leis de Incentivo Fiscal ou garanta 35% de Economia Direta.</p>
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm font-semibold uppercase tracking-wider text-teal-300 mb-12 reveal" style="animation-delay: 0.4s;">
+                    <span>ZERO Custo Efetivo</span><span class="hidden md:inline">|</span>
+                    <span>100% Dedução Fiscal</span><span class="hidden md:inline">|</span>
+                    <span>35% Economia Garantida</span><span class="hidden md:inline">|</span>
+                    <span>15 Dias Prazo de Entrega</span>
+                </div>
+                <div class="reveal" style="animation-delay: 0.6s;"><a href="contato.html" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold py-4 px-10 text-lg rounded-lg cta-button inline-block">Agende Sua Apresentação Executiva</a></div>
+            </div>
+        </section>
+
+        <!-- 3. O Paradoxo do Mercado -->
+        <section class="bg-gray-100 text-gray-800 py-20">
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-4">O Paradoxo do Mercado Audiovisual: <span class="text-red-600">Sua Empresa Paga Duas Vezes.</span></h2>
+                    <p class="max-w-4xl mx-auto mb-12">
+                        O mercado audiovisual movimenta R$ 30 bilhões, mas sua empresa enfrenta uma dupla tributação invisível: você paga impostos sem retorno direto e, depois, paga caro por produções lentas e com pouca escala. É uma dupla alocação de recursos para um único resultado.
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white p-6 rounded-lg shadow-lg"><p class="text-3xl font-bold text-teal-600">R$ 80.000</p><p>Custo médio de um vídeo de 3 min.</p></div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg"><p class="text-3xl font-bold text-teal-600">45-60 Dias</p><p>Prazo médio de entrega do mercado.</p></div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg"><p class="text-3xl font-bold text-teal-600">0%</p><p>Retorno dos impostos pagos.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. A Solução Instituto -->
+        <section class="py-20 animated-gradient-dark text-white">
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-4">A Solução Instituto: Produção Premium com Propósito e Inteligência Fiscal.</h2>
+                    <p class="max-w-4xl mx-auto mb-12">
+                        Somos a primeira produtora-escola do mundo que inverte essa lógica. Aqui, jovens da periferia são remunerados para produzir conteúdo profissional para grandes marcas, incluindo a sua.
+                    </p>
+                </div>
+                <div class="relative flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-4">
+                     <div class="text-center reveal p-4"><div class="bg-teal-500 text-white rounded-full h-24 w-24 flex flex-col justify-center items-center shadow-lg p-2 mx-auto mb-4"><span class="font-bold text-2xl">1</span></div><h3 class="font-bold">Investimento</h3><p class="text-sm text-gray-300">(Via Incentivo Fiscal)</p></div>
+                     <div class="hidden md:block text-teal-400 text-4xl font-light mx-4 reveal">→</div>
+                     <div class="text-center reveal p-4" style="animation-delay:200ms;"><div class="bg-teal-500 text-white rounded-full h-24 w-24 flex flex-col justify-center items-center shadow-lg p-2 mx-auto mb-4"><span class="font-bold text-2xl">2</span></div><h3 class="font-bold">Dedução 100%</h3><p class="text-sm text-gray-300">(Imposto vira Ativo)</p></div>
+                     <div class="hidden md:block text-teal-400 text-4xl font-light mx-4 reveal">→</div>
+                     <div class="text-center reveal p-4" style="animation-delay:400ms;"><div class="bg-teal-500 text-white rounded-full h-24 w-24 flex flex-col justify-center items-center shadow-lg p-2 mx-auto mb-4"><span class="font-bold text-2xl">3</span></div><h3 class="font-bold">Produção Premium</h3><p class="text-sm text-gray-300">(Conteúdo Entregue)</p></div>
+                     <div class="hidden md:block text-teal-400 text-4xl font-light mx-4 reveal">→</div>
+                     <div class="text-center reveal p-4" style="animation-delay:600ms;"><div class="bg-teal-500 text-white rounded-full h-24 w-24 flex flex-col justify-center items-center shadow-lg p-2 mx-auto mb-4"><span class="font-bold text-2xl">4</span></div><h3 class="font-bold">Impacto Social</h3><p class="text-sm text-gray-300">(Jovens Transformados)</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Benefícios -->
+        <section id="beneficios" class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl font-bold">Benefícios Exclusivos para Empresas Visionárias</h2>
+                    <p class="text-xl max-w-3xl mx-auto mt-4">Resultados que nenhuma outra produtora pode oferecer.</p>
+                </div>
+                <div id="tabs-container" class="max-w-6xl mx-auto">
+                    <div class="flex flex-wrap justify-center border-b border-gray-300 mb-8 reveal">
+                        <button class="tab-button active py-3 px-6 font-semibold text-gray-600" data-tab="custo-zero">Custo Efetivo ZERO</button>
+                        <button class="tab-button py-3 px-6 font-semibold text-gray-600" data-tab="economia">35% de Economia Direta</button>
+                        <button class="tab-button py-3 px-6 font-semibold text-gray-600" data-tab="qualidade">Qualidade Premium</button>
+                        <button class="tab-button py-3 px-6 font-semibold text-gray-600" data-tab="velocidade">Velocidade e Inovação</button>
+                        <button class="tab-button py-3 px-6 font-semibold text-gray-600" data-tab="servicos">Serviços Completos</button>
+                    </div>
+
+                    <!-- Custo Zero Content -->
+                    <div id="custo-zero" class="tab-content bg-white p-8 rounded-lg shadow-xl reveal">
+                        <h3 class="text-2xl font-bold mb-6">Transforme Impostos em Produção Audiovisual com ROI Infinito</h3>
+                        <div class="grid md:grid-cols-2 gap-6 text-sm">
+                            <div class="border-l-4 border-teal-500 pl-4"><h4 class="font-bold">Lei Rouanet</h4><p>Até 4% do IR devido, dedução integral.</p></div>
+                            <div class="border-l-4 border-teal-500 pl-4"><h4 class="font-bold">Lei do Audiovisual</h4><p>Até 3% do IR devido, dedução de 100%.</p></div>
+                            <div class="border-l-4 border-teal-500 pl-4"><h4 class="font-bold">ProAC ICMS</h4><p>Até 3% do ICMS devido (Empresas Paulistas).</p></div>
+                            <div class="border-l-4 border-teal-500 pl-4"><h4 class="font-bold">Lei Municipal ISS</h4><p>Até 20% do ISS devido.</p></div>
+                        </div>
+                        <div class="mt-8 bg-teal-50 p-6 rounded-lg border border-teal-200 text-center"><p class="font-bold">Exemplo Prático:</p><p>Uma empresa com R$ 500MM de faturamento tem <span class="text-teal-600 font-bold">R$ 3,2 milhões disponíveis</span> anualmente, o que equivale a 150+ produções com <span class="text-teal-600 font-bold">custo efetivo ZERO.</span></p></div>
+                    </div>
+
+                    <!-- Economia Direta Content -->
+                    <div id="economia" class="tab-content hidden bg-white p-8 rounded-lg shadow-xl reveal">
+                        <h3 class="text-2xl font-bold mb-6">Contratação Direta com 35% de Economia Garantida</h3>
+                        <div class="overflow-x-auto"><table class="w-full text-left"><thead><tr class="bg-gray-200"><th class="p-3">PRODUÇÃO</th><th class="p-3">MERCADO</th><th class="p-3 text-teal-600 font-bold">INSTITUTO</th><th class="p-3 bg-teal-100 text-teal-800">SUA ECONOMIA</th></tr></thead><tbody><tr class="border-b"><td class="p-3">Vídeo Institucional (3 min)</td><td class="p-3">R$ 80.000</td><td class="p-3 text-teal-600 font-bold">R$ 52.000</td><td class="p-3 bg-teal-50">R$ 28.000</td></tr><tr class="border-b"><td class="p-3">Campanha Digital (10 peças)</td><td class="p-3">R$ 250.000</td><td class="p-3 text-teal-600 font-bold">R$ 162.500</td><td class="p-3 bg-teal-50">R$ 87.500</td></tr><tr class="border-b"><td class="p-3">Documentário (30 min)</td><td class="p-3">R$ 180.000</td><td class="p-3 text-teal-600 font-bold">R$ 117.000</td><td class="p-3 bg-teal-50">R$ 63.000</td></tr><tr><td class="p-3">Live Profissional (2h)</td><td class="p-3">R$ 40.000</td><td class="p-3 text-teal-600 font-bold">R$ 26.000</td><td class="p-3 bg-teal-50">R$ 14.000</td></tr></tbody></table></div>
+                    </div>
+                    
+                    <!-- Qualidade Premium Content -->
+                    <div id="qualidade" class="tab-content hidden bg-white p-8 rounded-lg shadow-xl reveal">
+                        <h3 class="text-2xl font-bold mb-6">Qualidade que Supera o Mercado</h3>
+                        <div class="grid md:grid-cols-2 gap-6 text-sm">
+                            <p>✓ <b>Dream Team de Supervisores:</b> Profissionais com 15+ anos de experiência.</p>
+                            <p>✓ <b>Sistema de Padrinhos:</b> 1 supervisor sênior por projeto e 1 padrinho para cada 5 jovens.</p>
+                            <p>✓ <b>Revisão Tripla:</b> Técnica, criativa e final em todas as entregas.</p>
+                            <p>✓ <b>Equipamentos Premium:</b> R$ 4 milhões em câmeras 4K/8K e estúdios completos.</p>
+                            <p>✓ <b>Excelência Comprovada:</b> 95% de aprovação na primeira entrega.</p>
+                             <p>✓ <b>Mínima Refilmagem:</b> Menos de 2% de taxa de refilmagem.</p>
+                        </div>
+                    </div>
+
+                    <!-- Velocidade e Inovação Content -->
+                    <div id="velocidade" class="tab-content hidden bg-white p-8 rounded-lg shadow-xl reveal">
+                        <h3 class="text-2xl font-bold mb-6">Velocidade e Inovação da Nova Geração</h3>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div><h4 class="font-bold text-teal-600 text-lg mb-2">Entrega 3x Mais Rápida</h4><p>Prazo médio de 15 dias para entrega, contra 45-60 dias do mercado tradicional, sem comprometer a qualidade.</p></div>
+                             <div><h4 class="font-bold text-teal-600 text-lg mb-2">Tecnologia de Ponta</h4><p>Somos a primeira escola de IA audiovisual para periferias do mundo. Nossos jovens dominam as tecnologias mais avançadas para manter sua empresa na vanguarda.</p></div>
+                        </div>
+                    </div>
+
+                     <!-- Serviços Completos Content -->
+                    <div id="servicos" class="tab-content hidden bg-white p-8 rounded-lg shadow-xl reveal">
+                         <h3 class="text-2xl font-bold mb-6">Um Parceiro Único para Todas as Suas Necessidades</h3>
+                         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
+                            <div><h4 class="font-bold mb-2">Produção Corporativa</h4><ul class="list-disc list-inside"><li>Vídeos institucionais</li><li>Documentários</li><li>Cobertura de eventos</li></ul></div>
+                            <div><h4 class="font-bold mb-2">Marketing Digital</h4><ul class="list-disc list-inside"><li>Campanhas para redes sociais</li><li>Séries para YouTube</li><li>Podcasts e Videocasts</li></ul></div>
+                            <div><h4 class="font-bold mb-2">Comunicação Interna</h4><ul class="list-disc list-inside"><li>EAD e capacitação</li><li>Endomarketing</li><li>Webinars e transmissões</li></ul></div>
+                             <div><h4 class="font-bold mb-2">Inovação e Tecnologia</h4><ul class="list-disc list-inside"><li>Inteligência Artificial</li><li>Realidade Virtual</li><li>Animações e Motion Graphics</li></ul></div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARALLAX DIVIDER -->
+        <section class="parallax-divider" style="background-image: url('https://gov.institutopaulistadecinema.com.br/galeria/8.jpg');"></section>
+        
+        <!-- 6. Impacto Social -->
+        <section id="impacto" class="py-20 animated-gradient-dark text-white">
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-4">Impacto Social Transformador: ESG Genuíno e Mensurável</h2>
+                    <p class="text-xl max-w-3xl mx-auto text-gray-400 mb-12">Sua parceria é um investimento que constrói um legado de impacto e eficiência.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                     <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal"><p class="text-3xl font-bold text-teal-400 counter" data-target="400">0</p><p>Jovens Transformados</p></div>
+                     <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay: 50ms;"><p class="text-3xl font-bold text-teal-400 counter" data-target="1600">0</p><p>Famílias Impactadas</p></div>
+                     <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay: 100ms;"><p class="text-3xl font-bold text-teal-400">R$ 78 Mi</p><p>em PIB Cultural</p></div>
+                     <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay: 150ms;"><p class="text-3xl font-bold text-teal-400 counter" data-target="1200">0</p><p>Empregos Indiretos</p></div>
+                     <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay: 200ms;"><p class="text-3xl font-bold text-teal-400">-40%</p><p>nos Índices de Violência</p></div>
+                     <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 reveal" style="animation-delay: 250ms;"><p class="text-3xl font-bold text-teal-400">R$ 54 mil/ano</p><p>Geração de Renda por Jovem</p></div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- 7. Clube dos Fundadores -->
+        <section id="fundadores" class="py-20 bg-gray-900 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-4">Clube dos Fundadores: <span class="text-amber-400">Uma Oportunidade Limitada e Exclusiva</span></h2>
+                    <p class="text-xl max-w-3xl mx-auto text-gray-400 mb-12">Apenas 10 vagas para empresas que desejam redefinir o padrão de excelência e propósito no mercado.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="founder-card bg-gray-800 p-8 rounded-lg reveal">
+                        <h3 class="text-2xl font-bold text-amber-400 mb-2">Patrocínio Corporativo</h3>
+                        <p class="text-3xl font-bold mb-4">R$ 500 mil/ano</p>
+                        <ul class="space-y-2 text-left text-sm"><li class="flex items-center"><span class="text-amber-400 mr-2">✓</span>20 produções anuais</li><li class="flex items-center"><span class="text-amber-400 mr-2">✓</span>Certificações de impacto</li></ul>
+                    </div>
+                     <div class="founder-card bg-gray-800 p-8 rounded-lg reveal border-2 border-amber-400 shadow-lg shadow-amber-500/10" style="animation-delay: 200ms; transform: scale(1.05);">
+                        <h3 class="text-2xl font-bold text-amber-400 mb-2">Patrocínio Master</h3>
+                        <p class="text-3xl font-bold mb-4">R$ 1 milhão/ano</p>
+                        <ul class="space-y-2 text-left text-sm"><li class="flex items-center"><span class="text-amber-400 mr-2">✓</span>40 produções anuais</li><li class="flex items-center"><span class="text-amber-400 mr-2">✓</span>Naming Rights de 1 turma</li><li class="flex items-center"><span class="text-amber-400 mr-2">✓</span>Prioridade Absoluta</li></ul>
+                    </div>
+                     <div class="founder-card bg-gray-800 p-8 rounded-lg reveal" style="animation-delay: 400ms;">
+                        <h3 class="text-2xl font-bold text-amber-400 mb-2">Patrocínio Fundador</h3>
+                        <p class="text-3xl font-bold mb-4">R$ 2 milhões/ano</p>
+                        <ul class="space-y-2 text-left text-sm"><li class="flex items-center"><span class="text-amber-400 mr-2">✓</span>100 produções anuais</li><li class="flex items-center"><span class="text-amber-400 mr-2">✓</span>Naming Rights de 2 turmas</li><li class="flex items-center"><span class="text-amber-400 mr-2">✓</span>Conselho Consultivo</li></ul>
+                    </div>
+                </div>
+                 <div class="mt-12 reveal"><a href="contato.html" class="bg-amber-500 text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-amber-600 cta-button">Garanta sua Vaga no Clube</a></div>
+            </div>
+        </section>
+
+        <!-- 8. Credibilidade -->
+        <section id="credibilidade" class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal"><h2 class="text-3xl font-bold">Credibilidade e Validação Comprovadas</h2></div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal">
+                        <h3 class="font-bold text-lg mb-2 text-teal-600">R$ 2 Milhões do Governo Federal</h3>
+                        <p class="text-sm">O FSA/ANCINE já investiu no Instituto através do filme "O Fantástico Laboratório", validando nossa viabilidade técnica e impacto social.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal" style="animation-delay: 150ms;">
+                        <h3 class="font-bold text-lg mb-2 text-teal-600">Instituições Fundadoras de Renome</h3>
+                        <p class="text-sm">Dummy Filmes (15 anos), MPV Filmes (cinema social) e Sabiá Educação (parceira Vila Sésamo) garantem nossa expertise.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg reveal" style="animation-delay: 300ms;">
+                        <h3 class="font-bold text-lg mb-2 text-teal-600">Governança e Transparência</h3>
+                        <p class="text-sm">OSCIP com conselho fiscal independente, auditoria externa e planejamento para certificações ISO, GPTW e B Corp.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. A Decisão Estratégica -->
+        <section class="py-20 animated-gradient text-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal"><h2 class="text-3xl font-bold">A Decisão Estratégica: Invista no Futuro, Hoje.</h2><p class="text-xl max-w-3xl mx-auto mt-4">Uma equação privilegiada para cada líder da sua empresa.</p></div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="reveal"><h3 class="text-2xl font-bold mb-2">Para o CFO</h3><p>ROI infinito via incentivos ou 35% de economia garantida. Otimização tributária 100% legal e auditável.</p></div>
+                    <div class="reveal" style="animation-delay: 150ms;"><h3 class="text-2xl font-bold mb-2">Para o CMO</h3><p>Qualidade superior, velocidade 3x maior, produção ilimitada e conexão autêntica com o público jovem.</p></div>
+                    <div class="reveal" style="animation-delay: 300ms;"><h3 class="text-2xl font-bold mb-2">Para o CEO</h3><p>ESG genuíno com impacto mensurável, diferencial competitivo único e fortalecimento da marca.</p></div>
+                    <div class="reveal" style="animation-delay: 450ms;"><h3 class="text-2xl font-bold mb-2">Para o Acionista</h3><p>Economia substancial, valorização da marca e mitigação de riscos reputacionais. Modelo sustentável e escalável.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 10. Próximos Passos -->
+        <section id="contato" class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-4">Próximos Passos: Transforme Impostos em Oportunidades Reais.</h2>
+                    <p class="max-w-3xl mx-auto mb-12">Enquanto seus concorrentes pagam fortunas e desperdiçam recursos, sua empresa pode construir um legado de impacto e eficiência.</p>
+                </div>
+                 <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8">
+                     <div class="text-center reveal"><div class="bg-teal-500 text-white rounded-full h-16 w-16 flex justify-center items-center shadow-lg mx-auto mb-4"><span class="font-bold text-2xl">1</span></div><h3 class="font-bold">Agende uma Apresentação</h3><p class="text-sm">Entenda como o Instituto se alinha aos seus objetivos.</p></div>
+                     <div class="text-center reveal" style="animation-delay: 200ms;"><div class="bg-teal-500 text-white rounded-full h-16 w-16 flex justify-center items-center shadow-lg mx-auto mb-4"><span class="font-bold text-2xl">2</span></div><h3 class="font-bold">Receba um Diagnóstico Fiscal</h3><p class="text-sm">Analise as oportunidades de incentivo para sua empresa.</p></div>
+                     <div class="text-center reveal" style="animation-delay: 400ms;"><div class="bg-teal-500 text-white rounded-full h-16 w-16 flex justify-center items-center shadow-lg mx-auto mb-4"><span class="font-bold text-2xl">3</span></div><h3 class="font-bold">Torne-se um Fundador</h3><p class="text-sm">Faça parte desta revolução e garanta benefícios exclusivos.</p></div>
+                 </div>
+                 <div class="mt-12 reveal">
+                     <a href="contato.html" class="bg-gray-800 text-white font-bold py-4 px-10 text-lg rounded-lg cta-button inline-block">Fale com um Especialista</a>
+                 </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Rodapé -->
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        const headerOffset = document.getElementById('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); }
+                    }
+                });
+            });
+            
+            // Intersection Observer for animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Counter animation
+                        const counters = entry.target.querySelectorAll('.counter');
+                        counters.forEach(counter => {
+                            if (!counter.classList.contains('animated')) {
+                                counter.classList.add('animated');
+                                const target = +counter.getAttribute('data-target');
+                                let start = 0;
+                                const duration = 2000;
+                                const increment = target / (duration / 16);
+                                
+                                const updateCounter = () => {
+                                    start += increment;
+                                    if (start < target) {
+                                        counter.innerText = Math.ceil(start);
+                                        requestAnimationFrame(updateCounter);
+                                    } else {
+                                        counter.innerText = target;
+                                    }
+                                };
+                                updateCounter();
+                            }
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => observer.observe(el));
+            
+            // Custom Cursor Logic removed
+
+             // Tabs functionality
+            const tabsContainer = document.getElementById('tabs-container');
+            if (tabsContainer) {
+                const tabButtons = tabsContainer.querySelectorAll('.tab-button');
+                const tabContents = tabsContainer.querySelectorAll('.tab-content');
+                
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const tabId = button.dataset.tab;
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        tabContents.forEach(content => {
+                            content.classList.toggle('hidden', content.id !== tabId);
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
+

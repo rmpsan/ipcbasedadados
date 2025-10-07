@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Paulista de Cinema - Proposta Oficial Prefeitura</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f0f0f0;
+            letter-spacing: -0.011em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* SLIDES */
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            background: white;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 80px 60px;
+            page-break-after: always;
+            position: relative;
+        }
+
+        /* SLIDE CAPA */
+        .slide-cover {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-cover h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .slide-cover h1 strong {
+            font-weight: 700;
+            display: block;
+        }
+
+        .slide-cover .subtitle {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FF6B35 0%, #4361EE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* SLIDE PADRÃO */
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+        }
+
+        .slide-subtitle {
+            font-size: 1.3rem;
+            color: #6b7280;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* GRID DE CARDS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .card-problem {
+            border-left: 4px solid #dc2626;
+        }
+
+        .card-solution {
+            border-left: 4px solid #16a34a;
+        }
+
+        .card-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FF6B35 0%, #4361EE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* DESTAQUE */
+        .highlight-box {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .highlight-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .highlight-text {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .highlight-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .highlight-accent {
+            background: linear-gradient(135deg, #FF6B35 0%, #4361EE 100%);
+        }
+
+        .highlight-success {
+            background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+        }
+
+        .highlight-warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        }
+
+        /* TIMELINE */
+        .timeline {
+            margin: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 30px 0;
+            align-items: flex-start;
+        }
+
+        .timeline-date {
+            width: 150px;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 1.1rem;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid #1a1a1a;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        /* COMPARAÇÃO */
+        .comparison-table {
+            width: 100%;
+            margin: 40px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 25px 40px;
+            border-bottom: 1px solid #e5e7eb;
+            align-items: center;
+            background: white;
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+            background: #f9fafb;
+        }
+
+        .comparison-row.highlight {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: white;
+            font-weight: 700;
+        }
+
+        .comparison-row.highlight strong {
+            color: white;
+        }
+
+        .comparison-item {
+            font-size: 1.25rem;
+        }
+
+        .comparison-cost {
+            font-weight: 700;
+            color: #374151;
+        }
+
+        /* ROI */
+        .roi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .roi-box {
+            padding: 30px;
+            border-radius: 12px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .roi-invest {
+            border-left: 4px solid #dc2626;
+        }
+
+        .roi-return {
+            border-left: 4px solid #16a34a;
+        }
+
+        .roi-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .roi-item {
+            margin: 20px 0;
+            font-size: 1.1rem;
+            color: #374151;
+        }
+
+        .roi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+            margin-top: 5px;
+            color: #1a1a1a;
+        }
+
+        /* SLIDE DARK */
+        .slide-dark {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: white;
+        }
+
+        .slide-dark .slide-title {
+            color: white;
+        }
+
+        .slide-dark .card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .slide-dark .card-text {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .slide-dark .card-number {
+            background: linear-gradient(135deg, #FF6B35 0%, #4361EE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* NÚMERO DO SLIDE */
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .slide-dark .slide-number,
+        .slide-cover .slide-number {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* CTA */
+        .cta-box {
+            background: rgba(255,255,255,0.95);
+            color: #1a1a1a;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #374151;
+        }
+
+        .cta-text strong {
+            color: #1a1a1a;
+        }
+
+        /* UTILITIES */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-4 {
+            margin-top: 40px;
+        }
+        
+        .mb-4 {
+            margin-bottom: 40px;
+        }
+        
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 30px;
+            }
+            
+            .slide-title {
+                font-size: 2rem;
+            }
+            
+            .grid-2, .grid-3, .roi-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-row {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+            }
+            
+            .timeline-date {
+                margin-bottom: 10px;
+            }
+        }
+
+        /* PRINT */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .slide {
+                box-shadow: none;
+                margin-bottom: 0;
+                min-height: 100vh;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- SLIDE 1: CAPA -->
+        <div class="slide slide-cover">
+            <h1>
+                INSTITUTO PAULISTA
+                <strong>DE CINEMA</strong>
+            </h1>
+            
+            <p class="subtitle">
+                A solução definitiva para revolucionar a comunicação pública de São Paulo
+                transformando jovens periféricos em produtores de conteúdo de classe mundial
+            </p>
+            
+            <div class="stats-row">
+                <div class="stat-box">
+                    <div class="stat-number">35%</div>
+                    <div class="stat-label">Economia Garantida</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100x</div>
+                    <div class="stat-label">Mais Produção</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">400</div>
+                    <div class="stat-label">Jovens Formados</div>
+                </div>
+            </div>
+            
+            <div class="slide-number">1/15</div>
+        </div>
+
+        <!-- SLIDE 2: A CRISE -->
+        <div class="slide">
+            <h2 class="slide-title">A Crise de Comunicação de São Paulo</h2>
+            <p class="slide-subtitle">
+                12 milhões de habitantes. 8 milhões nas redes sociais. Menos de 10 vídeos oficiais por mês.
+            </p>
+            
+            <div class="grid-2">
+                <div class="card card-problem">
+                    <span class="card-number">92%</span>
+                    <div class="card-title">População Desinformada</div>
+                    <div class="card-text">
+                        Cidadãos não conhecem os serviços disponíveis da prefeitura 
+                        por falta de comunicação audiovisual adequada
+                    </div>
+                </div>
+                <div class="card card-problem">
+                    <span class="card-number">R$ 500M</span>
+                    <div class="card-title">Obras Invisíveis</div>
+                    <div class="card-text">
+                        Investimentos públicos sem documentação visual, 
+                        gerando desconfiança e desinformação na população
+                    </div>
+                </div>
+                <div class="card card-problem">
+                    <span class="card-number">5x</span>
+                    <div class="card-title">Fake News Vencendo</div>
+                    <div class="card-text">
+                        Velocidade de propagação de mentiras comparada 
+                        à comunicação oficial da prefeitura
+                    </div>
+                </div>
+                <div class="card card-problem">
+                    <span class="card-number">87%</span>
+                    <div class="card-title">Preferência por Vídeo</div>
+                    <div class="card-text">
+                        População consome informação por vídeo, mas a 
+                        prefeitura comunica principalmente por texto
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-text">
+                    Sem produção audiovisual massiva, São Paulo perde diariamente a batalha 
+                    da comunicação. O Instituto é a única solução capaz de produzir 
+                    100+ vídeos mensais com custo 35% menor.
+                </div>
+            </div>
+            
+            <div class="slide-number">2/15</div>
+        </div>
+
+        <!-- SLIDE 3: A SOLUÇÃO -->
+        <div class="slide">
+            <h2 class="slide-title">A Solução: Instituto Paulista de Cinema</h2>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">Conceito Revolucionário</div>
+                <div class="highlight-text">
+                    Produtora oficial da prefeitura + Escola de cinema para periferias.
+                    Jovens são pagos para aprender produzindo conteúdo real para o governo.
+                    Modelo único no mundo: educação que gera economia.
+                </div>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">Produção Ilimitada</div>
+                    <div class="card-text">
+                        100+ vídeos/mês para todas as secretarias e regiões
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Economia de 35%</div>
+                    <div class="card-text">
+                        Comparado a qualquer produtora comercial do mercado
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Resposta em 2h</div>
+                    <div class="card-text">
+                        Produção imediata para crises e fake news
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">400 Jovens</div>
+                    <div class="card-text">
+                        Formados em 4 anos com emprego garantido
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Linguagem Popular</div>
+                    <div class="card-text">
+                        Jovens da periferia falando com o povo
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Arquivo Eterno</div>
+                    <div class="card-text">
+                        Toda a gestão documentada profissionalmente
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-number">3/15</div>
+        </div>
+
+        <!-- SLIDE 4: COMPARAÇÃO DE CUSTOS -->
+        <div class="slide">
+            <h2 class="slide-title">Economia Comprovada em Cada Produção</h2>
+            
+            <div class="comparison-table">
+                <div class="comparison-row">
+                    <span>Campanha de Vacinação (20 vídeos)</span>
+                    <span class="comparison-cost">R$ 250.000</span>
+                </div>
+                <div class="comparison-row">
+                    <span>Documentário Institucional (30min)</span>
+                    <span class="comparison-cost">R$ 180.000</span>
+                </div>
+                <div class="comparison-row">
+                    <span>Cobertura de Obras (mensal)</span>
+                    <span class="comparison-cost">R$ 50.000</span>
+                </div>
+                <div class="comparison-row">
+                    <span>Live de Inauguração</span>
+                    <span class="comparison-cost">R$ 40.000</span>
+                </div>
+                <div class="comparison-row highlight">
+                    <span>TODOS OS SERVIÇOS ACIMA COM O INSTITUTO</span>
+                    <span><strong>35% MAIS BARATO</strong></span>
+                </div>
+            </div>
+            
+            <div class="highlight-box highlight-success">
+                <div class="highlight-number">R$ 20 MILHÕES</div>
+                <div class="highlight-text">
+                    Economia total em 4 anos comparado ao uso de produtoras comerciais
+                </div>
+            </div>
+            
+            <div class="slide-number">4/15</div>
+        </div>
+
+        <!-- SLIDE 5: COMO FUNCIONA -->
+        <div class="slide">
+            <h2 class="slide-title">Como o Instituto Funcionará</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">24 HORAS</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Solicitação Digital</div>
+                        <div>Secretaria solicita produção via plataforma. Aprovação automática para urgências.</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">48 HORAS</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Produção Iniciada</div>
+                        <div>Equipe de jovens + supervisão profissional começam a produzir</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">7 DIAS</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Entrega Final</div>
+                        <div>Vídeo profissional entregue. Revisões ilimitadas incluídas.</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">SEMPRE</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Arquivo Permanente</div>
+                        <div>Todo material armazenado para memória histórica da cidade</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-number">5/15</div>
+        </div>
+
+        <!-- SLIDE 6: POR QUE ÚNICO -->
+        <div class="slide slide-dark">
+            <h2 class="slide-title">Por Que o Instituto é a Única Solução Viável</h2>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <span class="card-number">R$ 100M</span>
+                    <div class="card-text">
+                        Custo anual com produtoras comerciais para comunicar adequadamente
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-number">2 semanas</span>
+                    <div class="card-text">
+                        Tempo médio de resposta de produtoras para crises
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-number">0%</span>
+                    <div class="card-text">
+                        Conexão de produtoras tradicionais com periferias
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-number">Ilimitada</span>
+                    <div class="card-text">
+                        Produção do Instituto com custo fixo mensal
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-number">2 horas</span>
+                    <div class="card-text">
+                        Resposta do Instituto para situações de crise
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-number">100%</span>
+                    <div class="card-text">
+                        Jovens periféricos produzindo para suas comunidades
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-number">6/15</div>
+        </div>
+
+        <!-- SLIDE 7: CASOS DE USO -->
+        <div class="slide">
+            <h2 class="slide-title">Casos de Uso Imediato</h2>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Campanha de Dengue</div>
+                    <div class="card-text">
+                        30 vídeos segmentados por região<br>
+                        <strong>Economia: R$ 175.000</strong>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Obras do Metrô</div>
+                    <div class="card-text">
+                        Documentação mensal com drone<br>
+                        <strong>Economia: R$ 420.000/ano</strong>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Escolas Municipais</div>
+                    <div class="card-text">
+                        200 videoaulas educativas<br>
+                        <strong>Economia: R$ 2.000.000</strong>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Transparência</div>
+                    <div class="card-text">
+                        Balanços mensais em vídeo<br>
+                        <strong>Economia: R$ 600.000/ano</strong>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">Primeiro Ano</div>
+                <div class="highlight-text">
+                    1.200 produções • R$ 3 milhões economizados • 
+                    100% das secretarias atendidas • População 10x mais informada
+                </div>
+            </div>
+            
+            <div class="slide-number">7/15</div>
+        </div>
+
+        <!-- SLIDE 8: IMPACTO SOCIAL -->
+        <div class="slide">
+            <h2 class="slide-title">Transformação Social Sem Precedentes</h2>
+            
+            <div class="roi-grid">
+                <div class="roi-box roi-invest">
+                    <div class="roi-title">Investimento Social</div>
+                    <div class="roi-item">
+                        Jovens formados:
+                        <span class="roi-value">400</span>
+                    </div>
+                    <div class="roi-item">
+                        Famílias impactadas:
+                        <span class="roi-value">1.600</span>
+                    </div>
+                    <div class="roi-item">
+                        Custo por vida:
+                        <span class="roi-value">R$ 35.000</span>
+                    </div>
+                </div>
+                
+                <div class="roi-box roi-return">
+                    <div class="roi-title">Retorno Social</div>
+                    <div class="roi-item">
+                        Salário médio formados:
+                        <span class="roi-value">R$ 4.500</span>
+                    </div>
+                    <div class="roi-item">
+                        Empregos indiretos:
+                        <span class="roi-value">1.200</span>
+                    </div>
+                    <div class="roi-item">
+                        PIB gerado:
+                        <span class="roi-value">R$ 78 milhões</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-text">
+                    Cada jovem formado deixa de custar R$ 42.000/ano ao Estado 
+                    e passa a gerar R$ 54.000/ano em salário e impostos
+                </div>
+            </div>
+            
+            <div class="slide-number">8/15</div>
+        </div>
+
+        <!-- SLIDE 9: ROI DO GOVERNO -->
+        <div class="slide">
+            <h2 class="slide-title">Retorno do Investimento Público</h2>
+            
+            <div class="highlight-box highlight-accent">
+                <div class="highlight-title">Para cada R$ 1 investido</div>
+                <div class="highlight-number">R$ 3,00</div>
+                <div class="highlight-text">retornam em economia e benefícios diretos</div>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">Economia Direta</div>
+                    <span class="card-number">R$ 20M</span>
+                    <div class="card-text">em produções audiovisuais</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Impostos Futuros</div>
+                    <span class="card-number">R$ 4,3M</span>
+                    <div class="card-text">dos profissionais formados</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Economia Social</div>
+                    <span class="card-number">R$ 16,8M</span>
+                    <div class="card-text">em programas assistenciais</div>
+                </div>
+            </div>
+            
+            <div class="slide-number">9/15</div>
+        </div>
+
+        <!-- SLIDE 10: TIMELINE DE IMPLEMENTAÇÃO -->
+        <div class="slide">
+            <h2 class="slide-title">Cronograma de Implementação</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">MÊS 1-3</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Estruturação</div>
+                        <div>Adequação do espaço, contratação de equipe, planejamento pedagógico</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">MÊS 4-6</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Turma Piloto</div>
+                        <div>30 jovens começam formação, primeiras produções para a prefeitura</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">MÊS 7-12</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Operação Plena</div>
+                        <div>100 jovens em formação, 50+ produções mensais, modelo validado</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">ANO 2-4</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Expansão e Legado</div>
+                        <div>400 jovens formados, modelo replicado, São Paulo referência mundial</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-number">10/15</div>
+        </div>
+
+        <!-- SLIDE 11: COMPARAÇÃO DE ESCALA -->
+        <div class="slide">
+            <h2 class="slide-title">Perspectiva do Investimento</h2>
+            
+            <div class="comparison-table">
+                <div class="comparison-row">
+                    <span>1 km de ciclovia</span>
+                    <span class="comparison-cost">R$ 15 milhões</span>
+                </div>
+                <div class="comparison-row">
+                    <span>1 mês de publicidade municipal</span>
+                    <span class="comparison-cost">R$ 8 milhões</span>
+                </div>
+                <div class="comparison-row">
+                    <span>Reforma de 1 praça</span>
+                    <span class="comparison-cost">R$ 5 milhões</span>
+                </div>
+                <div class="comparison-row">
+                    <span>10 câmeras de segurança</span>
+                    <span class="comparison-cost">R$ 3 milhões</span>
+                </div>
+                <div class="comparison-row highlight">
+                    <span>INSTITUTO PAULISTA DE CINEMA (4 ANOS)</span>
+                    <span><strong>R$ 14 milhões</strong></span>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-text">
+                    Menor que qualquer obra de infraestrutura, 
+                    mas transforma 400 vidas e revoluciona a comunicação da cidade para sempre
+                </div>
+            </div>
+            
+            <div class="slide-number">11/15</div>
+        </div>
+
+        <!-- SLIDE 12: A TRANSFORMAÇÃO -->
+        <div class="slide slide-dark">
+            <h2 class="slide-title">A Transformação de São Paulo em 4 Anos</h2>
+            
+            <div class="grid-2">
+                <div class="card" style="background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3);">
+                    <div class="card-title" style="color: #ff6b6b; font-size: 1.5rem; margin-bottom: 20px; font-weight: 700;">❌ SEM O Instituto</div>
+                    <div class="card-text" style="color: rgba(255,255,255,0.95);">
+                        • São Paulo muda e invisível<br>
+                        • 10 vídeos/mês insuficientes<br>
+                        • Fake news dominando<br>
+                        • Jovens sem oportunidades<br>
+                        • Gestão sem memória<br>
+                        • Gastos de R$ 100M com produtoras
+                    </div>
+                </div>
+                <div class="card" style="background: rgba(22, 163, 74, 0.1); border: 1px solid rgba(22, 163, 74, 0.3);">
+                    <div class="card-title" style="color: #51cf66; font-size: 1.5rem; margin-bottom: 20px; font-weight: 700;">✅ COM O Instituto</div>
+                    <div class="card-text" style="color: rgba(255,255,255,0.95);">
+                        • São Paulo conectada e transparente<br>
+                        • 100+ vídeos/mês em todas plataformas<br>
+                        • Resposta imediata a crises<br>
+                        • 400 jovens com carreira<br>
+                        • Acervo histórico completo<br>
+                        • Economia de R$ 20M
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-box">
+                <div class="cta-title">Esta não é uma decisão orçamentária</div>
+                <div class="cta-text">
+                    <strong>É uma decisão civilizatória</strong><br>
+                    São Paulo pode continuar no século XX ou liderar o futuro da comunicação pública
+                </div>
+            </div>
+            
+            <div class="slide-number">12/15</div>
+        </div>
+
+        <!-- SLIDE 13: O MOMENTO HISTÓRICO -->
+        <div class="slide">
+            <h2 class="slide-title">O Momento Histórico é Agora</h2>
+            
+            <div class="highlight-box highlight-warning">
+                <div class="highlight-title">Oportunidade Única - 2025</div>
+                <div class="highlight-text">
+                    A gestão que criar o Instituto será lembrada como a que 
+                    revolucionou a comunicação pública e transformou 400 vidas
+                </div>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <span class="card-number">2025</span>
+                    <div class="card-text">Estruturação e início das operações</div>
+                </div>
+                <div class="card">
+                    <span class="card-number">2026</span>
+                    <div class="card-text">100 jovens formados, modelo consolidado</div>
+                </div>
+                <div class="card">
+                    <span class="card-number">2027</span>
+                    <div class="card-text">200 formados, expansão nacional</div>
+                </div>
+                <div class="card">
+                    <span class="card-number">2028</span>
+                    <div class="card-text">400 formados, legado eterno</div>
+                </div>
+                <div class="card">
+                    <span class="card-number">2029</span>
+                    <div class="card-text">Instituto autossustentável e replicável</div>
+                </div>
+                <div class="card">
+                    <span class="card-number">∞</span>
+                    <div class="card-text">São Paulo referência mundial</div>
+                </div>
+            </div>
+            
+            <div class="slide-number">13/15</div>
+        </div>
+
+        <!-- SLIDE 14: CHAMADA PARA AÇÃO -->
+        <div class="slide">
+            <h2 class="slide-title">A Decisão</h2>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">São Paulo tem duas opções:</div>
+            </div>
+            
+            <div class="roi-grid">
+                <div class="roi-box roi-invest">
+                    <div class="roi-title">Continuar como está</div>
+                    <div class="roi-item">
+                        Gastos crescentes:
+                        <span class="roi-value">R$ 100M/ano</span>
+                    </div>
+                    <div class="roi-item">
+                        População desinformada:
+                        <span class="roi-value">92%</span>
+                    </div>
+                    <div class="roi-item">
+                        Jovens excluídos:
+                        <span class="roi-value">2,4 milhões</span>
+                    </div>
+                </div>
+                
+                <div class="roi-box roi-return">
+                    <div class="roi-title">Criar o Instituto</div>
+                    <div class="roi-item">
+                        Investimento único:
+                        <span class="roi-value">R$ 14M</span>
+                    </div>
+                    <div class="roi-item">
+                        Economia garantida:
+                        <span class="roi-value">R$ 20M</span>
+                    </div>
+                    <div class="roi-item">
+                        Vidas transformadas:
+                        <span class="roi-value">400</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-box">
+                <div class="cta-text">
+                    <span style="font-size: 2rem; font-weight: 700;">
+                        O Instituto não é uma despesa.<br>
+                        É o melhor investimento que São Paulo pode fazer.
+                    </span>
+                </div>
+            </div>
+            
+            <div class="slide-number">14/15</div>
+        </div>
+
+        <!-- SLIDE 15: CONTATO -->
+        <div class="slide slide-cover">
+            <h1 style="margin-bottom: 60px;">
+                A VOZ QUE
+                <strong>SÃO PAULO PRECISA</strong>
+            </h1>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 16px; margin-bottom: 40px;">
+                <p style="font-size: 1.5rem; line-height: 1.8;">
+                    "Uma cidade de 12 milhões não pode<br>
+                    falar com apenas 10 vídeos por mês.<br><br>
+                    
+                    <strong>O Instituto é a voz que faltava."</strong>
+                </p>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <p style="font-size: 1.2rem; opacity: 0.9;">
+                    Instituto Paulista de Cinema<br>
+                    <strong>Proposta Oficial - 06 de Agosto de 2025</strong><br><br>
+                    
+                    <span style="font-size: 1rem; opacity: 0.7;">
+                        Documento completo disponível para análise detalhada
+                    </span>
+                </p>
+            </div>
+            
+            <div class="slide-number">15/15</div>
+        </div>
+        
+    </div>
+</body>
+</html>
